@@ -8,7 +8,7 @@
 
 #### 1.1 docker的基本组成
 
-![img](https://kuangstudy.oss-cn-beijing.aliyuncs.com/bbs/2021/01/26/kuangstudy5f4abab7-20ef-47f1-88d8-3f910da48ad6.jpg?d=1616079346140)
+![img](Docker学习.assets/kuangstudy5f4abab7-20ef-47f1-88d8-3f910da48ad6.jpg)
 
 #### 1.2 查看linux的版本
 
@@ -52,21 +52,21 @@ sudo yum install docker-ce docker-ce-cli containerd.io
 # 也可以指定版本实现，具体看官方文档
 ```
 
-![image-20210314210337122](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210314210337122.png)
+![image-20210314210337122](Docker学习.assets/image-20210314210337122.png)
 
 ```shell
 # 5、启动docker
 sudo systemctl start docker
 ```
 
-![image-20210314210438515](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210314210438515.png)
+![image-20210314210438515](Docker学习.assets/image-20210314210438515.png)
 
 ```shell
 # 6、运行hello world镜像
 sudo docker run hello-world
 ```
 
-![image-20210314210829000](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210314210829000.png)
+![image-20210314210829000](Docker学习.assets/image-20210314210829000.png)
 
 ```shell
 # 7、 查看下载的镜像
@@ -88,7 +88,7 @@ sudo rm -rf /var/lib/containerd
 
 #### 1.4 阿里云镜像加速
 
-![image-20210314221050590](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210314221050590.png)
+![image-20210314221050590](Docker学习.assets/image-20210314221050590.png)
 
 在服务器上进行如下配置
 
@@ -108,11 +108,11 @@ sudo systemctl restart docker
 
 #### 1.5 回顾Hello World流程
 
-![image-20210314210829000](file://C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210314210829000.png?lastModify=1615732784)
+![image-20210314210829000](Docker学习.assets/image-20210314210829000-1620099815135.png)
 
 如上图，可以知道运行一个镜像时的大致流程如下：
 
-![image-20210314224508859](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210314224508859.png)
+![image-20210314224508859](Docker学习.assets/image-20210314224508859.png)
 
 #### 1.6 底层原理
 
@@ -122,18 +122,18 @@ Docker是一个CLient-Server的结构系统，Docker的守护进程运行在主�
 
 DockerService接收到DockerClient的命令，就会执行这个命令。
 
-![image-20210314230606493](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210314230606493.png)
+![image-20210314230606493](Docker学习.assets/image-20210314230606493.png)
 
 **Docker为什么比VM快**
 
 - Docker有着比VM更少的抽象层。
 - Docker利用的是宿主机的内核，VM需要guest os。
 
-![img](https://upload-images.jianshu.io/upload_images/2338406-7c5c214656b58749.png?imageMogr2/auto-orient/strip|imageView2/2/w/1140/format/webp)
+![img](Docker学习.assets/2338406-7c5c214656b58749.png)
 
 所以说，新建一个容器的时候，docker不需要像VM一样重新加载一个操作系统内核，避免引导。虚拟机是加载guest os，而docker是利用宿主机的操作系统，省去了这个复杂的过程。
 
-![image-20210314230904938](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210314230904938.png)
+![image-20210314230904938](Docker学习.assets/image-20210314230904938.png)
 
 
 
@@ -185,7 +185,7 @@ Options:
 
 搜索镜像
 
-![image-20210315224534134](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210315224534134.png)
+![image-20210315224534134](Docker学习.assets/image-20210315224534134.png)
 
 ```shell
 [root@ ~]#: docker search --help
@@ -683,7 +683,7 @@ ctags  jenkins  os  test.txt
 
 ##### 2.4.7 小结
 
-![image-20210318225725321](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210318225725321.png)
+![image-20210318225725321](Docker学习.assets/image-20210318225725321.png)
 
 ```shell
   attach      Attach local standard input, output, and error streams to a running container
@@ -792,7 +792,7 @@ docker: Error response from daemon: driver failed programming external connectiv
 
 做完上面的这步还不行，还需要去阿里云把服务器的8888端口打开就能正常访问了。
 
-![image-20210318234955625](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210318234955625.png)
+![image-20210318234955625](Docker学习.assets/image-20210318234955625.png)
 
 > **实战---部署一个tomcat**
 
@@ -831,7 +831,7 @@ root@7c1a30039eba:/usr/local/tomcat# cp -r webapps.dist/* webapps
 # 出现这种现象是因为，阿里云镜像默认是最小的可运行的镜像，其他不必要的都被剔除掉。
 ```
 
-![image-20210319230558860](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210319230558860.png)
+![image-20210319230558860](Docker学习.assets/image-20210319230558860.png)
 
 > **实战---部署ES + Kibana**
 
@@ -869,11 +869,11 @@ docker run -d --name elasticsearch01 -p 9200:9200 -p 9300:9300 -e "discovery.typ
 [root@ ~]#: docker stats c65463179994
 ```
 
-![](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210320100645708.png)
+![](Docker学习.assets/image-20210320100645708.png)
 
 使用kibana连接es，网络如何才能连接过去？
 
-![img](https://i.loli.net/2021/01/27/XrG142kUCQMVnZx.png?d=1616234493438)
+![img](Docker学习.assets/XrG142kUCQMVnZx.png)
 
 ### 3、Docker镜像讲解
 
@@ -904,7 +904,7 @@ bootfs(file system) 主要包含bootloader和kernel，boot加载器主要是引�
 rootfs(root file system)是bootfs之上，包含的就是典型的Linux系统中的/dev、/proc、/bin、/etc等标准目录和文件。
 rootfs就是各种不同操作系统发行版，比如Ubuntu,Centos等等。
 
-![img](https://i.loli.net/2021/01/24/OPUwEy8cHLkl4Iv.png?d=1616249572216)
+![img](Docker学习.assets/OPUwEy8cHLkl4Iv.png)
 
 平时我们安装到虚拟机的centos都是好几个G，在docker里却只有几百兆。对于一个精简的os，rootfs可以很小，只需要包含最基本的命令、工具和程序库就可以了。因为底层直接用Host的kernel，自己只需要提供rootfs就可以了。
 
@@ -1052,15 +1052,15 @@ rootfs就是各种不同操作系统发行版，比如Ubuntu,Centos等等。
 
 比如基于ubuntu16.04创建一个新的镜像，这就是镜像的第一层，如果在该镜像中添加python包，就会在基础镜像之上创建第二个镜像层，如果继续添加一个安全补丁，就会创建第三个镜像层。
 
-![image](https://i.loli.net/2021/01/28/R1Y5wrVhynZvDEc.jpg)
+![image](Docker学习.assets/R1Y5wrVhynZvDEc.jpg)
 
 在添加额外的镜像层的同时，镜像始终保持是当前所有镜像的组合。
 
-![image](https://i.loli.net/2021/01/28/sOvuj2GaPMQWJLD.jpg)
+![image](Docker学习.assets/sOvuj2GaPMQWJLD.jpg)
 
 上图中文件7是对文件5的修改，在打包镜像的时候，上层镜像层中的文件覆盖了底层镜像层中的文件。这样就使得文件的更新版本作为一个新镜像层添加到镜像当中。
 
-![image](https://i.loli.net/2021/01/28/EDAC5gXNiupm61P.jpg)
+![image](Docker学习.assets/EDAC5gXNiupm61P.jpg)
 
 比如文件1是mysql，文件2是redis，文件3是tomcat，文件4是maven，文件6是jdk，文件5是我们之间的app1，文件7是app2，那么第一层的三个文件和第二层的两个文件，都是可以被其他镜像共用的。
 
@@ -1068,7 +1068,7 @@ rootfs就是各种不同操作系统发行版，比如Ubuntu,Centos等等。
 
 Docker 通过存储引擎（新版本采用快照机制）的方式来实现镜像层堆栈，并保证多镜像层对外展示为统一的文件系统。
 
-![image](https://i.loli.net/2021/01/28/Yr5SOHKwhCsoUxD.jpg)
+![image](Docker学习.assets/Yr5SOHKwhCsoUxD.jpg)
 
 #### 3.4 commit镜像
 
@@ -1097,7 +1097,7 @@ centos          latest    300e315adb2f   3 months ago     209MB
 elasticsearch   7.6.2     f29a1ee41030   11 months ago    791MB
 ```
 
-![image-20210320232618673](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210320232618673.png)
+![image-20210320232618673](Docker学习.assets/image-20210320232618673.png)
 
 ### 4、容器数据卷
 
@@ -1109,7 +1109,7 @@ elasticsearch   7.6.2     f29a1ee41030   11 months ago    791MB
 
 容器之间有一个数据共享的技术，docker容器中产生的数据，可以同步到本地，这就是**卷技术**。其实就是将容器内的目录，挂载到Linux上。
 
-![image-20210320234231388](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210320234231388.png)
+![image-20210320234231388](Docker学习.assets/image-20210320234231388.png)
 
 总结一句话：**容器的持久化和同步操作，容器间也是可以数据共享的。**
 
@@ -1129,7 +1129,7 @@ docker run -it -v 主机目录:容器内目录
 [root@ ~]#: docker inspect d245ea321c52
 ```
 
-![image-20210321111455031](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210321111455031.png)
+![image-20210321111455031](Docker学习.assets/image-20210321111455031.png)
 
 如果你在容器内`/root`目录下新建、删除和修改文件，都会自动同步到主机的`/root/ceshi`目录下，反之也是这样。
 
@@ -1157,7 +1157,7 @@ CONTAINER ID   IMAGE       COMMAND                  CREATED         STATUS      
 
 ```
 
-![image-20210321142909963](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210321142909963.png)
+![image-20210321142909963](Docker学习.assets/image-20210321142909963.png)
 
 使用navicat测试，可以发现能够连接成功，说明容器正常启动。
 
@@ -1171,7 +1171,7 @@ ca-key.pem  client-cert.pem  ib_buffer_pool  ib_logfile0  ibtmp1       performan
 
 主机上`/root/mysql/data`已经有数据了。新建数据库`test`，在主机上也会多出相应的文件夹。
 
-![image-20210321143125451](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210321143125451.png)
+![image-20210321143125451](Docker学习.assets/image-20210321143125451.png)
 
 **删除该容器，主机上的数据也不会丢失。**
 
@@ -1273,14 +1273,14 @@ Successfully built 206e8d77f602
 Successfully tagged lxp/centos:1.0
 ```
 
-![image-20210322223110545](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210322223110545.png)
+![image-20210322223110545](Docker学习.assets/image-20210322223110545.png)
 
 ```shell
 # 启动自己写的容器
 [root@ docker-test-volumes]#: docker run -it 206e8d77f602 /bin/bash
 ```
 
-![image-20210322223323436](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210322223323436.png)
+![image-20210322223323436](Docker学习.assets/image-20210322223323436.png)
 
 `volume01`和`volume02`是生成镜像的时候自动挂载的。
 
@@ -1288,7 +1288,7 @@ Successfully tagged lxp/centos:1.0
 docker inspect e25d51423840   # 查看容器的元数据
 ```
 
-![image-20210322223701099](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210322223701099.png)
+![image-20210322223701099](Docker学习.assets/image-20210322223701099.png)
 
 可以发现是匿名挂载，在宿主机上对应的目录是`/var/lib/docker/volumes`。
 
@@ -1298,7 +1298,7 @@ docker inspect e25d51423840   # 查看容器的元数据
 
 多个容器同步数据。
 
-![image-20210322230433152](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210322230433152.png)
+![image-20210322230433152](Docker学习.assets/image-20210322230433152.png)
 
 ```shell
 # 启动一个容器
@@ -1308,7 +1308,7 @@ docker run -it --name centos02 --volumes-from centos01 lxp/centos:1.0
 docker run -it --name centos03 --volumes-from centos01 lxp/centos:1.0
 ```
 
-![image-20210322230603448](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210322230603448.png)
+![image-20210322230603448](Docker学习.assets/image-20210322230603448.png)
 
 删除docker01后，docker02和docker03的数据还在。
 
@@ -1342,9 +1342,9 @@ dockerfile是用来构建docker镜像的文件。
 
 （4）docker push发布镜像（阿里云镜像仓库、DockerHub）。
 
-![image-20210323222106955](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210323222106955.png)
+![image-20210323222106955](Docker学习.assets/image-20210323222106955.png)
 
-![image-20210323222137310](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210323222137310.png)
+![image-20210323222137310](Docker学习.assets/image-20210323222137310.png)
 
 #### 5.2 Dockerfile构建过程
 
@@ -1358,7 +1358,7 @@ dockerfile是用来构建docker镜像的文件。
 
 （4）每一个指令都会创建一个新的镜像层并提交。
 
-![image-20210323222601979](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210323222601979.png)
+![image-20210323222601979](Docker学习.assets/image-20210323222601979.png)
 
 **Dockerfile**：构建文件，定义了一切步骤和源代码。
 
@@ -1385,7 +1385,7 @@ ENV          # 构建镜像的时候设置环境变量
 
 
 
-![image-20210323224256825](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210323224256825.png)
+![image-20210323224256825](Docker学习.assets/image-20210323224256825.png)
 
 #### 5.4 CMD和ENTRYPOINT的区别
 
@@ -1544,21 +1544,21 @@ Successfully built 16570f5e9ae0
 Successfully tagged mycentos:0.1
 ```
 
-![image-20210323233617174](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210323233617174.png)
+![image-20210323233617174](Docker学习.assets/image-20210323233617174.png)
 
 运行官方的centos镜像
 
-![image-20210323233845101](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210323233845101.png)
+![image-20210323233845101](Docker学习.assets/image-20210323233845101.png)
 
 运行我们自己构建的镜像（基于官方的centos，加了一些东西）
 
-![image-20210323233929783](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210323233929783.png)
+![image-20210323233929783](Docker学习.assets/image-20210323233929783.png)
 
 可以发现，我们在官方镜像的基础上，加入了`vim`和`ifconfig`命令，同时指定进入镜像后的默认目录是`/usr/local`。
 
 可以使用`docker history 镜像id`列出本地镜像的变更历史
 
-![image-20210323234203977](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210323234203977.png)
+![image-20210323234203977](Docker学习.assets/image-20210323234203977.png)
 
 > **构建tomcat**
 
@@ -1775,7 +1775,7 @@ Login Succeeded
 
 3、push自己的镜像
 
-![image-20210326222858629](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210326222858629.png)
+![image-20210326222858629](Docker学习.assets/image-20210326222858629.png)
 
 报错，拒绝访问，**原因是push的时候需要带上自己Docker Hub的用户名，`用户名/镜像名:版本号`这样的形式**，可以为这个镜像增加一个TAG。
 
@@ -1802,37 +1802,37 @@ centos              latest    300e315adb2f   3 months ago         209MB
 
 重新push，发现push的时候，也是分层上传的。
 
-![image-20210326223943567](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210326223943567.png)
+![image-20210326223943567](Docker学习.assets/image-20210326223943567.png)
 
-![image-20210326225704027](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210326225704027.png)
+![image-20210326225704027](Docker学习.assets/image-20210326225704027.png)
 
 > 发布镜像到阿里云容器服务
 
 1、https://cr.console.aliyun.com/cn-shanghai/instance/namespaces 。创建命名空间
 
-![image-20210326225903128](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210326225903128.png)
+![image-20210326225903128](Docker学习.assets/image-20210326225903128.png)
 
 2、创建镜像仓库
 
-![image-20210326230000967](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210326230000967.png)
+![image-20210326230000967](Docker学习.assets/image-20210326230000967.png)
 
 3、根据文档进行操作
 
-![image-20210326230040669](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210326230040669.png)
+![image-20210326230040669](Docker学习.assets/image-20210326230040669.png)
 
 #### 5.7 流程总结
 
-![img](https://kuangstudy.oss-cn-beijing.aliyuncs.com/bbs/2021/01/25/kuangstudyc864dc47-06fd-4e46-9e58-cc98dea19472.png)
+![img](Docker学习.assets/kuangstudyc864dc47-06fd-4e46-9e58-cc98dea19472.png)
 
 ### 6、Docker网络
 
 #### 6.1 理解Docker0
 
-![image-20210327094938667](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210327094938667.png)
+![image-20210327094938667](Docker学习.assets/image-20210327094938667.png)
 
 docker是如何处理容器网络访问的？
 
-![image-20210327095203318](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210327095203318.png)
+![image-20210327095203318](Docker学习.assets/image-20210327095203318.png)
 
 ```shell
 [root@ ~]#: docker run -d -P --name tomcat01 tomcat
@@ -1867,7 +1867,7 @@ rtt min/avg/max/mdev = 0.055/0.075/0.111/0.026 ms
 
 再次测试ip addr
 
-![image-20210327100231733](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210327100231733.png)
+![image-20210327100231733](Docker学习.assets/image-20210327100231733.png)
 
 2.再启动一个tomcat，发现又多了**一对网卡**。
 
@@ -1885,7 +1885,7 @@ rtt min/avg/max/mdev = 0.055/0.075/0.111/0.026 ms
        valid_lft forever preferred_lft forever
 ```
 
-![image-20210327100415297](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210327100415297.png)
+![image-20210327100415297](Docker学习.assets/image-20210327100415297.png)
 
 veth-pair：顾名思义，veth-pair 就是一对的虚拟设备接口，和 tap/tun 设备不同的是，它都是成对出现的。一端连着协议栈，一端彼此相连着。
 
@@ -1902,13 +1902,13 @@ PING 172.17.0.2 (172.17.0.2) 56(84) bytes of data.
 64 bytes from 172.17.0.2: icmp_seq=3 ttl=64 time=0.064 ms
 ```
 
-![image-20210327102414051](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210327102414051.png)
+![image-20210327102414051](Docker学习.assets/image-20210327102414051.png)
 
 结论：tomcat01和tomcat02是共用的一个路由器docker0。所有的容器在不指定网络的情况下，都是docker0路由，docker会给容器分配一个默认的可用ip。
 
 > 小结
 
-![image-20210327103003104](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210327103003104.png)
+![image-20210327103003104](Docker学习.assets/image-20210327103003104.png)
 
 docker使用的是linux的桥接，宿主机中是一个docker容器的网桥docker0。
 
@@ -1954,23 +1954,23 @@ ping: tomcat03: Name or service not known
 
 > 探究出现上面这种现象的原因
 
-![image-20210327105036689](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210327105036689.png)
+![image-20210327105036689](Docker学习.assets/image-20210327105036689.png)
 
 ```shell
 # 查看该网卡的信息
 [root@ ~]#: docker network inspect 843b0497d70e
 ```
 
-![image-20210327105328399](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210327105328399.png)
+![image-20210327105328399](Docker学习.assets/image-20210327105328399.png)
 
-![image-20210327105434271](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210327105434271.png)
+![image-20210327105434271](Docker学习.assets/image-20210327105434271.png)
 
 ```shell
 # 查看tomcat03的元数据信息
 [root@ ~]#: docker inspect 788c3dcb238e
 ```
 
-![image-20210327105637705](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210327105637705.png)
+![image-20210327105637705](Docker学习.assets/image-20210327105637705.png)
 
 可以看到，tomcat03和tomcat02做了绑定，使用同样的命令查看tomcat02的元数据信息，并没有这一项，所以这就是为啥tomcat03通过容器名能ping通tomcat02，而tomcat02却不能通过容器名ping通tomcat03。
 
@@ -2006,7 +2006,7 @@ ff02::2 ip6-allrouters
 
 > 查看所有网络
 
-![image-20210327110701381](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210327110701381.png)
+![image-20210327110701381](Docker学习.assets/image-20210327110701381.png)
 
 网络模式：
 
@@ -2040,7 +2040,7 @@ f2ab8b7fc378   mynet     bridge    local
 fbf14c00c75e   none      null      local
 ```
 
-![image-20210327111934318](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210327111934318.png)
+![image-20210327111934318](Docker学习.assets/image-20210327111934318.png)
 
 这里我们就搭建好了一个自己的网络，在启动容器的时候，就可以指定我们自己创建的网络了。
 
@@ -2100,7 +2100,7 @@ dc22821ddfd3dff3da6fce2a31dcc7a750c4c71204bc1279f99dc637ecf2d1ab
 ]
 ```
 
-![image-20210327112252486](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210327112252486.png)
+![image-20210327112252486](Docker学习.assets/image-20210327112252486.png)
 
 这时候测试tomcat-net01去ping tomcat-net02
 
@@ -2131,13 +2131,13 @@ mysql - 不同的集群使用不同的网络，保证集群是安全和健康的
 
 #### 6.4 网络互通
 
-![image-20210327131338657](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210327131338657.png)
+![image-20210327131338657](Docker学习.assets/image-20210327131338657.png)
 
 tomcat-01和tomcat-02两个容器使用的docker0网络，tomcat-net-01和tomcat-net-02使用的是我们自己创建的网络mynet，是不能互相ping通的。
 
-![image-20210327131530168](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210327131530168.png)
+![image-20210327131530168](Docker学习.assets/image-20210327131530168.png)
 
-![image-20210327131624248](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210327131624248.png)
+![image-20210327131624248](Docker学习.assets/image-20210327131624248.png)
 
 ```shell
 # 将tomcat02容器连接到mynet网络
@@ -2148,7 +2148,7 @@ tomcat-01和tomcat-02两个容器使用的docker0网络，tomcat-net-01和tomcat
 [root@ ~]#: docker network inspect mynet
 ```
 
-![image-20210327131952819](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210327131952819.png)
+![image-20210327131952819](Docker学习.assets/image-20210327131952819.png)
 
 ```shell
 [root@ ~]#: docker exec -it tomcat02 ping tomcat-net02
@@ -2173,7 +2173,7 @@ ping: tomcat01: Name or service not known
 
 > 部署redis集群
 
-![image-20210327134349847](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210327134349847.png)
+![image-20210327134349847](Docker学习.assets/image-20210327134349847.png)
 
 ```shell
 # 创建网卡
@@ -2198,7 +2198,7 @@ EOF
 done
 ```
 
-![image-20210327135317216](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210327135317216.png)
+![image-20210327135317216](Docker学习.assets/image-20210327135317216.png)
 
 ```shell
 # 启动6个redis容器
@@ -2238,7 +2238,7 @@ docker run -p 6376:6379 -p 16376:16379 --name redis-6 \
 -d --net redis --ip 172.38.0.16 redis:5.0.9-alpine3.11 redis-server /etc/redis/redis.conf 
 ```
 
-![image-20210327140250853](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210327140250853.png)
+![image-20210327140250853](Docker学习.assets/image-20210327140250853.png)
 
 ```shell
 [root@ conf]#: docker exec -it redis-1 /bin/sh
@@ -2311,7 +2311,7 @@ M: 95b3faeea63f1048dd84ebb70d5133c545191611 172.38.0.13:6379
 
 ```
 
-![image-20210327141733205](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210327141733205.png)
+![image-20210327141733205](Docker学习.assets/image-20210327141733205.png)
 
 ```shell
 # 设置一个值，存在172.38.0.13上面，也就是redis-3，从节点172.38.0.14应该也会有这个值
@@ -2329,7 +2329,7 @@ redis-3
 "b"
 ```
 
-![image-20210327142621243](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210327142621243.png)
+![image-20210327142621243](Docker学习.assets/image-20210327142621243.png)
 
 可以发现，redis-3（172.38.0.13）挂掉后，从节点172.38.0.14上升为主节点。
 
@@ -2412,7 +2412,7 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.28.6/docker-
 curl -L https://get.daocloud.io/docker/compose/releases/download/1.25.5/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 ```
 
-![image-20210327193349227](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210327193349227.png)
+![image-20210327193349227](Docker学习.assets/image-20210327193349227.png)
 
 **（2）授权**
 
@@ -2456,7 +2456,7 @@ OpenSSL version: OpenSSL 1.1.0l  10 Sep 2019
 
 官方文档：https://docs.docker.com/compose/compose-file/
 
-![image-20210327202637983](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210327202637983.png)
+![image-20210327202637983](Docker学习.assets/image-20210327202637983.png)
 
 ```yaml
 # 3层
@@ -2487,7 +2487,7 @@ configs:
 
 （1）新建一个SpringBoot项目
 
-![image-20210328095004152](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210328095004152.png)
+![image-20210328095004152](Docker学习.assets/image-20210328095004152.png)
 
 ```properties
 server.port=8080
@@ -2528,25 +2528,25 @@ services:
 
 首先对项目进行`maven package`，然后把需要的文件放到服务器上
 
-![image-20210328102030289](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210328102030289.png)
+![image-20210328102030289](Docker学习.assets/image-20210328102030289.png)
 
 执行`docker-compose up`命令构建镜像
 
-![image-20210328103210124](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210328103210124.png)
+![image-20210328103210124](Docker学习.assets/image-20210328103210124.png)
 
 如果重新打包后上传服务器，`docker-compose up --build`重新构建，启动成功
 
-![image-20210328104857804](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210328104857804.png)
+![image-20210328104857804](Docker学习.assets/image-20210328104857804.png)
 
-![image-20210328104943347](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210328104943347.png)
+![image-20210328104943347](Docker学习.assets/image-20210328104943347.png)
 
 测试成功
 
-![image-20210328135953571](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210328135953571.png)
+![image-20210328135953571](Docker学习.assets/image-20210328135953571.png)
 
 发现好多为none的镜像，应该是每次`docker-compose up --build`重新构建就会产生一个，批量删除使用`docker images|grep none|awk '{print $3}'|xargs docker rmi`命令，先删除容器再删除镜像。
 
-![image-20210328140156205](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210328140156205.png)
+![image-20210328140156205](Docker学习.assets/image-20210328140156205.png)
 
 ### 2、Docker Swarm
 
@@ -2556,7 +2556,7 @@ services:
 
 要搭建集群，必须要有服务器，去阿里云租几台，按量使用的。
 
-![image-20210328214545037](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210328214545037.png)
+![image-20210328214545037](Docker学习.assets/image-20210328214545037.png)
 
 #### 2.2 四台服务器安装Docker环境
 
@@ -2564,27 +2564,27 @@ services:
 
 #### 2.3 Swarm工作模式
 
-![image-20210328210844850](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210328210844850.png)
+![image-20210328210844850](Docker学习.assets/image-20210328210844850.png)
 
 #### 2.4 搭建集群
 
 新机器网络
 
-![image-20210328215024847](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210328215024847.png)
+![image-20210328215024847](Docker学习.assets/image-20210328215024847.png)
 
 对于服务器1
 
-![image-20210328215149995](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210328215149995.png)
+![image-20210328215149995](Docker学习.assets/image-20210328215149995.png)
 
-![image-20210328215223944](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210328215223944.png)
+![image-20210328215223944](Docker学习.assets/image-20210328215223944.png)
 
 `ip addr`查看服务器的ip地址
 
-![image-20210328215506864](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210328215506864.png)
+![image-20210328215506864](Docker学习.assets/image-20210328215506864.png)
 
 初始化节点`docker swarm init`
 
-![image-20210328215704062](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210328215704062.png)
+![image-20210328215704062](Docker学习.assets/image-20210328215704062.png)
 
 如果要让一个worker节点加入这个swarm，使用上面的命令1，如果要让一个manager节点加入这个swarm，则使用命令2。
 
@@ -2596,15 +2596,15 @@ docker swarm join-token worker
 
 对于服务器2，使用`docker swarm join`命令加入swarm成为worker节点。
 
-![image-20210328215954298](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210328215954298.png)
+![image-20210328215954298](Docker学习.assets/image-20210328215954298.png)
 
 可以看到，swarm里已经有两个节点了。
 
-![image-20210328220056947](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210328220056947.png)
+![image-20210328220056947](Docker学习.assets/image-20210328220056947.png)
 
 同理，把服务器3加入作为worker节点，服务器4加入作为manager节点。
 
-![image-20210328220405470](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210328220405470.png)
+![image-20210328220405470](Docker学习.assets/image-20210328220405470.png)
 
 大概流程如下：
 
@@ -2626,11 +2626,11 @@ Raft协议：保证大多数节点存活才可以用。
 
 （2）如果让worker1节点离开swarm，则状态变为down。
 
-![image-20210328211814390](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210328211814390.png)
+![image-20210328211814390](Docker学习.assets/image-20210328211814390.png)
 
 （3）命令都只能在manager节点使用，worker只是用来工作的。
 
-![image-20210328211932642](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210328211932642.png)
+![image-20210328211932642](Docker学习.assets/image-20210328211932642.png)
 
 （4）让worker1节点变为manager节点，那么停止manager1节点所在的机器，集群还可以正常使用，因为此时还有两个manager节点。
 
@@ -2650,7 +2650,7 @@ redis服务 => 10个副本。（同时开启10个redis容器）
 
 接下来体验一下：创建服务、动态扩展服务、动态更新服务。
 
-![image-20210328221235970](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210328221235970.png)
+![image-20210328221235970](Docker学习.assets/image-20210328221235970.png)
 
 灰度发布：金丝雀发布。
 
@@ -2660,7 +2660,7 @@ redis服务 => 10个副本。（同时开启10个redis容器）
 docker service create -p 8888:80 --name my-nginx nginx
 ```
 
-![image-20210328221629059](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210328221629059.png)
+![image-20210328221629059](Docker学习.assets/image-20210328221629059.png)
 
 ```shell
 docker run  # 容器启动，不能扩缩容器
@@ -2669,7 +2669,7 @@ docker service # 可以进行扩缩容、滚动更新、灰度发布
 
 查看服务`docker server ps`
 
-![image-20210328221838807](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210328221838807.png)
+![image-20210328221838807](Docker学习.assets/image-20210328221838807.png)
 
 **虽然是在服务器1上启动了nginx，但使用docker ps命令发现，该服务不一定存在服务器1上，可能是存在其他节点上。**
 
@@ -2685,7 +2685,7 @@ docker service update --help
 docker service update --replicas 3 my-nginx
 ```
 
-![image-20210328222338545](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210328222338545.png)
+![image-20210328222338545](Docker学习.assets/image-20210328222338545.png)
 
 3个nginx会随机运行在4个服务器中。
 
@@ -2719,19 +2719,19 @@ docker service rm my-nginx
 
 任务，可以在管理节点或者工作节点运行。用户访问
 
-![image-20210328224445675](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210328224445675.png)
+![image-20210328224445675](Docker学习.assets/image-20210328224445675.png)
 
 > **Task**
 
 容器内的命令。
 
-![image-20210328224412655](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210328224412655.png)
+![image-20210328224412655](Docker学习.assets/image-20210328224412655.png)
 
-![image-20210328224532204](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210328224532204.png)
+![image-20210328224532204](Docker学习.assets/image-20210328224532204.png)
 
 > 服务副本与全局任务
 
-![image-20210328224633472](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210328224633472.png)
+![image-20210328224633472](Docker学习.assets/image-20210328224633472.png)
 
 调整service以什么方式运行
 

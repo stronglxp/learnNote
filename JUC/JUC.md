@@ -1,6 +1,6 @@
 ### 1、什么是JUC
 
-![image-20210414213903816](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210414213903816.png)
+![image-20210414213903816](JUC.assets/image-20210414213903816.png)
 
 三个包。
 
@@ -137,13 +137,13 @@ class Ticket {
 
 根据jdk文档：https://www.matools.com/api/java8
 
-![image-20210416223047881](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210416223047881.png)
+![image-20210416223047881](JUC.assets/image-20210416223047881.png)
 
-![image-20210416223134534](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210416223134534.png)
+![image-20210416223134534](JUC.assets/image-20210416223134534.png)
 
 ReentrantLock是比较常用的锁。
 
-![image-20210416223433206](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210416223433206.png)
+![image-20210416223433206](JUC.assets/image-20210416223433206.png)
 
 创建ReentrantLock的时候，如果不传入参数，则默认是非公平锁。
 
@@ -306,7 +306,7 @@ D=>0
 
 根据官方文档，Object->wait方法
 
-![image-20210417173157725](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210417173157725.png)
+![image-20210417173157725](JUC.assets/image-20210417173157725.png)
 
 存在**虚假唤醒**的可能。**wait会释放锁**。在上面的代码中，A、C线程为生产者，B、D线程为消费者。num值为1时，A线程进入方法执行加1操作，然后唤醒对象的所有线程，此时B、C、D都被唤醒。可能发现下面这种情况：那就是C进入方法，发现num值为1，调用wait方法进行等待，释放锁，A线程又进入方法，发现num不为0，也进行等待。B、D线程消费完后，唤醒所有线程，A、C被唤醒，都执行num++操作，那么num的值就会不正确。
 
@@ -389,7 +389,7 @@ class PC {
 
 #### 4.2 Lock版
 
-![image-20210418130134978](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210418130134978.png)
+![image-20210418130134978](JUC.assets/image-20210418130134978.png)
 
 ```java
 import java.util.concurrent.locks.Condition;
@@ -486,7 +486,7 @@ class PC2 {
 }
 ```
 
-![image-20210418131057834](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210418131057834.png)
+![image-20210418131057834](JUC.assets/image-20210418131057834.png)
 
 #### 4.3 Condition精准的通知和唤醒线程
 
@@ -839,7 +839,7 @@ Vector类的add方法源码如下，使用synchronized来保证线程安全。
     }
 ```
 
-![image-20210418145452833](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210418145452833.png)
+![image-20210418145452833](JUC.assets/image-20210418145452833.png)
 
 CopyOnWriteArrayList类的add方法如下，使用Lock保证线程安全。
 
@@ -930,7 +930,7 @@ HashSet的元素其实就是HashMap的键，所以HashSet的值不能重复并�
 
 #### 6.3 不安全的Map
 
-![image-20210418153148968](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210418153148968.png)
+![image-20210418153148968](JUC.assets/image-20210418153148968.png)
 
 ```java
 public class TestMap {
@@ -970,7 +970,7 @@ HashMap不带参的构造方法，默认是16的初始容量和0.75的加载因�
 
 ### 7、Callable
 
-![image-20210418160029815](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210418160029815.png)
+![image-20210418160029815](JUC.assets/image-20210418160029815.png)
 
 （1）可以有返回值
 
@@ -978,9 +978,9 @@ HashMap不带参的构造方法，默认是16的初始容量和0.75的加载因�
 
 （3）call方法
 
-![image-20210418160144579](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210418160144579.png)
+![image-20210418160144579](JUC.assets/image-20210418160144579.png)
 
-![image-20210418160557282](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210418160557282.png)
+![image-20210418160557282](JUC.assets/image-20210418160557282.png)
 
 ```java
 public class TestCallable implements Callable<Boolean> {
@@ -1007,7 +1007,7 @@ public class TestCallable implements Callable<Boolean> {
 
 #### 8.1 CountDownLatch
 
-![image-20210418193458628](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210418193458628.png)
+![image-20210418193458628](JUC.assets/image-20210418193458628.png)
 
 ```java
 public class TestCountDownLatch {
@@ -1043,7 +1043,7 @@ public class TestCountDownLatch {
 
 #### 8.2 CyclicBarrier
 
-![image-20210418194830115](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210418194830115.png)
+![image-20210418194830115](JUC.assets/image-20210418194830115.png)
 
 ```java
 public class TestCyclicBarrier {
@@ -1072,7 +1072,7 @@ public class TestCyclicBarrier {
 
 #### 8.3 Semaphore
 
-![image-20210418200314130](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210418200314130.png)
+![image-20210418200314130](JUC.assets/image-20210418200314130.png)
 
 ```java
 public class TestSemaphore {
@@ -1108,7 +1108,7 @@ public class TestSemaphore {
 
 ### 9、读写锁ReadWriteLock
 
-![image-20210419214818021](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210419214818021.png)
+![image-20210419214818021](JUC.assets/image-20210419214818021.png)
 
 多个线程可以同时读，但同一时刻只能有一个线程执行写操作。
 
@@ -1244,11 +1244,11 @@ class MyCacheLock {
 
 ### 10、阻塞队列BlockingQueue
 
-![image-20210419221500967](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210419221500967.png)
+![image-20210419221500967](JUC.assets/image-20210419221500967.png)
 
-![image-20210419221554814](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210419221554814.png)
+![image-20210419221554814](JUC.assets/image-20210419221554814.png)
 
-![image-20210419222129750](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210419222129750.png)
+![image-20210419222129750](JUC.assets/image-20210419222129750.png)
 
 什么情况下使用阻塞队列：多线程并发处理，线程池。
 
@@ -1361,7 +1361,7 @@ class MyCacheLock {
 
 > SynchronousQueue 同步队列
 
-![image-20210422233951732](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210422233951732.png)
+![image-20210422233951732](JUC.assets/image-20210422233951732.png)
 
 ```java
 /**
@@ -1424,7 +1424,7 @@ public class TestSynchronousQueue {
 
 #### 11.2 三大方法
 
-![image-20210424231038551](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210424231038551.png)
+![image-20210424231038551](JUC.assets/image-20210424231038551.png)
 
 ```java
 import java.util.concurrent.ExecutorService;
@@ -1508,9 +1508,9 @@ public ThreadPoolExecutor(int corePoolSize,  // 核心线程池大小
 }
 ```
 
-![image-20210424231038551](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210424231038551.png)
+![image-20210424231038551](JUC.assets/image-20210424231038551-1620100263905.png)
 
-![image-20210424234645398](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210424234645398.png)
+![image-20210424234645398](JUC.assets/image-20210424234645398.png)
 
 > 手动创建一个线程池，模拟银行办理业务的场景
 
@@ -1618,11 +1618,11 @@ public interface Runnable {
 }
 ```
 
-![image-20210426225454313](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210426225454313.png)
+![image-20210426225454313](JUC.assets/image-20210426225454313.png)
 
 > 函数型接口Function
 
-![image-20210426230045866](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210426230045866.png)
+![image-20210426230045866](JUC.assets/image-20210426230045866.png)
 
 ```java
 public class FunctionTest {
@@ -1645,7 +1645,7 @@ public class FunctionTest {
 
 > 断定型接口Predicate
 
-![image-20210426230948844](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210426230948844.png)
+![image-20210426230948844](JUC.assets/image-20210426230948844.png)
 
 ```java
 public class PredicateTest {
@@ -1667,7 +1667,7 @@ public class PredicateTest {
 
 > 消费型接口Consumer
 
-![image-20210426231609455](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210426231609455.png)
+![image-20210426231609455](JUC.assets/image-20210426231609455.png)
 
 ```java
 public class ConsumerTest {
@@ -1690,7 +1690,7 @@ public class ConsumerTest {
 
 > 供给型接口Supplier
 
-![image-20210426231834643](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210426231834643.png)
+![image-20210426231834643](JUC.assets/image-20210426231834643.png)
 
 ```java
 public class SupplierTest {
@@ -1713,7 +1713,7 @@ public class SupplierTest {
 
 ### 13、Stream流式计算
 
-![image-20210426232858194](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210426232858194.png)
+![image-20210426232858194](JUC.assets/image-20210426232858194.png)
 
 ```java
 /**
@@ -1795,13 +1795,13 @@ class User {
 
 ForkJoin在jdk1.7，并行执行任务，可以把一个大任务拆分为几个子任务，提高效率。
 
-![image-20210427214227236](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210427214227236.png)
+![image-20210427214227236](JUC.assets/image-20210427214227236.png)
 
-![image-20210427214848284](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210427214848284.png)
+![image-20210427214848284](JUC.assets/image-20210427214848284.png)
 
 > ForkJoin的特点：工作窃取
 
-![image-20210427214343725](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210427214343725.png)
+![image-20210427214343725](JUC.assets/image-20210427214343725.png)
 
 双端队列，B执行完自己的任务后，可以去拿A的任务执行。
 
@@ -1913,13 +1913,13 @@ Java内存模型规定**所有的变量都存储在主内存**中，包括实例
 
 不同的线程之间也无法访问对方工作内存中的变量。线程之间变量值的传递均需要通过主内存来完成。
 
-![img](https://pic4.zhimg.com/80/v2-67078254c4d9ffed166405eb2caee813_720w.jpg)
+![img](JUC.assets/v2-67078254c4d9ffed166405eb2caee813_720w.jpg)
 
 每个线程的工作内存都是独立的，线程操作数据只能在工作内存中进行，然后刷回到主存。这是 Java 内存模型定义的线程基本工作方式。
 
 整个Java内存模型实际上是围绕着三个特征建立起来的。分别是：原子性，可见性，有序性。这三个特征可谓是整个Java并发的基础。
 
-![image-20210428000825307](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210428000825307.png)
+![image-20210428000825307](JUC.assets/image-20210428000825307.png)
 
 - lock(锁定)，作用于**主内存**中的变量，把变量标识为线程独占的状态。
 - read(读取)，作用于**主内存**的变量，把变量的值从主内存传输到线程的工作内存中，以便下一步的load操作使用。
@@ -2025,11 +2025,11 @@ public class VolatileTest {
 }
 ```
 
-![image-20210429230021827](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210429230021827.png)
+![image-20210429230021827](JUC.assets/image-20210429230021827.png)
 
 `javap -c`查看字节码可以知道`num++`其实本身就不是一个原子操作。
 
-![image-20210429230254326](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210429230254326.png)
+![image-20210429230254326](JUC.assets/image-20210429230254326.png)
 
 **Java提供了专门的原子类，效率比Lock和synchronized更高效。**
 
@@ -2064,7 +2064,7 @@ public class VolatileTest {
 }
 ```
 
-![image-20210429231254930](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210429231254930.png)
+![image-20210429231254930](JUC.assets/image-20210429231254930.png)
 
 #### 16.3 指令重排
 
@@ -2078,7 +2078,7 @@ public class VolatileTest {
 
 1属于编译器重排序，2和3属于处理器重排序。从Java源代码到最终实际执行的指令序列，会分别经历下面3种重排序：
 
-![img](https://upload-images.jianshu.io/upload_images/6464086-bd967393fb8abcbe.png?imageMogr2/auto-orient/strip|imageView2/2/w/896/format/webp)
+![img](JUC.assets/6464086-bd967393fb8abcbe.png)
 
 单线程模式下，指令重排并不会对最后的结果产生影响。比如
 
@@ -2096,7 +2096,7 @@ int c = a;  // 3
 
 **具体的限制规则如下**
 
-![img](https://upload-images.jianshu.io/upload_images/6464086-f6b90177f9c8a9e9.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp)
+![img](JUC.assets/6464086-f6b90177f9c8a9e9.jpg)
 
 （1）当第二个操作是volatile写时，不管第一个操作是什么，都不能重排序。这个规则确保 volatile写之前的操作不会被编译器重排序到volatile写之后。
 
@@ -2108,11 +2108,11 @@ int c = a;  // 3
 
 在每个volatile写操作的前面插入一个StoreStore屏障。在每个volatile写操作的后面插入一个StoreLoad屏障。
 
-![img](https://upload-images.jianshu.io/upload_images/6464086-639ccf50fd8e1997.png?imageMogr2/auto-orient/strip|imageView2/2/w/646/format/webp)
+![img](JUC.assets/6464086-639ccf50fd8e1997.png)
 
 在每个volatile读操作的后面插入一个LoadLoad屏障。在每个volatile读操作的后面插入一个LoadStore屏障。
 
-![img](https://upload-images.jianshu.io/upload_images/6464086-054ac6dfcdd0b274.png?imageMogr2/auto-orient/strip|imageView2/2/w/661/format/webp)
+![img](JUC.assets/6464086-054ac6dfcdd0b274.png)
 
 ### 17、单例模式
 
@@ -2284,7 +2284,7 @@ public class ReflectTest {
 
 查看反射`newInstance`方法的源码，可以知道，枚举类是不能通过反射去构造的。
 
-![image-20210502132333763](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210502132333763.png)
+![image-20210502132333763](JUC.assets/image-20210502132333763.png)
 
 使用枚举
 
@@ -2300,7 +2300,7 @@ public enum SingleEnum {
 
 查看编译后的class文件，发现有一个无参构造方法
 
-![image-20210502133752085](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210502133752085.png)
+![image-20210502133752085](JUC.assets/image-20210502133752085.png)
 
 尝试使用反射去新建枚举对象
 
@@ -2329,11 +2329,11 @@ class Test {
 
 发现报错了，找不到对应的构造方法
 
-![image-20210502133407594](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210502133407594.png)
+![image-20210502133407594](JUC.assets/image-20210502133407594.png)
 
 使用jad工具（http://www.javadecompilers.com/jad）对class文件进行还原。
 
-![image-20210502134244626](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210502134244626.png)
+![image-20210502134244626](JUC.assets/image-20210502134244626.png)
 
 ```java
 // Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
@@ -2382,7 +2382,7 @@ public final class SingleEnum extends Enum
 
 可以发现，其实构造方法是带两个参数的。重新修改代码测试
 
-![image-20210502134554362](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210502134554362.png)
+![image-20210502134554362](JUC.assets/image-20210502134554362.png)
 
 发现的确不能通过反射去实例化枚举对象。
 
@@ -2390,9 +2390,9 @@ public final class SingleEnum extends Enum
 
 CAS（compare and swap）比较并交换。比较当前工作内存中的值和主存中的值，如果这个值是期望的，则执行操作，否则一直循环。
 
-![image-20210502142703816](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210502142703816.png)
+![image-20210502142703816](JUC.assets/image-20210502142703816.png)
 
-![image-20210502142914442](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210502142914442.png)
+![image-20210502142914442](JUC.assets/image-20210502142914442.png)
 
 缺点：
 
@@ -2402,11 +2402,11 @@ CAS（compare and swap）比较并交换。比较当前工作内存中的值和�
 
 #### 18.1 ABA问题
 
-![image-20210502143508582](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210502143508582.png)
+![image-20210502143508582](JUC.assets/image-20210502143508582.png)
 
 线程2先把A的值修改为3，再修改为1，线程1拿到A的最终结果还是1，但其实A已经被修改过了。
 
-![image-20210502143656738](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210502143656738.png)
+![image-20210502143656738](JUC.assets/image-20210502143656738.png)
 
 #### 18.2 原子引用
 
@@ -2570,13 +2570,13 @@ B method2
 
 自旋锁的定义：当一个线程尝试去获取某一把锁的时候，如果这个锁此时已经被别人获取(占用)，那么此线程就无法获取到这把锁，该线程将会等待，间隔一段时间后会再次尝试获取。这种采用循环加锁 -> 等待的机制被称为**自旋锁(spinlock)**
 
-![file](https://img2018.cnblogs.com/blog/1515111/201910/1515111-20191015194619321-127153615.jpg)
+![file](JUC.assets/1515111-20191015194619321-127153615.jpg)
 
 参考链接：https://www.cnblogs.com/cxuanBlog/p/11679883.html
 
 #### 19.4 死锁
 
-![image-20210502153710538](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210502153710538.png)
+![image-20210502153710538](JUC.assets/image-20210502153710538.png)
 
 ```java
 public class Test {
@@ -2622,7 +2622,7 @@ class DeadLock implements Runnable {
 
 （1）使用`jps -l`定位进程号
 
-![image-20210502155718207](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210502155718207.png)
+![image-20210502155718207](JUC.assets/image-20210502155718207.png)
 
 （2）使用`jstack pid`查看进程堆栈信息
 
@@ -2751,5 +2751,5 @@ Java stack information for the threads listed above:
 Found 1 deadlock.
 ```
 
-![image-20210502155943662](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210502155943662.png)
+![image-20210502155943662](JUC.assets/image-20210502155943662.png)
 

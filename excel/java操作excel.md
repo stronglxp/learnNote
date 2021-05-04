@@ -24,7 +24,7 @@ Java解析、生成Excel比较有名的框架有Apache poi、jxl。但他们都�
 
 EasyExcel能大大减少占用内存的主要原因是在解析Excel的时候没有将文件数据一次性加载到内存中，而是从磁盘上一行行读取数据，逐个解析。
 
-![image-20210403132443148](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210403132443148.png)
+![image-20210403132443148](java操作excel.assets/image-20210403132443148.png)
 
 ### 2、POI-Excel写
 
@@ -208,7 +208,7 @@ public class ExcelWriteTest {
 }
 ```
 
-![image-20210403183855668](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210403183855668.png)
+![image-20210403183855668](java操作excel.assets/image-20210403183855668.png)
 
 写65536行用了1.264s。
 
@@ -266,11 +266,11 @@ public class ExcelWriteTest {
 
 同样的内容，写65537行耗时7.478s
 
-![image-20210403184412465](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210403184412465.png)
+![image-20210403184412465](java操作excel.assets/image-20210403184412465.png)
 
 20w条数据，耗时23.976s
 
-![image-20210403184655683](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210403184655683.png)
+![image-20210403184655683](java操作excel.assets/image-20210403184655683.png)
 
 #### 2.6 SXSSF写大文件
 
@@ -336,7 +336,7 @@ public class ExcelWriteTest {
 
 写20w条数据，耗时2.903s
 
-![image-20210403185841454](C:\Users\lxp\AppData\Roaming\Typora\typora-user-images\image-20210403185841454.png)
+![image-20210403185841454](java操作excel.assets/image-20210403185841454.png)
 
 SXSSFWorkbook官方的解释：实现“BigGridDemo”策略的流式XSSFWorkbook版本，这允许写入非常大的文件而不会耗尽内存，因为任何时候只有可配置的行部分被保存在内存中。
 
