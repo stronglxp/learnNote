@@ -175,6 +175,111 @@ MySQL官方对索引的定义：索引（index）是帮助MySQL高效获取数�
 
 （4）过滤性不好的不适合创建索引。（如果某个数据列包含许多重复的内容，那么建立索引就没有太大的实际效果。）
 
+#### 4.4 索引失效的情况
+
+准备工作，创建staffs表并创建了一个组合索引。
+
+```sql
+CREATE TABLE staffs(
+id INT PRIMARY KEY AUTO_INCREMENT,
+`name` VARCHAR(24)NOT NULL DEFAULT'' COMMENT'姓名',
+`age` INT NOT NULL DEFAULT 0 COMMENT'年龄',
+`pos` VARCHAR(20) NOT NULL DEFAULT'' COMMENT'职位',
+`add_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT'入职时间'
+)CHARSET utf8 COMMENT'员工记录表';
+INSERT INTO staffs(`name`,`age`,`pos`,`add_time`) VALUES('z3',22,'manager',NOW());
+INSERT INTO staffs(`name`,`age`,`pos`,`add_time`) VALUES('July',23,'dev',NOW());
+INSERT INTO staffs(`name`,`age`,`pos`,`add_time`) VALUES('2000',23,'dev',NOW());
+
+ALTER TABLE staffs ADD INDEX index_staffs_nameAgePos(`name`,`age`,`pos`)
+```
+
+##### 4.4.1 **全值匹配&最佳左前缀原则**
+
+![image-20210516132549629](MySQL高级知识.assets/image-20210516132549629.png)
+
+SQL 中查询字段的顺序，跟使用索引中字段的顺序，没有关系。优化器会在不影响SQL 执行结果的前提下，给
+你自动地优化。
+
+![image-20210516133040878](MySQL高级知识.assets/image-20210516133040878.png)
+
+查询字段与索引字段顺序的不同会导致索引无法充分使用，甚至索引失效！
+
+原因：使用复合索引，需要遵循最佳左前缀法则，即如果索引了多列，要遵守最左前缀法则。指的是查询从索
+引的最左前列开始并且不跳过索引中的列。
+
+结论：**过滤条件要使用索引必须按照索引建立时的顺序，依次满足，一旦跳过某个字段，索引后面的字段都无**
+**法被使用**。
+
+##### 4.4.2 不要在索引列上做任何计算
+
+不在索引列上做任何操作（计算、函数、(自动or 手动)类型转换），会导致索引失效而转向全表扫描。
+
+**在查询列上使用了函数**
+
+![image-20210516134041586](MySQL高级知识.assets/image-20210516134041586.png)
+
+**在查询列上做了转换**，字符串不加单引号，会在name上做一次转换。（虽然查询结果一样）
+
+![image-20210516134953049](MySQL高级知识.assets/image-20210516134953049.png)
+
+##### 4.4.3 索引列上不能有范围查询
+
+![image-20210516135337372](MySQL高级知识.assets/image-20210516135337372.png)
+
+某字段做了范围查询，那么该字段后面的索引全部失效。
+
+建议：**将可能做范围查询的字段的索引顺序放在最后**
+
+##### 4.4.4 尽量使用覆盖索引
+
+即查询列和索引列一致，不要写select *
+
+##### 4.4.5 使用不等于(!= 或者<>)的时候
+
+mysql 在使用不等于(!= 或者<>)时，有时会无法使用索引会导致全表扫描。
+
+![image-20210516163808746](MySQL高级知识.assets/image-20210516163808746.png)
+
+##### 4.4.6 使用is null或is not null
+
+staffs表name字段不允许为null
+
+![image-20210516164301029](MySQL高级知识.assets/image-20210516164301029.png) 
+
+t1表的content字段允许为null，并且建有索引
+
+![image-20210516164437326](MySQL高级知识.assets/image-20210516164437326.png)
+
+所以，**is not null 用不到索引，is null 可以用到索引。**
+
+##### 4.4.7 like 的前后模糊匹配
+
+![image-20210516165105700](MySQL高级知识.assets/image-20210516165105700.png)
+
+**只有%单独出现在右边的时候，索引才有效**。
+
+但是一般情况下，【%字符串%】跟【字符串%】查出来的结果是不一样的，首先我们要保证结果正确才去考虑优化，不然就没有意义，所以这种情况下该怎么办呢？
+
+这种情况建议使用覆盖索引，就是查询的列和索引的列一致。staffs表建有name、age、pos的组合索引
+
+![image-20210516171210229](MySQL高级知识.assets/image-20210516171210229.png)
+
+##### 4.4.8 尽量不使用or
+
+使用union 或 union all代替。
+
+![image-20210516172222044](MySQL高级知识.assets/image-20210516172222044.png)
+
+##### 4.4.9 口诀
+
+全职匹配我最爱，最左前缀要遵守；
+带头大哥不能死，中间兄弟不能断；
+索引列上少计算，范围之后全失效；
+LIKE 百分写最右，覆盖索引不写*；
+不等空值还有OR，索引影响要注意；
+VAR 引号不可丢，SQL 优化有诀窍。
+
 ### 5、使用EXPLAIN进行性能分析
 
 以下是基于MySQL5.7.28版本进行分析的，不同版本之间略有差异。
@@ -570,3 +675,263 @@ Using index 表示相应的select 操作中使用了覆盖索引(Covering Index)
 关于Extra字段，有很多取值，这里就不一一列举了，具体可以看官方文档。
 
 参考资料：https://dev.mysql.com/doc/refman/5.7/en/explain-output.html
+
+### 6、关联查询优化
+
+#### 6.1 单表索引优化
+
+首先做好准备工作，建立需要的表
+
+```sql
+CREATE TABLE IF NOT EXISTS `article`(
+`id` INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+`author_id` INT (10) UNSIGNED NOT NULL,
+`category_id` INT(10) UNSIGNED NOT NULL , 
+`views` INT(10) UNSIGNED NOT NULL , 
+`comments` INT(10) UNSIGNED NOT NULL,
+`title` VARBINARY(255) NOT NULL,
+`content` TEXT NOT NULL
+);
+INSERT INTO `article`(`author_id`,`category_id` ,`views` ,`comments` ,`title` ,`content` )VALUES
+(1,1,1,1,'1','1'),
+(2,2,2,2,'2','2'),
+(3,3,3,3,'3','3');
+ 
+SELECT * FROM ARTICLE;
+```
+
+此时没有建立任何索引，现在我们要查询 author_id = 1 并且 comments >= 1 并且views 最大的那条数据。
+
+```sql
+select id, author_id, title from article where author_id = 1 and comments >= 1 order by views desc limit 1;
+```
+
+![image-20210515213532987](MySQL高级知识.assets/image-20210515213532987.png)
+
+使用上节学过的EXPLAIN对sql语句进行分析
+
+![image-20210515213621113](MySQL高级知识.assets/image-20210515213621113.png)
+
+可以看到使用了全表扫描并且还使用了文件排序，效率是很低的。
+
+此时可以尝试在该表上建立索引进行优化，如何建立合适的索引，这需要平时不断地积累。这里可以先试着建立author_id、comments、views三个字段的联合索引
+
+```sql
+CREATE INDEX idx_article_acv ON article(author_id, comments, views);
+```
+
+![image-20210515213910839](MySQL高级知识.assets/image-20210515213910839.png)
+
+再次使用EXPLAIN对sql语句进行分析
+
+![image-20210515214017988](MySQL高级知识.assets/image-20210515214017988.png)
+
+发现查询时使用了索引，但排序还是使用了文件排序。如果我们修改一下查询条件，把comments >= 1改成comments = 1，那么会发现效率提升了很多。
+
+![image-20210515214220530](MySQL高级知识.assets/image-20210515214220530.png)
+
+因为按照BTREE索引的原理，先排序author_id，author_id相同的情况下再排序comments，如果comments相同再排序views。当comments字段处于索引的中间位置，因为在查询时comments的条件是comments >= 1（range），一个范围值，MySQL无法利用索引对后面的views进行检索，**即range类型查询字段后面的索引无效**。
+
+既然是这样，那么我们是否可以试试建立author_id和views两个字段的组合索引呢？
+
+```sql
+drop index idx_article_acv on article;
+
+CREATE INDEX idx_article_av ON article(author_id, views);
+```
+
+再次执行上面的sql语句
+
+![image-20210515215638081](MySQL高级知识.assets/image-20210515215638081.png)
+
+#### 6.2 双表索引优化
+
+先建立需要的表
+
+```sql
+CREATE TABLE IF NOT EXISTS `class`(
+`id` INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+`card` INT (10) UNSIGNED NOT NULL
+);
+CREATE TABLE IF NOT EXISTS `book`(
+`bookid` INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+`card` INT (10) UNSIGNED NOT NULL
+);
+INSERT INTO class(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO class(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO class(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO class(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO class(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO class(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO class(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO class(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO class(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO class(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO class(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO class(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO class(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO class(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO class(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO class(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO class(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO class(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO class(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO class(card)VALUES(FLOOR(1+(RAND()*20)));
+ 
+INSERT INTO book(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO book(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO book(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO book(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO book(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO book(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO book(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO book(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO book(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO book(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO book(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO book(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO book(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO book(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO book(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO book(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO book(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO book(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO book(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO book(card)VALUES(FLOOR(1+(RAND()*20)));
+```
+
+现在我们两个表做一个左连接查询
+
+```sql
+EXPLAIN select * from class left join book on class.card = book.card;
+```
+
+![image-20210515221241174](MySQL高级知识.assets/image-20210515221241174.png)
+
+可以看到两张表都进行了全表扫描，那么这种情况下， 如果要加索引的话，应该加在左表还是右表呢？我们可以先在左表加，然后分析性能，然后在右表加，分析性能，两个结果进行对比就知道了。
+
+现在class表card列建立索引
+
+```sql
+create index idx_card on class(card);
+```
+
+再次执行查询，发现class表的确使用了索引
+
+![image-20210515221535333](MySQL高级知识.assets/image-20210515221535333.png)
+
+删除class表的索引，在book表建立同样的索引
+
+```sql
+drop index idx_card on class;
+create index idx_card on book(card);
+```
+
+再次执行查询
+
+![image-20210515221707622](MySQL高级知识.assets/image-20210515221707622.png)
+
+发现type从index变为了ref（速度更快），rows也从20变成了2。**这是因为左连接的时候，左边的表不管怎样，都会作为结果被查出来（即使右边表记录为空），所以如何从右表进行搜索，是我们要关注和优化的地方**。
+
+结论：在优化关联查询的时候，只有在被驱动表上建立索引才有效。即**左连接的时候，右边的表建立索引。右连接的时候，左边的表建立索引。**
+
+#### 6.3 三表索引优化
+
+先创建需要的表
+
+```sql
+CREATE TABLE IF NOT EXISTS `phone`(
+`phoneid` INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+`card` INT (10) UNSIGNED NOT NULL
+)ENGINE = INNODB;
+
+INSERT INTO phone(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO phone(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO phone(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO phone(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO phone(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO phone(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO phone(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO phone(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO phone(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO phone(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO phone(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO phone(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO phone(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO phone(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO phone(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO phone(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO phone(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO phone(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO phone(card)VALUES(FLOOR(1+(RAND()*20)));
+INSERT INTO phone(card)VALUES(FLOOR(1+(RAND()*20)));
+```
+
+三表关联查询
+
+```sql
+select * from class left join book on book.card = class.card left join phone on book.card = phone.card;
+```
+
+![image-20210516100949685](MySQL高级知识.assets/image-20210516100949685.png)
+
+按照上面的经验，左连接，给右表建立索引，所以我们给book表和phone表建立索引。
+
+```sql
+create index idx_card on book(card);
+create index idx_card on phone(card);
+```
+
+![image-20210516101127658](MySQL高级知识.assets/image-20210516101127658.png)
+
+join语句的优化：
+
+- 尽可能减少join语句中Nested Loop的循环总次数。
+- 永远用小结果集驱动大结果集。
+- 优化Nested Loop的内层循环。
+- 保证join语句中被驱动表上join条件字段已经被索引。
+- 当无法保证被驱动表的join条件字段被索引并且内存资源充足的前提下，不要太吝惜JoinBuffer的设置。
+
+#### 6.4 内连接查询优化
+
+上面都是都是讲的左连接和右连接。**对于左右连接，我们需要在被驱动表上建立索引**。那么对于内连接呢？
+
+![image-20210516104100885](MySQL高级知识.assets/image-20210516104100885.png)
+
+上面两条查询语句，两表位置交换，用explain进行分析结果还是一样。说明：**inner join时，MySQL会把小结果集的表作为驱动表**。
+
+![image-20210516104436310](MySQL高级知识.assets/image-20210516104436310.png)
+
+straight_join和inner join效果一样，但会强制将左表作为驱动表。
+
+#### 6.5 其他情况
+
+![image-20210516120411635](MySQL高级知识.assets/image-20210516120411635.png)
+
+仔细分析上面两个查询语句，第一个是子查询在左边，第二个是子查询在右边。效率是第一个高于第二个的，并且第一个还有优化的空间。因为在左关联中，我们需要对被驱动表（右表）建立索引，由于子查询是虚表，无法建立索引，因此不能优化。
+
+结论：
+
+- **关联查询时，子查询尽量不要放在被驱动表，尽量让实体表作为被驱动表。**
+- **能够直接多表关联的尽量直接关联，不用子查询！**
+
+### 7、查询截取分析
+
+（1）慢查询的开启并捕获。
+
+（2）explain + 慢sql分析。
+
+（3）show profile查询sql在MySQL服务器里的执行细节和生命周期情况。
+
+（4）SQL数据库服务器的参数调优。
+
+#### 7.1 查询优化
+
+##### 7.1.1 永远小表驱动大表
+
+![image-20210516214452399](MySQL高级知识.assets/image-20210516214452399.png)
+
+![image-20210516214642968](MySQL高级知识.assets/image-20210516214642968.png)
+
+##### 7.1.2 order by关键字优化
+
