@@ -915,25 +915,15 @@ straight_join和inner join效果一样，但会强制将左表作为驱动表。
 - **关联查询时，子查询尽量不要放在被驱动表，尽量让实体表作为被驱动表。**
 - **能够直接多表关联的尽量直接关联，不用子查询！**
 
-### 7、查询截取分析
+### 7、排序分组优化
 
-（1）慢查询的开启并捕获。
-
-（2）explain + 慢sql分析。
-
-（3）show profile查询sql在MySQL服务器里的执行细节和生命周期情况。
-
-（4）SQL数据库服务器的参数调优。
-
-#### 7.1 查询优化
-
-##### 7.1.1 永远小表驱动大表
+#### 7.1 永远小表驱动大表
 
 ![image-20210516214452399](MySQL高级知识.assets/image-20210516214452399.png)
 
 ![image-20210516214642968](MySQL高级知识.assets/image-20210516214642968.png)
 
-##### 7.1.2 order by关键字优化
+#### 7.2 order by关键字优化
 
 （1）ORDER BY子句，尽量使用Index方式排序，避免使用filesort方式排序。
 
@@ -989,7 +979,7 @@ MySQL 4.1 之前是使用双路排序,字面意思就是两次扫描磁盘，最
 两种算法的数据都有可能超出sort_buffer 的容量，超出之后，会创建tmp 文件进行合并排序，导致多次I/O，
 但是用单路排序算法的风险会更大一些,所以要提高sort_buffer_size。
 
-##### 7.1.3 group by关键字优化
+#### 7.3 group by关键字优化
 
 group by 使用索引的原则几乎跟order by 一致，唯一区别是groupby 即使没有过滤条件用到索引，也可以直
 接使用索引。
@@ -1001,3 +991,117 @@ group by实质是先排序后分组，遵照索引的最佳左前缀。
 当无法使用索引列， 增大max_length_for_sort_data参数的设置 + 增大sort_buffer_size参数的设置。
 
 where高于having，能写在where里的条件就不要写在having里。
+
+### 8、查询截取分析
+
+（1）慢查询的开启并捕获。
+
+（2）explain + 慢sql分析。
+
+（3）show profile查询sql在MySQL服务器里的执行细节和生命周期情况。
+
+（4）SQL数据库服务器的参数调优。
+
+#### 8.1 慢查询日志
+
+##### 8.1.1 是什么
+
+（1）MySQL的慢查询日志是MySQL提供的一种日志记录，它用来记录MySQL中查询时间超过（大于）设置阈值（long_query_time）的语句，记录到慢查询日志中。
+
+（2）long_query_time的默认值是10。
+
+##### 8.1.2 怎么用
+
+**默认情况下，MySQL没有开启慢查询日志。**需要手动打开，如果不是调优需要的话，不建议开启，因为开启会带来一定的性能影响，慢查询日志支持将日志记录写入文件。
+
+（1）开启设置
+
+```sql
+-- 查看慢查询日志是否开启
+show variables like '%slow_query_log%';
+```
+
+![image-20210518225643324](MySQL高级知识.assets/image-20210518225643324.png)
+
+```sql
+-- 开启慢查询日志，只对当前数据库生效，并且重启数据库后失效
+set global slow_query_log = 1;
+```
+
+![image-20210518225040699](MySQL高级知识.assets/image-20210518225040699.png)
+
+```sql
+-- 查看慢查询日志的阈值，默认10s
+show variables like '%long_query_time%';
+```
+
+![image-20210518225143018](MySQL高级知识.assets/image-20210518225143018.png)
+
+```sql
+-- 设置阈值
+set long_query_time = 3;
+```
+
+![image-20210518225246692](MySQL高级知识.assets/image-20210518225246692.png)
+
+（2）如果需要永久生效则修改配置文件my.cnf
+
+```cnf
+[mysqld]
+slow_query_log=1
+slow_query_log_file=/var/lib/mysql/atguigu-slow.log
+long_query_time=3
+log_output=FILE
+```
+
+（3）运行慢查询sql，查看慢查询日志
+
+```sql
+select sleep(4);
+```
+
+![image-20210518225911215](MySQL高级知识.assets/image-20210518225911215.png)
+
+（4）查询当前系统有多少条慢查询记录
+
+```sql
+show global status like '%Slow_queries%';
+```
+
+![image-20210518232207075](MySQL高级知识.assets/image-20210518232207075.png)
+
+#### 8.2 日志分析工具mysqldumpslow
+
+##### 8.2.1 是什么
+
+慢查询日志多了，不利于我们进行分析。mysqldumpslow能将相同的慢SQL归类，并统计出相同的SQL执行的次数，每次执行耗时多久、总耗时，每次返回的行数、总行数，以及客户端连接信息等。
+
+##### 8.2.2 怎么用
+
+![image-20210518231327539](MySQL高级知识.assets/image-20210518231327539.png)
+
+- -s 表示按何种方式排序。
+- c  访问次数。
+- l   锁定时间。 
+- r   返回记录。
+- t   查询时间。
+- al  平均锁定时间。
+- ar  平均返回记录数。
+- at  平均查询时间。
+- -t  返回前面多少条数据。
+- -g  后面搭配一个正则匹配模式，大小写不敏感。
+
+```shell
+# 得到返回记录集最多的10 个SQL
+mysqldumpslow -s r -t 10 /var/lib/mysql/atguigu-slow.log
+
+# 得到访问次数最多的10 个SQL
+mysqldumpslow -s c -t 10 /var/lib/mysql/atguigu-slow.log
+
+# 得到按照时间排序的前10 条里面含有左连接的查询语句
+mysqldumpslow -s t -t 10 -g "left join" /var/lib/mysql/atguigu-slow.log
+
+# 另外建议在使用这些命令时结合| 和more 使用，否则有可能出现爆屏情况
+mysqldumpslow -s r -t 10 /var/lib/mysql/atguigu-slow.log | more
+```
+
