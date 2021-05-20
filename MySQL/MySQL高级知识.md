@@ -1105,3 +1105,187 @@ mysqldumpslow -s t -t 10 -g "left join" /var/lib/mysql/atguigu-slow.log
 mysqldumpslow -s r -t 10 /var/lib/mysql/atguigu-slow.log | more
 ```
 
+### 9、批量数据脚本
+
+有时候我们需要往表中批量插入几万甚至几十万条数据，这时候总不可能手工一条条插入的，这估计得累死人。可以利用MySQL的函数和存储过来实现这个需求。
+
+#### 9.1 建立测试需要的表
+
+```sql
+CREATE TABLE `dept` (
+`id` INT(11) NOT NULL AUTO_INCREMENT,
+`deptName` VARCHAR(30) DEFAULT NULL,
+`address` VARCHAR(40) DEFAULT NULL,
+ceo INT NULL ,
+PRIMARY KEY (`id`)
+) ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+CREATE TABLE `emp` (
+`id` INT(11) NOT NULL AUTO_INCREMENT,
+`empno` INT NOT NULL ,
+`name` VARCHAR(20) DEFAULT NULL,
+`age` INT(3) DEFAULT NULL,
+`deptId` INT(11) DEFAULT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+```
+
+#### 9.2 参数设置
+
+MySQL有一个参数`log_bin_trust_function_creators`，当二进制日志启用后，这个变量就会启用，目的是**为了控制是否信任存储函数的创建者，不会创建写入引起二进制日志不安全事件的存储函数**。默认值为0，表示不允许创建或修改存储函数。
+
+![image-20210520231345068](MySQL高级知识.assets/image-20210520231345068.png)
+
+如果在变量值为0的情况下创建存储函数，就会报错
+
+```sql
+ERROR 1418 (HY000): This function has none of DETERMINISTIC, NO SQL, or READS SQL DATA in its declaration and binary logging is enabled (you *might* want to use the less safe log_bin_trust_function_creators variable)
+```
+
+那么为什么MySQL有这样的限制呢？ 因为二进制日志的一个重要功能是用于主从复制，而存储函数有可能导致主从的数据不一致。所以当开启二进制日志后，参数log_bin_trust_function_creators就会生效，限制存储函数的创建、修改、调用。
+
+所以为了测试，我们需要把该参数打开，不然没法玩了。注意使用命令打开，重启后就会失效，如果要永久生效，需要修改my.cnf。
+
+![image-20210520231657689](MySQL高级知识.assets/image-20210520231657689.png)
+
+#### 9.3 编写随机函数
+
+这里需要两个随机函数就够了，一个产生随机数字，一个产生随机字符串。
+
+##### 9.3.1 随机产生字符串
+
+```sql
+-- 定义分隔符为$$，不然遇到;就会结束
+DELIMITER $$
+-- 函数名为rand_string，入参为n，类型为int，返回值为varchar类型，长度为255
+CREATE FUNCTION rand_string(n INT) RETURNS VARCHAR(255)
+BEGIN
+-- 定义一个变量chars_str，有默认值
+DECLARE chars_str VARCHAR(100) DEFAULT 'abcdefghijklmnopqrstuvwxyzABCDEFJHIJKLMNOPQRSTUVWXYZ';
+DECLARE return_str VARCHAR(255) DEFAULT '';
+DECLARE i INT DEFAULT 0;
+-- 生成长度为n的随机字符串，存入return_str
+WHILE i < n DO
+	SET return_str = CONCAT(return_str, SUBSTRING(chars_str, FLOOR(1 + RAND() * 52), 1));
+	SET i = i + 1;
+END WHILE;
+RETURN return_str;
+END $$
+```
+
+##### 9.3.2 随机产生数字
+
+```sql
+-- 随机产生from_num到to_num范围内的数
+DELIMITER $$
+CREATE FUNCTION rand_num(from_num INT, to_num INT) RETURNS INT(11)
+BEGIN
+	DECLARE i INT DEFAULT 0;
+	SET i = FLOOR(from_num + RAND() * (to_num - from_num +1));
+	RETURN i;
+END $$
+```
+
+如果要删除函数，使用下面的命令
+
+```sql
+drop function function_name;
+```
+
+#### 9.4 创建存储过程
+
+##### 9.4.1 往emp表中插入数据的存储过程
+
+```sql
+DELIMITER $$
+CREATE PROCEDURE insert_emp(START INT, max_num INT)
+BEGIN
+DECLARE i INT DEFAULT 0;
+-- 把自动提交关闭
+set autocommit = 0;
+REPEAT
+SET i = i +1;
+INSERT INTO emp(empno, NAME, age, deptid) VALUES((START + i), rand_string(6), rand_num(30, 50), rand_num(1, 10000));
+UNTIL i = max_num
+END REPEAT;
+COMMIT;
+END $$
+
+-- 删除
+DELIMITER ;
+drop PROCEDURE insert_emp;
+```
+
+##### 9.4.2 往dept表中插入数据的存储过程
+
+```sql
+DELIMITER $$
+CREATE PROCEDURE insert_dept(max_num INT)
+BEGIN
+DECLARE i INT DEFAULT 0;
+SET autocommit = 0;
+REPEAT
+SET i = i + 1;
+INSERT INTO dept(deptname, address, ceo) VALUES(rand_string(8), rand_string(10), rand_num(1, 500000));
+UNTIL i = max_num;
+END REPEAT;
+COMMIT;
+END $$
+
+-- 删除
+DELIMITER ;
+drop PROCEDURE insert_dept;
+```
+
+#### 9.5 调用存储过程
+
+##### 9.5.1 添加数据到部门表
+
+```sql
+-- 执行存储过程，往dept表添加1w条数据
+DELIMITER ;
+CALL insert_dept(10000);
+```
+
+##### 9.5.2 添加数据到员工表
+
+```sql
+-- 执行存储过程，往emp表添加50w条数据
+DELIMITER ;
+CALL insert_emp(100000, 500000);
+```
+
+#### 9.6 批量删除某个表上的所有索引
+
+##### 9.6.1 创建删除索引的存储过程
+
+```sql
+DELIMITER $$
+CREATE PROCEDURE proc_drop_index(dbname VARCHAR(200), tablename VARCHAR(200))
+BEGIN
+	DECLARE done INT DEFAULT 0;
+	DECLARE ct INT DEFAULT 0;
+	DECLARE _index VARCHAR(200) DEFAULT '';
+	DECLARE _cur CURSOR FOR SELECT index_name FROM information_schema.STATISTICS table_schema = dbname AND table_name = tablename AND seq_in_index = 1 AND index_name <> 'PRIMARY';
+	DECLARE CONTINUE HANDLER FOR NOT FOUND set done = 2;
+	OPEN _cur;
+	FETCH _cur INTO _index;
+	WHILE _index <> '' DO
+		SET @str = CONCAT("drop index", _index, " on ", tablename);
+		REPEAT sql_str FROM @str;
+		EXECUTE sql_str;
+		DEALLOCATE PREPARE sql_str;
+		SET _index = '';
+		FETCH _cur INTO _index;
+	END WHILE;
+CLOSE _cur;
+END $$
+```
+
+##### 9.6.2 执行存储过程
+
+```sql
+CALL proc_drop_index("dbname", "tablename");
+```
+
+
+
