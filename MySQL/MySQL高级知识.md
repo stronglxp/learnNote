@@ -1265,12 +1265,12 @@ BEGIN
 	DECLARE done INT DEFAULT 0;
 	DECLARE ct INT DEFAULT 0;
 	DECLARE _index VARCHAR(200) DEFAULT '';
-	DECLARE _cur CURSOR FOR SELECT index_name FROM information_schema.STATISTICS table_schema = dbname AND table_name = tablename AND seq_in_index = 1 AND index_name <> 'PRIMARY';
+	DECLARE _cur CURSOR FOR SELECT index_name FROM information_schema.STATISTICS WHERE table_schema = dbname AND table_name = tablename AND seq_in_index = 1 AND index_name <> 'PRIMARY';
 	DECLARE CONTINUE HANDLER FOR NOT FOUND set done = 2;
 	OPEN _cur;
 	FETCH _cur INTO _index;
 	WHILE _index <> '' DO
-		SET @str = CONCAT("drop index", _index, " on ", tablename);
+		SET @str = CONCAT("drop index ", _index, " on ", tablename);
 		REPEAT sql_str FROM @str;
 		EXECUTE sql_str;
 		DEALLOCATE PREPARE sql_str;
