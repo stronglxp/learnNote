@@ -49,6 +49,8 @@
 - [403.青蛙过河](https://github.com/stronglxp/learnNote/blob/main/leetcode/DP/403.%E9%9D%92%E8%9B%99%E8%BF%87%E6%B2%B3.md)
 - [740.删除并获得点数](https://github.com/stronglxp/learnNote/blob/main/leetcode/DP/740.%E5%88%A0%E9%99%A4%E5%B9%B6%E8%8E%B7%E5%BE%97%E7%82%B9%E6%95%B0.md)
 - [91. 解码方法](https://github.com/stronglxp/learnNote/blob/main/leetcode/DP/91.%20%E8%A7%A3%E7%A0%81%E6%96%B9%E6%B3%95.md)
+- [1143.最长公共子序列](https://github.com/stronglxp/learnNote/blob/main/leetcode/DP/1143.%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97.md)
+- [1035.不相交的线](https://github.com/stronglxp/learnNote/blob/main/leetcode/DP/1035.%E4%B8%8D%E7%9B%B8%E4%BA%A4%E7%9A%84%E7%BA%BF.md)
 
 ##### 4、二分
 
