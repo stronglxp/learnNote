@@ -1302,3 +1302,33 @@ set profiling_history_size = 20;
 （3）Copying to tmp table on disk。把内存中临时表复制到磁盘，危险！
 
 （4）locked。
+
+### 10、全局查询日志
+
+所谓全局查询日志，就是可以记录你执行的所有sql语句，把它们放到一张表里，方便查看定位，比如某个时间段执行了哪些sql语句。
+
+#### 10.1 使用配置开启
+
+在my.cnf中，配置如下：
+
+```cnf
+# 开启
+general_log=1
+# 记录日志文件的路径
+general_log_file=/path/logfile
+# 输出格式
+log_output=FILE
+```
+
+#### 10.2 使用命令开启
+
+```sql
+set global general_log=1;
+set global log_output='TABLE';
+```
+
+这样你使用的sql语句就会记录到mysql数据库的general_log表里。
+
+![image-20210522110537900](MySQL高级知识.assets/image-20210522110537900.png)
+
+注意：**永远不要在生产环境开启这个功能**。
