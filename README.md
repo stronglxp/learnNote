@@ -107,6 +107,7 @@
 ##### 10、数学
 
 - [7.整数反转](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/7.%E6%95%B4%E6%95%B0%E5%8F%8D%E8%BD%AC.md)
+- [810.黑板异或游戏](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/810.%E9%BB%91%E6%9D%BF%E5%BC%82%E6%88%96%E6%B8%B8%E6%88%8F.md)
 
 ##### 11、数组
 
