@@ -1577,3 +1577,173 @@ show status like 'innodb_row_lock%';
 #### 11.4 页锁
 
 开销和加锁时间界于表锁和行锁之间。会出现死锁，锁定粒度界于表锁和行锁之间，并发度一般。
+
+### 12、主从复制
+
+#### 12.1 主从复制是什么
+
+在实际开发中，为了解决MySQL的单点故障以及提高MySQL的整体性能，一般会采用**主从复制**。
+
+主从复制中分为**主服务器（master）**和**从服务器（slave）**，**主服务器负责写，从服务器负责读**。MySQL主从复制是异步且串行化的。
+
+这样读写分离能够提高MySQL的整体性能，即使写操作时间比较长，也不影响读操作的进行。
+
+#### 12.2 主从复制的基本原理
+
+![image-20210523140229605](MySQL高级知识.assets/image-20210523140229605-1621749803570.png)
+
+Mysql的主从复制中主要有三个线程：`master（binlog dump thread）、slave（I/O thread 、SQL thread）`，Master一条线程和Slave中的两条线程。
+
+`master（binlog dump thread）`主要负责Master库中有数据更新的时候，会按照`binlog`格式，将更新的事件类型写入到主库的`binlog`文件中。
+
+并且，Master会创建`log dump`线程通知Slave主库中存在数据更新，这就是为什么主库的binlog日志一定要开启的原因。
+
+`I/O thread`线程在Slave中创建，该线程用于请求Master，Master会返回binlog的名称以及当前数据更新的位置、binlog文件位置的副本。
+
+然后，将`binlog`保存在 **「relay log（中继日志）」** 中，中继日志也是记录数据更新的信息。
+
+SQL线程也是在Slave中创建的，当Slave检测到中继日志有更新，就会将更新的内容同步到Slave数据库中，这样就保证了主从的数据的同步。
+
+以上就是主从复制的过程，当然，主从复制的过程有不同的策略方式进行数据的同步，主要包含以下几种：
+
+1. **「同步策略」**：Master会等待所有的Slave都回应后才会提交，这个主从的同步的性能会严重的影响。
+2. **「半同步策略」**：Master至少会等待一个Slave回应后提交。
+3. **「异步策略」**：Master不用等待Slave回应就可以提交。
+4. **「延迟策略」**：Slave要落后于Master指定的时间。
+
+对于不同的业务需求，有不同的策略方案，但是一般都会采用最终一致性，不会要求强一致性，毕竟强一致性会严重影响性能。
+
+#### 12.3 主从复制的基本原则
+
+（1）每个slave只有一个master。
+
+（2）每个slave只能有一个唯一的服务器id。
+
+（3）每个master可以有多个slave。
+
+#### 12.4 主从复制最大的问题
+
+因为发生多次IO，存在延时问题。
+
+#### 12.5 一主一从常见配置
+
+假设主机是windows，从机是Linux
+
+（1）主机和从机在同一个网段内，能够相互ping通。
+
+（2）主机和从机MySQL版本一致，且均在后台运行。
+
+（3）主机修改my.ini文件，在[mysqld]下面进行配置，都是小写
+
+```ini
+# 主服务器唯一ID
+server-id=1
+# 启用二进制日志
+log-bin=自己本地的路径/data/mysqlbin
+# 设置不要复制的数据库，一般就是MySQL自带的四个库
+binlog-ignore-db=mysql
+binlog-ignore-db=information_schema
+binlog-ignore-db=performance_schema
+binlog-ignore-db=sys
+# 设置需要复制的数据库
+binlog-do-db=需要复制的主数据库名字
+# 设置logbin 格式
+# binlog_format=STATEMENT（默认）
+# binlog_format=ROW
+# binlog_format=MIXED
+binlog_format=STATEMENT（默认）
+```
+
+**mysql 主从复制起始时，从机不继承主机数据**。
+
+![image-20210523141140201](MySQL高级知识.assets/image-20210523141140201.png)
+
+（4）主机重启MySQL服务
+
+```sql
+-- 查看log_bin日志是否启动成功
+show variables like '%log_bin%'
+-- 查看Master的状态
+show master status;
+```
+
+![image-20210523141350440](MySQL高级知识.assets/image-20210523141350440.png)
+
+这两个数据`File`和`Position`要记住，后面配置Slave的时候要使用到这两个数据。执行完此步骤后不要再操作主服务器MYSQL，防止主服务器状态值变化。
+
+（5）从机修改my.cnf文件
+
+```cnf
+[mysqld]
+# 从机服务id
+server-id = 2
+# 注意my.cnf 中有server-id = 1
+# 设置中继日志
+relay-log=mysql-relay
+```
+
+（6）从机重启MySQL服务
+
+（7）主从机都关闭防火墙
+
+（8）主机上创建账号并授权slave
+
+```sql
+-- 创建用户，并授权
+GRANT REPLICATION SLAVE ON *.* TO '备份账号'@'从机器数据库IP' IDENTIFIED BY '123456';
+```
+
+（9）从机上配置需要复制的主机
+
+```sql
+CHANGE MASTER TO MASTER_HOST='主机IP',MASTER_USER='创建用户名',MASTER_PASSWORD='创建的密码',
+MASTER_LOG_FILE='File 名字',MASTER_LOG_POS=Position 数字;
+```
+
+（10）启动从服务器主从复制功能
+
+```sql
+start slave;
+show slave status\G;
+```
+
+![image-20210523142001774](MySQL高级知识.assets/image-20210523142001774.png)
+
+两个参数都为Yes表示主从配置成功。**「Slave_IO_Running也就是Slave中的IO线程用于请求Master，Slave_SQL_Running时sql线程将中继日志中更新日志同步到Slave数据库中。」**
+
+如果这两个不为Yes，需要重启一下从机MySQL，重新执行命令
+
+```sql
+stop slave;
+start slave;
+```
+
+（11）测试，在主机上新建数据库新建表，插入数据库，会发现从机上也会有相应的数据。
+
+（12）停止从服务器主从复制功能
+
+```sql
+stop slave;
+```
+
+#### 12.6 面试常见问题
+
+> Mysql主从有什么优点？为什么要选择主从？
+
+**高性能方面**：主从复制通过水平扩展的方式，解决了原来单点故障的问题，并且原来的并发都集中到了一台Mysql服务器中，现在将单点负载分散到了多台机器上，实现读写分离，不会因为写操作过长锁表而导致读服务不能进行的问题，提高了服务器的整体性能。
+
+**可靠性方面**：主从在对外提供服务的时候，若是主库挂了，会有通过主从切换，选择其中的一台Slave作为Master；若是Slave挂了，还有其它的Slave提供读服务，提高了系统的可靠性和稳定性。
+
+> 若是主从复制，达到了写性能的瓶颈，你是怎么解决的呢？
+
+主从模式对于写少读多的场景确实非常大的优势，但是总会写操作达到瓶颈的时候，导致性能提不上去。
+
+这时候可以在设计上进行解决采用分库分表的形式，对于业务数据比较大的数据库可以采用分表，使得数据表的存储的数据量达到一个合理的状态。
+
+也可以采用分库，按照业务进行划分，这样对于单点的写，就会分成多点的写，性能方面也就会大大提高。
+
+> 主从复制的过程有数据延迟怎么办？导致Slave被读取到的数据并不是最新数据。
+
+主从复制有不同的复制策略，对于不同的场景的适应性也不同，对于数据的实时性要求很高，要求强一致性，可以采用同步复制策略，但是这样就会性能就会大打折扣。
+
+若是主从复制采用异步复制，要求数据最终一致性，性能方面也会好很多。只能说，对于数据延迟的解决方案没有最好的方案，就看你的业务场景中哪种方案使比较适合的。
