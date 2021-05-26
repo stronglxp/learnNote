@@ -129,4 +129,8 @@
 - [421.数组中两个数的最大异或值](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E5%85%B8%E6%A0%91/421.%E6%95%B0%E7%BB%84%E4%B8%AD%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%9A%84%E6%9C%80%E5%A4%A7%E5%BC%82%E6%88%96%E5%80%BC.md)
 - [1707.与数组中元素的最大异或值](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E5%85%B8%E6%A0%91/1707.%E4%B8%8E%E6%95%B0%E7%BB%84%E4%B8%AD%E5%85%83%E7%B4%A0%E7%9A%84%E6%9C%80%E5%A4%A7%E5%BC%82%E6%88%96%E5%80%BC.md)
 
+##### 15、堆
+
+- [1190.反转每对括号间的子串](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%A0%86/1190.%E5%8F%8D%E8%BD%AC%E6%AF%8F%E5%AF%B9%E6%8B%AC%E5%8F%B7%E9%97%B4%E7%9A%84%E5%AD%90%E4%B8%B2.md)
+
 ...... 陆续更新中
