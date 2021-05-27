@@ -7,7 +7,7 @@
 
 #### 一、Docker
 
-- [Docker学习笔记](https://github.com/stronglxp/learnNote/blob/main/Docker/Docker%E5%AD%A6%E4%B9%A0.md)
+- [Docker学习笔记（分为基础篇和高级篇，总共1.3w字）](https://github.com/stronglxp/learnNote/blob/main/Docker/Docker%E5%AD%A6%E4%B9%A0.md)
 
 #### 二、Java相关
 
@@ -16,7 +16,7 @@
 
 #### 三、数据库相关
 
-- [MySQL学习笔记](https://github.com/stronglxp/learnNote/blob/main/MySQL/MySQL%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86.md)
+- [MySQL学习笔记--高级部分（全文快2w字数）](https://github.com/stronglxp/learnNote/blob/main/MySQL/MySQL%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86.md)
 
 #### 四、剑指offer系列
 
