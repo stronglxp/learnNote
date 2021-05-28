@@ -79,6 +79,7 @@
 - [1738.找出第K大的异或坐标值](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BD%8D%E8%BF%90%E7%AE%97/1738.%E6%89%BE%E5%87%BA%E7%AC%ACK%E5%A4%A7%E7%9A%84%E5%BC%82%E6%88%96%E5%9D%90%E6%A0%87%E5%80%BC.md)
 - [461.汉明距离](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BD%8D%E8%BF%90%E7%AE%97/461.%E6%B1%89%E6%98%8E%E8%B7%9D%E7%A6%BB.md)
 - [191.位1的个数](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BD%8D%E8%BF%90%E7%AE%97/191.%E4%BD%8D1%E7%9A%84%E4%B8%AA%E6%95%B0.md)
+- [477.汉明距离总和](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BD%8D%E8%BF%90%E7%AE%97/477.%E6%B1%89%E6%98%8E%E8%B7%9D%E7%A6%BB%E6%80%BB%E5%92%8C.md)
 
 ##### 6、双指针
 
