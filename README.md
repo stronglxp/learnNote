@@ -82,6 +82,7 @@
 - [461.汉明距离](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BD%8D%E8%BF%90%E7%AE%97/461.%E6%B1%89%E6%98%8E%E8%B7%9D%E7%A6%BB.md)
 - [191.位1的个数](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BD%8D%E8%BF%90%E7%AE%97/191.%E4%BD%8D1%E7%9A%84%E4%B8%AA%E6%95%B0.md)
 - [477.汉明距离总和](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BD%8D%E8%BF%90%E7%AE%97/477.%E6%B1%89%E6%98%8E%E8%B7%9D%E7%A6%BB%E6%80%BB%E5%92%8C.md)
+- [231.2的幂](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BD%8D%E8%BF%90%E7%AE%97/231.2%E7%9A%84%E5%B9%82.md)
 
 ##### 6、双指针
 
