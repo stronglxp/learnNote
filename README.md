@@ -20,6 +20,8 @@
 
 #### 四、十大排序算法
 
+- [开场篇](https://github.com/stronglxp/learnNote/blob/main/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%BC%80%E5%9C%BA%E7%AF%87.md)
+
 #### 五、剑指offer系列
 
 - [剑指Offer03.数组中重复的数字](https://github.com/stronglxp/learnNote/blob/main/%E5%89%91%E6%8C%87offer%E7%B3%BB%E5%88%97/%E5%89%91%E6%8C%87Offer03.%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97.md)
