@@ -145,4 +145,8 @@
 
 - [1190.反转每对括号间的子串](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%A0%86/1190.%E5%8F%8D%E8%BD%AC%E6%AF%8F%E5%AF%B9%E6%8B%AC%E5%8F%B7%E9%97%B4%E7%9A%84%E5%AD%90%E4%B8%B2.md)
 
+##### 16、前缀和
+
+- [523.连续的子数组和](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%89%8D%E7%BC%80%E5%92%8C/523.%E8%BF%9E%E7%BB%AD%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84%E5%92%8C.md)
+
 ...... 陆续更新中
