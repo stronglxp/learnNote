@@ -150,5 +150,6 @@
 ##### 16、前缀和
 
 - [523.连续的子数组和](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%89%8D%E7%BC%80%E5%92%8C/523.%E8%BF%9E%E7%BB%AD%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84%E5%92%8C.md)
+- [525.连续数组](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%89%8D%E7%BC%80%E5%92%8C/525.%E8%BF%9E%E7%BB%AD%E6%95%B0%E7%BB%84.md)
 
 ...... 陆续更新中
