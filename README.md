@@ -21,6 +21,8 @@
 #### 四、十大排序算法
 
 - [开场篇](https://github.com/stronglxp/learnNote/blob/main/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%BC%80%E5%9C%BA%E7%AF%87.md)
+- [1.冒泡排序](https://github.com/stronglxp/learnNote/blob/main/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/1.%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F.md)
+- [2.选择排序](https://github.com/stronglxp/learnNote/blob/main/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/2.%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F.md)
 
 #### 五、剑指offer系列
 
