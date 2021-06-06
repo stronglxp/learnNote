@@ -75,6 +75,7 @@
 - [1035.不相交的线](https://github.com/stronglxp/learnNote/blob/main/leetcode/DP/1035.%E4%B8%8D%E7%9B%B8%E4%BA%A4%E7%9A%84%E7%BA%BF.md)
 - [664.奇怪的打印机](https://github.com/stronglxp/learnNote/blob/main/leetcode/DP/664.%E5%A5%87%E6%80%AA%E7%9A%84%E6%89%93%E5%8D%B0%E6%9C%BA.md)
 - [1074.元素和为目标值的子矩阵数量](https://github.com/stronglxp/learnNote/blob/main/leetcode/DP/1074.%E5%85%83%E7%B4%A0%E5%92%8C%E4%B8%BA%E7%9B%AE%E6%A0%87%E5%80%BC%E7%9A%84%E5%AD%90%E7%9F%A9%E9%98%B5%E6%95%B0%E9%87%8F.md)
+- [474.一和零](https://github.com/stronglxp/learnNote/blob/main/leetcode/DP/474.%E4%B8%80%E5%92%8C%E9%9B%B6.md)
 
 ##### 4、二分
 
