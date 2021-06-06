@@ -28,6 +28,9 @@
 - [5.希尔排序](https://github.com/stronglxp/learnNote/blob/main/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/5.%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F.md)
 - [6.归并排序](https://github.com/stronglxp/learnNote/blob/main/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/6.%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F.md)
 - [7.堆排序](https://github.com/stronglxp/learnNote/blob/main/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/7.%E5%A0%86%E6%8E%92%E5%BA%8F.md)
+- [8.计数排序](https://github.com/stronglxp/learnNote/blob/main/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/8.%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F.md)
+- [9.桶排序](https://github.com/stronglxp/learnNote/blob/main/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/9.%E6%A1%B6%E6%8E%92%E5%BA%8F.md)
+- [10.基数排序](https://github.com/stronglxp/learnNote/blob/main/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/10.%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F.md)
 
 #### 五、剑指offer系列
 
