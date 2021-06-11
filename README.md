@@ -167,4 +167,8 @@
 - [523.连续的子数组和](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%89%8D%E7%BC%80%E5%92%8C/523.%E8%BF%9E%E7%BB%AD%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84%E5%92%8C.md)
 - [525.连续数组](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%89%8D%E7%BC%80%E5%92%8C/525.%E8%BF%9E%E7%BB%AD%E6%95%B0%E7%BB%84.md)
 
+##### 17、背包问题
+
+- [279.完全平方数](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/279.%E5%AE%8C%E5%85%A8%E5%B9%B3%E6%96%B9%E6%95%B0.md)
+
 ...... 陆续更新中
