@@ -14,6 +14,7 @@
 - [JUC学习笔记](https://github.com/stronglxp/learnNote/blob/main/Java/JUC/JUC.md)
 - [Java操作Excel](https://github.com/stronglxp/learnNote/blob/main/Java/excel/java%E6%93%8D%E4%BD%9Cexcel.md)
 - [位图算法BitMap](https://github.com/stronglxp/learnNote/blob/main/Java/%E4%B8%80%E4%BA%9B%E6%BA%90%E7%A0%81%E6%8E%A2%E7%A9%B6/%E4%BB%8E%E4%B8%80%E9%81%93%E9%AB%98%E5%A4%A7%E4%B8%8A%E7%9A%84%E9%9D%A2%E8%AF%95%E9%A2%98%E6%9D%A5%E5%AD%A6%E4%B9%A0%E4%BD%8D%E5%9B%BE%E7%AE%97%E6%B3%95.md)
+- [面试官：你给我讲讲SpringBoot的依赖管理和自动配置？](https://github.com/stronglxp/learnNote/blob/main/Java/Spring%E7%9B%B8%E5%85%B3/SpringBoot%E7%9A%84%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86%E5%92%8C%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE%E6%98%AF%E6%80%8E%E4%B9%88%E5%81%9A%E7%9A%84%EF%BC%9F.md)
 
 #### 三、数据库相关
 
