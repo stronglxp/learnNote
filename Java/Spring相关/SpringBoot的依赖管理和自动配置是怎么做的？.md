@@ -114,7 +114,7 @@ public class MyConfig {
 }
 ```
 
-然后再启动类中进行测试，可以发现容器中的实例都是单例的，即多次拿到的都是同一个对象。
+然后在启动类中进行测试，可以发现容器中的实例都是单例的，即多次拿到的都是同一个对象。
 
 ```java
 @SpringBootApplication
@@ -349,7 +349,7 @@ public class MyConfig {
 
 而` META-INF/spring.factories`文件存在于我们导入的jar包。它会扫描所有jar包中的` META-INF/spring.factories`文件，然后进行去重以及移除掉我们exclude掉的组件。
 
-在我测试的项目中，获取到的组件数目为130，就是在 spring-boot-autoconfigure-2.4.4.RELEASE.jar包中，里面刚好有130个组件。
+在我测试的项目中，获取到的组件数目为130，就是在 spring-boot-autoconfigure-2.4.4.jar包中，里面刚好有130个组件。
 
 ![image-20210613010134838](SpringBoot的依赖管理和自动配置是怎么做的？.assets/image-20210613010134838.png)
 
@@ -362,3 +362,33 @@ public class MyConfig {
 （3）利用工厂加载 Map<String, List<String>> loadSpringFactories(@Nullable ClassLoader classLoader)；得到所有的组件。
 
 （4）从META-INF/spring.factories位置来加载一个文件。默认扫描我们当前系统里面所有META-INF/spring.factories位置的文件。
+
+#### 4.3 按需开启自动配置项
+
+SpringBoot在启动的时候为我们加载了这么多组件，我们不可能全部用得上，那如果用不上的还注册进容器，岂不是耗费资源。其实底层使用了条件装配@Conditional，在我们需要的情况下才会注册对应的组件。
+
+在我测试的项目中，因为启动的时候都是加载的 spring-boot-autoconfigure-2.4.4.jar包中的组件，所以我可以去看看该jar包中的xxxAutoConfiguration的源码。比如`AopAutoConfiguration`
+
+![image-20210613101312529](SpringBoot的依赖管理和自动配置是怎么做的？.assets/image-20210613101312529.png)
+
+在项目中，如果我们没有引入aspectj的jar，就不会有Advice类，那么jdk动态代理和cglib代理都不会生效。而此时生效的是基础代理，只作用于框架内部的advisors，项目中我们自定义的切面是不会被AOP代理的。
+
+![image-20210613102219140](SpringBoot的依赖管理和自动配置是怎么做的？.assets/image-20210613102219140.png)
+
+其他AutoConfiguration也是类似的，这里就不一一看了。
+
+#### 4.4 用户优先
+
+啥叫用户优先？就是SpringBoot底层虽然会为我们自动加载组件，但如果我们想用我们自己定义的呢？来看看`HttpEncodingAutoConfiguration`
+
+![image-20210613103313401](SpringBoot的依赖管理和自动配置是怎么做的？.assets/image-20210613103313401.png)
+
+首先应用是Servlet应用以及存在`CharacterEncodingFilter`类的时候，才会进行注册。而且该类和配置文件进行了绑定，可以在配置文件中对属性进行赋值。在注册`CharacterEncodingFilter`的时候，如果系统中不存在这个bean的时候，才会进行注册，防止重复注册，并且组件的值是进行动态赋值的，即如果我们编码不想使用utf-8，那我们可以在配置文件中进行修改，系统注册时候，就会使用我们自定义的值。
+
+根据[官方文档](https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html#application-properties.core)，有以下属性可以进行设置。
+
+![image-20210613103708729](SpringBoot的依赖管理和自动配置是怎么做的？.assets/image-20210613103708729.png)
+
+### 5、总结
+
+本来主要分析了SpringBoot是如何进行依赖管理和自动配置的，相比于Spring，很多工作都是在底层帮我们做了。虽然我们写代码可能用不上这些，但知其然并且知其所以然，纸上得来终觉浅，绝知此事要躬行。
