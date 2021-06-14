@@ -89,6 +89,7 @@
 - [367.有效的完全平方数](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BA%8C%E5%88%86/367.%E6%9C%89%E6%95%88%E7%9A%84%E5%AE%8C%E5%85%A8%E5%B9%B3%E6%96%B9%E6%95%B0.md)
 - [540.有序数组中的单一元素](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BA%8C%E5%88%86/540.%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E5%8D%95%E4%B8%80%E5%85%83%E7%B4%A0.md)
 - [278.第一个错误的版本](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BA%8C%E5%88%86/278.%E7%AC%AC%E4%B8%80%E4%B8%AA%E9%94%99%E8%AF%AF%E7%9A%84%E7%89%88%E6%9C%AC.md)
+- [374.猜数字大小](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BA%8C%E5%88%86/374.%E7%8C%9C%E6%95%B0%E5%AD%97%E5%A4%A7%E5%B0%8F.md)
 
 ##### 5、位运算
 
