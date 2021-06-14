@@ -2,7 +2,7 @@
 
 链接：https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof/
 
-标签：**数、递归**
+标签：**树、递归**
 
 > 题目
 
