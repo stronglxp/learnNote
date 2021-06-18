@@ -92,6 +92,7 @@
 - [278.第一个错误的版本](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BA%8C%E5%88%86/278.%E7%AC%AC%E4%B8%80%E4%B8%AA%E9%94%99%E8%AF%AF%E7%9A%84%E7%89%88%E6%9C%AC.md)
 - [374.猜数字大小](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BA%8C%E5%88%86/374.%E7%8C%9C%E6%95%B0%E5%AD%97%E5%A4%A7%E5%B0%8F.md)
 - [852.山脉数组的峰顶索引](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BA%8C%E5%88%86/852.%E5%B1%B1%E8%84%89%E6%95%B0%E7%BB%84%E7%9A%84%E5%B3%B0%E9%A1%B6%E7%B4%A2%E5%BC%95.md)
+- [483. 最小好进制](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BA%8C%E5%88%86/483.%E6%9C%80%E5%B0%8F%E5%A5%BD%E8%BF%9B%E5%88%B6.md)
 
 ##### 5、位运算
 
