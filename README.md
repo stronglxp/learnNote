@@ -68,6 +68,7 @@
 
 - [938.二叉搜索树的范围和](https://github.com/stronglxp/learnNote/blob/main/leetcode/DFS/938.%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E8%8C%83%E5%9B%B4%E5%92%8C.md)
 - [494.目标和](https://github.com/stronglxp/learnNote/blob/main/leetcode/DFS/494.%E7%9B%AE%E6%A0%87%E5%92%8C.md)
+- [1600.皇位继承顺序](https://github.com/stronglxp/learnNote/blob/main/leetcode/DFS/1600.%E7%9A%87%E4%BD%8D%E7%BB%A7%E6%89%BF%E9%A1%BA%E5%BA%8F.md)
 
 ##### 3、DP
 
