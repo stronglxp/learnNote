@@ -33,8 +33,7 @@ SpringBoot在启动的时候会默认去寻找并加载application.properties文
 #### 1.3 两种配置文件比较
 
 - 可以使用 **@PropertySource** 注解加载自定义的 **Properties** 配置文件，但无法加载自定义的 **YAML** 文件。
-- **YAML** 支持列表的配置，而 **Properties** 不支持。
-- 配置文件加载顺序：properties、xml、yml、yaml（后加载的会覆盖前面加载的）
+- 配置文件加载顺序：yaml、yml、xml、properties（后加载的会覆盖前面加载的）
 
 ### 2、yaml配置文件
 
@@ -150,6 +149,23 @@ my-person:
         - {name: jerry,weight: 47}
       health: [{name: mario,weight: 47}]
 ```
+
+启动SpringBoot，可以打印出Person实体类的属性值。如果在application.properties中配置Person的一些字段值，那么会如何加载呢？
+
+```properties
+my-person.interests=basketball, football, pingpang
+my-person.user-name=lxp
+my-person.score.chinese=100
+my-person.score.english=99
+```
+
+启动SpringBoot，打印Person
+
+```java
+Person(userName=lxp, boss=true, birth=Fri Nov 29 00:00:00 CST 1996, age=16165848, pet=Pet(name=tomcat, weight=100.0), interests=[basketball, football, pingpang], animal=[jerry, tom], score={english=99, chinese=100, math={0=131, 1=140, 2=148}}, salarys=[3999.0, 4999.98, 5999.99], allPets={sick=[Pet(name=tom, weight=null), Pet(name=jerry, weight=47.0)], health=[Pet(name=mario, weight=47.0)]})
+```
+
+会发现application.properties中配置的属性会覆盖掉application.yaml中配置的属性，并且如果该属性有多个字段时，会进行合并，比如`score={english=99, chinese=100, math={0=131, 1=140, 2=148}}`就是两个配置文件合并后的结果。
 
 #### 2.5 开启自动提示
 
