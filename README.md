@@ -142,7 +142,7 @@
 
 ##### 8、回溯
 
-- [46. 全排列](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%9B%9E%E6%BA%AF/46.%20%E5%85%A8%E6%8E%92%E5%88%97.md)
+- [46. 全排列](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%9B%9E%E6%BA%AF/46.%E5%85%A8%E6%8E%92%E5%88%97.md)
 - [剑指 Offer 38. 字符串的排列](https://github.com/stronglxp/learnNote/blob/main/%E5%89%91%E6%8C%87offer%E7%B3%BB%E5%88%97/%E5%89%91%E6%8C%87Offer38.%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%8E%92%E5%88%97.md)
 
 ##### 9、字符串
