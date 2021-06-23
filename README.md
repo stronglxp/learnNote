@@ -48,6 +48,7 @@
 - [剑指Offer09.用两个栈实现队列](https://github.com/stronglxp/learnNote/blob/main/%E5%89%91%E6%8C%87offer%E7%B3%BB%E5%88%97/%E5%89%91%E6%8C%87Offer09.%E7%94%A8%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97.md)
 - [剑指Offer10-I.斐波那契数列](https://github.com/stronglxp/learnNote/blob/main/%E5%89%91%E6%8C%87offer%E7%B3%BB%E5%88%97/%E5%89%91%E6%8C%87Offer10-I.%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97.md)
 - [剑指Offer10-II.青蛙跳台阶问题](https://github.com/stronglxp/learnNote/blob/main/%E5%89%91%E6%8C%87offer%E7%B3%BB%E5%88%97/%E5%89%91%E6%8C%87Offer10-II.%E9%9D%92%E8%9B%99%E8%B7%B3%E5%8F%B0%E9%98%B6%E9%97%AE%E9%A2%98.md)
+- [剑指Offer15.二进制中1的个数](https://github.com/stronglxp/learnNote/blob/main/%E5%89%91%E6%8C%87offer%E7%B3%BB%E5%88%97/%E5%89%91%E6%8C%87Offer15.%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%B8%AD1%E7%9A%84%E4%B8%AA%E6%95%B0.md)
 - [剑指 Offer 38. 字符串的排列](https://github.com/stronglxp/learnNote/blob/main/%E5%89%91%E6%8C%87offer%E7%B3%BB%E5%88%97/%E5%89%91%E6%8C%87Offer38.%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%8E%92%E5%88%97.md)
 
 #### 七、LeetCode
@@ -117,6 +118,7 @@
 - [231.2的幂](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BD%8D%E8%BF%90%E7%AE%97/231.2%E7%9A%84%E5%B9%82.md)
 - [342.4的幂](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BD%8D%E8%BF%90%E7%AE%97/342.4%E7%9A%84%E5%B9%82.md)
 - [401. 二进制手表](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BD%8D%E8%BF%90%E7%AE%97/401.%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%89%8B%E8%A1%A8.md)
+- [剑指Offer15.二进制中1的个数](https://github.com/stronglxp/learnNote/blob/main/%E5%89%91%E6%8C%87offer%E7%B3%BB%E5%88%97/%E5%89%91%E6%8C%87Offer15.%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%B8%AD1%E7%9A%84%E4%B8%AA%E6%95%B0.md)
 
 ##### 6、双指针
 
@@ -141,6 +143,7 @@
 ##### 8、回溯
 
 - [46. 全排列](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%9B%9E%E6%BA%AF/46.%20%E5%85%A8%E6%8E%92%E5%88%97.md)
+- [剑指 Offer 38. 字符串的排列](https://github.com/stronglxp/learnNote/blob/main/%E5%89%91%E6%8C%87offer%E7%B3%BB%E5%88%97/%E5%89%91%E6%8C%87Offer38.%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%8E%92%E5%88%97.md)
 
 ##### 9、字符串
 
