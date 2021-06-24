@@ -53,6 +53,10 @@
 
 #### 七、LeetCode
 
+##### 0、解题方法总结
+
+- [回溯法解决全排列问题总结](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E8%A7%A3%E9%A2%98%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/%E5%9B%9E%E6%BA%AF%E6%B3%95%E8%A7%A3%E5%86%B3%E5%85%A8%E6%8E%92%E5%88%97%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93.md)
+
 ##### 1、BFS
 
 - [102.二叉树的层序遍历](https://github.com/stronglxp/learnNote/blob/main/leetcode/BFS/102.%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86.md)
