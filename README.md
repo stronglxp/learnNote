@@ -64,7 +64,7 @@
 - [111. 二叉树的最小深度](https://github.com/stronglxp/learnNote/blob/main/leetcode/BFS/111.%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%B0%8F%E6%B7%B1%E5%BA%A6.md)
 - [637. 二叉树的层平均值](https://github.com/stronglxp/learnNote/blob/main/leetcode/BFS/637.%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%B9%B3%E5%9D%87%E5%80%BC.md)
 - [690.员工的重要性](https://github.com/stronglxp/learnNote/blob/main/leetcode/BFS/690.%E5%91%98%E5%B7%A5%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7.md)
-- [752. 打开转盘锁](https://github.com/stronglxp/learnNote/blob/main/leetcode/BFS/752.%20%E6%89%93%E5%BC%80%E8%BD%AC%E7%9B%98%E9%94%81.md)
+- [752. 打开转盘锁](https://github.com/stronglxp/learnNote/blob/main/leetcode/BFS/752.%E6%89%93%E5%BC%80%E8%BD%AC%E7%9B%98%E9%94%81.md)
 - [872.叶子相似的树](https://github.com/stronglxp/learnNote/blob/main/leetcode/BFS/872.%E5%8F%B6%E5%AD%90%E7%9B%B8%E4%BC%BC%E7%9A%84%E6%A0%91.md)
 - [993.二叉树的堂兄弟节点](https://github.com/stronglxp/learnNote/blob/main/leetcode/BFS/993.%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%A0%82%E5%85%84%E5%BC%9F%E8%8A%82%E7%82%B9.md)
 - [剑指 Offer 32 - I. 从上到下打印二叉树](https://github.com/stronglxp/learnNote/blob/main/leetcode/BFS/%E5%89%91%E6%8C%87%20Offer%2032%20-%20I.%20%E4%BB%8E%E4%B8%8A%E5%88%B0%E4%B8%8B%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91.md)
