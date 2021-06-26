@@ -69,6 +69,7 @@
 - [993.二叉树的堂兄弟节点](https://github.com/stronglxp/learnNote/blob/main/leetcode/BFS/993.%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%A0%82%E5%85%84%E5%BC%9F%E8%8A%82%E7%82%B9.md)
 - [剑指 Offer 32 - I. 从上到下打印二叉树](https://github.com/stronglxp/learnNote/blob/main/leetcode/BFS/%E5%89%91%E6%8C%87%20Offer%2032%20-%20I.%20%E4%BB%8E%E4%B8%8A%E5%88%B0%E4%B8%8B%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91.md)
 - [剑指 Offer 32 - II. 从上到下打印二叉树 II](https://github.com/stronglxp/learnNote/blob/main/leetcode/BFS/%E5%89%91%E6%8C%87%20Offer%2032%20-%20II.%20%E4%BB%8E%E4%B8%8A%E5%88%B0%E4%B8%8B%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91%20II.md)
+- [773. 滑动谜题](https://github.com/stronglxp/learnNote/blob/main/leetcode/BFS/773.%E6%BB%91%E5%8A%A8%E8%B0%9C%E9%A2%98.md)
 
 ##### 2、DFS
 
