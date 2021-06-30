@@ -19,6 +19,7 @@
 
 - [面试官：你给我讲讲SpringBoot的依赖管理和自动配置？](https://github.com/stronglxp/learnNote/blob/main/Java/Spring%E7%9B%B8%E5%85%B3/SpringBoot%E7%9A%84%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86%E5%92%8C%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE%E6%98%AF%E6%80%8E%E4%B9%88%E5%81%9A%E7%9A%84%EF%BC%9F.md)
 - [SpringBoot2配置文件application.yaml](https://github.com/stronglxp/learnNote/blob/main/Java/Spring%E7%9B%B8%E5%85%B3/SpringBoot2%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6application.yaml.md)
+- [SpringCloud入门及创建分布式项目](https://github.com/stronglxp/learnNote/blob/main/Java/SpringCloud%E7%9B%B8%E5%85%B3/SpringCloud%E5%85%A5%E9%97%A8%E5%8F%8A%E5%88%9B%E5%BB%BA%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE.md)
 
 #### 四、数据库相关
 
