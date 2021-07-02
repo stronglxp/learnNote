@@ -176,6 +176,7 @@
 ##### 11、数组
 
 - [5750.人口最多的年份](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/5750.%E4%BA%BA%E5%8F%A3%E6%9C%80%E5%A4%9A%E7%9A%84%E5%B9%B4%E4%BB%BD.md)
+- [1833. 雪糕的最大数量](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/1833.%E9%9B%AA%E7%B3%95%E7%9A%84%E6%9C%80%E5%A4%A7%E6%95%B0%E9%87%8F.md)
 
 ##### 12、滑动窗口
 
