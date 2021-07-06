@@ -312,7 +312,7 @@ public class GatewayConfig {
 }
 ```
 
-浏览器输入http://localhost:9527/guonei，返回http://news.baidu.com/guonei相同的页面。
+浏览器输入[http://localhost:9527/guonei]()，返回[http://news.baidu.com/guonei]()相同的页面。
 
 ### 6、GateWay配置动态路由
 
@@ -348,7 +348,7 @@ eureka:
       defaultZone: http://localhost:9001/eureka
 ```
 
-启动Eureka服务器，启动两个provider服务，启动GateWay服务，重复访问http://localhost:9527/payment/1，会轮询访问两个provider服务的接口。
+启动Eureka服务器，启动两个provider服务，启动GateWay服务，重复访问[http://localhost:9527/payment/1]()，会轮询访问两个provider服务的接口。
 
 ### 7、GateWay内置的Predicate
 
@@ -365,15 +365,25 @@ Spring Cloud Gateway创建Route 对象时，使用RoutePredicateFactory 创建 P
 常用的Route Predicate Factory
 
 （1）The After Route Predicate Factory
+
 （2）The Before Route Predicate Factory
+
 （3）The Between Route Predicate Factory
+
 （4）The Cookie Route Predicate Factory
+
 （5）The Header Route Predicate Factory
+
 （6）The Host Route Predicate Factory
+
 （7）The Method Route Predicate Factory
+
 （8）The Path Route Predicate Factory
+
 （9）The Query Route Predicate Factory
+
 （10）The RemoteAddr Route Predicate Factory
+
 （11）The weight Route Predicate Factory
 
 可以尝试在yml中配置一些predicate
@@ -520,4 +530,4 @@ public class MyLogGatewayFilter implements GlobalFilter, Ordered {
 
 在上面的filter中我们规定所有请求过来都需要带上name字段并且值不能为空。
 
-访问：http://localhost:9527/payment/1，后台打印【非法用户!】，访问：http://localhost:9527/payment/1?name=a，返回结果。
+访问：[http://localhost:9527/payment/1]()，后台打印【非法用户!】，访问：[http://localhost:9527/payment/1?name=a]()，返回结果。
