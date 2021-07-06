@@ -1,3 +1,9 @@
+文中涉及到了一些模块代码没有给出，我一并上传到github了，可以整个项目clone下来进行调试。
+
+地址：https://github.com/stronglxp/springcloud-test
+
+![image-20210706155638510](Nacos入门学习&实践.assets/image-20210706155638510.png)
+
 ### 1、SpringCloud Alibaba介绍
 
 #### 1.1 为什么会出现SpringCloud Alibaba
@@ -707,10 +713,225 @@ spring:
         # namespace: 2f42a525-6d50-45dc-8ed1-d474fff7ce42
 ```
 
-### 5、nacos集群
+### 5、nacos集群和持久化
 
 参考文档：https://nacos.io/zh-cn/docs/cluster-mode-quick-start.html
 
+https://nacos.io/zh-cn/docs/deployment.html
+
+#### 5.1 集群部署架构图
+
+因此开源的时候推荐用户把所有服务列表放到一个vip下面，然后挂到一个域名下面
+
+- [http://ip1](http://ip1/):port/openAPI 直连ip模式，机器挂则需要修改ip才可以使用。
+
+- [http://SLB](http://slb/):port/openAPI 挂载SLB模式(内网SLB，不可暴露到公网，以免带来安全风险)，直连SLB即可，下面挂server真实ip，可读性不好。
+
+- [http://nacos.com](http://nacos.com/):port/openAPI 域名 + SLB模式(内网SLB，不可暴露到公网，以免带来安全风险)，可读性好，而且换ip方便，推荐模式
+
+![deployDnsVipMode.jpg](Nacos入门学习&实践.assets/deployDnsVipMode.jpg)
+
+一般在实际部署时，架构图如下
+
+![image-20210706221934466](Nacos入门学习&实践.assets/image-20210706221934466.png)
+
+默认Nacos使用嵌入式数据库实现数据的存储。所以，如果启动多个默认配置下的Nacos节点，数据存储是存在一致性问题的。为了解决这个问题，**Nacos采用了集中式存储的方式来支持集群化部署，目前只支持MySQL的存储**。
+
+在0.7版本之前，在单机模式时nacos使用嵌入式数据库实现数据的存储，不方便观察数据存储的基本情况。0.7版本增加了支持mysql数据源能力，具体的操作步骤：
+
+（1）安装数据库，版本要求：5.6.5+
+
+（2）初始化mysql数据库，数据库初始化文件：nacos-mysql.sql
+
+（3）修改conf/application.properties文件，增加支持mysql数据源配置（目前只支持mysql），添加mysql数据源的url、用户名和密码。
+
+```properties
+spring.datasource.platform=mysql
+
+db.num=1
+db.url.0=jdbc:mysql://11.162.196.16:3306/nacos_devtest?characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true
+db.user=nacos_devtest
+db.password=youdontknow
+```
+
+再以单机模式启动nacos，nacos所有写嵌入式数据库的数据都写到了mysql。
+
+#### 5.2 切换持久化配置
+
+根据[nacos的源码](https://github.com/alibaba/nacos/blob/develop/config/pom.xml)，Nacos默认自带的是嵌入式数据库derby
+
+![image-20210706222753922](Nacos入门学习&实践.assets/image-20210706222753922.png)
+
+所以每个nacos的数据都是存放在内置的数据库里，如果要做集群部署，肯定会出现数据一致性问题的。根据官方文档，我们可以把数据源切换成MySQL，这样就能做到数据一致性。
+
+（1）安装数据库，版本要求：5.6.5+
+
+（2）初始化mysql数据库nacos_config，数据库初始化文件：nacos/conf/nacos-mysql.sql
+
+（3）修改nacos/conf/application.properties文件，增加支持mysql数据源配置（目前只支持mysql），添加mysql数据源的url、用户名和密码。
+
+```properties
+spring.datasource.platform=mysql
+
+db.num=1
+db.url.0=jdbc:mysql://127.0.0.1:3306/nacos_config?characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true
+db.user=root
+db.password=1311664842
+```
+
+保存后重新启动，你在nacos控制台进行数据操作都会记录在本地的MySQL数据库了。
+
+#### 5.3 集群搭建
+
+##### 5.3.1 基本环境准备
+
+> 根据官网
+>
+> 请确保是在环境中安装使用:
+>
+> 1. 64 bit OS Linux/Unix/Mac，推荐使用Linux系统。
+> 2. 64 bit JDK 1.8+；[下载](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).[配置](https://docs.oracle.com/cd/E19182-01/820-7851/inst_cli_jdk_javahome_t/)。
+> 3. Maven 3.2.x+；[下载](https://maven.apache.org/download.cgi).[配置](https://maven.apache.org/settings.html)。
+> 4. 3个或3个以上Nacos节点才能构成集群。
+
 环境准备：centos7系统、64 bit JDK 1.8+、Maven 3.2.x+、1个Nginx+3个nacos注册中心+1个mysql
 
-**等待更新.......**
+我是用虚拟机安装的centos7，其他的就不说了，都可以百度到。[安装MySQL5.7的教程](https://juejin.cn/post/6844903926068674574)
+
+下载Nacos的Linux版本：https://github.com/alibaba/nacos/releases/tag/2.0.2
+
+![image-20210706214722615](Nacos入门学习&实践.assets/image-20210706214722615.png)
+
+下载完成后放到centos中解压。
+
+##### 5.3.2 持久化配置
+
+导入数据库文件
+
+```shell
+# 登录MySQL新建数据库
+create database nacos_config;
+# 导入sql文件
+mysql -uroot -p1311664842 nacos_config < /usr/local/nacos/nacos/conf/nacos-mysql.sql
+```
+
+修改application.properties文件，在文件末尾加上
+
+```properties
+spring.datasource.platform=mysql
+
+db.num=1
+db.url.0=jdbc:mysql://127.0.0.1:3306/nacos_config?characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true
+db.user=root
+db.password=1311664842
+```
+
+##### 5.3.3 nacos集群配置
+
+（1）**配置cluster.conf**
+
+先复制一个出来
+
+![image-20210706231313415](Nacos入门学习&实践.assets/image-20210706231313415.png)
+
+配置三个不同的端口，注意这里不能写出127.0.0.1
+
+![image-20210706231515501](Nacos入门学习&实践.assets/image-20210706231515501.png)
+
+（2）**修改startup.sh，通过端口启动不同的nacos**
+
+复制一个备份
+
+![image-20210706231702026](Nacos入门学习&实践.assets/image-20210706231702026.png)
+
+修改startup.sh
+
+![image-20210706232011792](Nacos入门学习&实践.assets/image-20210706232011792.png)
+
+![image-20210706232132311](Nacos入门学习&实践.assets/image-20210706232132311.png)
+
+后面启动nacos的话，就使用`startup.sh -P 端口号`的方式。
+
+（3）**配置nginx负载均衡**
+
+```conf
+upstream cluster {
+	server 127.0.0.1:3333;
+	server 127.0.0.1:4444;
+	server 127.0.0.1:5555;
+}
+
+proxy_pass  http://cluster;
+```
+
+![image-20210706232938518](Nacos入门学习&实践.assets/image-20210706232938518.png)
+
+（4）**启动相关的服务**
+
+```shell
+# 启动三个nacos服务
+./startup.sh -P 3333
+./startup.sh -P 4444
+./startup.sh -P 5555
+# 查看nacos是否正常启动
+ps -ef | grep nacos | grep -v grep | wc -l
+# 指定配置文件启动nginx服务
+./nginx -c /usr/local/nginx/conf/nginx.conf
+# 查看nginx是否正常启动
+ps -ef | grep nginx
+```
+
+![image-20210706233344617](Nacos入门学习&实践.assets/image-20210706233344617.png)
+
+（5）**测试**
+
+测试之前需要关闭防火墙或者开启1111端口，不然无法访问。我这里是选择关闭防火墙，因为是在虚拟机上，随便搞
+
+```shell
+# 查看防火墙状态
+firewall-cmd --state
+# 停止防火墙
+systemctl stop firewalld.service
+```
+
+之后访问[http://192.168.73.128:1111/nacos]()，会发现可以打开nacos的登录页面，说明nginx进行了请求转发
+
+![image-20210706234339217](Nacos入门学习&实践.assets/image-20210706234339217.png)
+
+登录后我们可以新建一个配置
+
+![image-20210706234506183](Nacos入门学习&实践.assets/image-20210706234506183.png)
+
+然后我们在虚拟机上查看数据，发现数据已经保存进了MySQL数据库。
+
+![image-20210706234616376](Nacos入门学习&实践.assets/image-20210706234616376.png)
+
+（6）**本地的微服务模块注册进nacos集群**
+
+之前我们有一个`cloud-nacos-provider`模块，我们可以尝试把它注册到虚拟机的nacos集群
+
+![image-20210706235215070](Nacos入门学习&实践.assets/image-20210706235215070.png)
+
+修改application.yml文件
+
+```yml
+server:
+  port: 10001
+
+spring:
+  application:
+    name: cloud-nacos-provider
+  cloud:
+    nacos:
+      discovery:
+        # server-addr: localhost:8848
+        server-addr: 192.168.73.128:1111
+```
+
+接着启动该模块，然后查看虚拟机的nacos控制台，可以发现服务成功注册
+
+![image-20210706235457599](Nacos入门学习&实践.assets/image-20210706235457599.png)
+
+##### 5.3.4 总结
+
+![image-20210706235654188](Nacos入门学习&实践.assets/image-20210706235654188.png)
