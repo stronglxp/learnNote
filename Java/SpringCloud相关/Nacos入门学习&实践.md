@@ -32,17 +32,17 @@ Spring Cloud Alibaba 致力于提供微服务开发的一站式解决方案。�
 如果需要使用已发布的版本，在 `dependencyManagement` 中添加如下配置。
 
 ```xml
-	<dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.alibaba.cloud</groupId>
-                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>2.2.5.RELEASE</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+            <version>2.2.5.RELEASE</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
 ```
 
 然后在 `dependencies` 中添加自己所需使用的依赖即可使用。
@@ -141,7 +141,7 @@ startup.cmd -m standalone
 
 #### 3.1 创建服务提供者模块
 
-如何创建分布式项目可参考：[SpringCloud入门及创建分布式项目]()一文。
+如何创建分布式项目可参考：[SpringCloud入门及创建分布式项目](https://github.com/stronglxp/learnNote/blob/main/Java/SpringCloud%E7%9B%B8%E5%85%B3/SpringCloud%E5%85%A5%E9%97%A8%E5%8F%8A%E5%88%9B%E5%BB%BA%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE.md)一文。
 
 我们新建module：cloud-nacos-provider
 
