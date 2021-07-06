@@ -19,17 +19,21 @@
 
 - [面试官：你给我讲讲SpringBoot的依赖管理和自动配置？](https://github.com/stronglxp/learnNote/blob/main/Java/Spring%E7%9B%B8%E5%85%B3/SpringBoot%E7%9A%84%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86%E5%92%8C%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE%E6%98%AF%E6%80%8E%E4%B9%88%E5%81%9A%E7%9A%84%EF%BC%9F.md)
 - [SpringBoot2配置文件application.yaml](https://github.com/stronglxp/learnNote/blob/main/Java/Spring%E7%9B%B8%E5%85%B3/SpringBoot2%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6application.yaml.md)
-- [SpringCloud入门及创建分布式项目](https://github.com/stronglxp/learnNote/blob/main/Java/SpringCloud%E7%9B%B8%E5%85%B3/SpringCloud%E5%85%A5%E9%97%A8%E5%8F%8A%E5%88%9B%E5%BB%BA%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE.md)
 
-#### 四、数据库相关
+#### 四、SpringCloud系列
+
+- [SpringCloud入门及创建分布式项目](https://github.com/stronglxp/learnNote/blob/main/Java/SpringCloud%E7%9B%B8%E5%85%B3/SpringCloud%E5%85%A5%E9%97%A8%E5%8F%8A%E5%88%9B%E5%BB%BA%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE.md)
+- [Nacos入门学习&实践](https://github.com/stronglxp/learnNote/blob/main/Java/SpringCloud%E7%9B%B8%E5%85%B3/Nacos%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%26%E5%AE%9E%E8%B7%B5.md)
+
+#### 五、数据库相关
 
 - [MySQL学习笔记--高级部分（全文快2w字数）](https://github.com/stronglxp/learnNote/blob/main/MySQL/MySQL%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86.md)
 
-#### 五、Vue相关
+#### 六、Vue相关
 
 - [vue环境搭建以及使用vue-cli创建项目](https://github.com/stronglxp/learnNote/blob/main/Vue/vue%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8vue-cli%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE.md)
 
-#### 六、十大排序算法
+#### 七、十大排序算法
 
 - [0.开场篇](https://github.com/stronglxp/learnNote/blob/main/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/0.%E5%BC%80%E5%9C%BA%E7%AF%87.md)
 - [1.冒泡排序](https://github.com/stronglxp/learnNote/blob/main/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/1.%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F.md)
@@ -43,7 +47,7 @@
 - [9.桶排序](https://github.com/stronglxp/learnNote/blob/main/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/9.%E6%A1%B6%E6%8E%92%E5%BA%8F.md)
 - [10.基数排序](https://github.com/stronglxp/learnNote/blob/main/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/10.%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F.md)
 
-#### 七、剑指offer系列
+#### 八、剑指offer系列
 
 - [剑指Offer03.数组中重复的数字](https://github.com/stronglxp/learnNote/blob/main/%E5%89%91%E6%8C%87offer%E7%B3%BB%E5%88%97/%E5%89%91%E6%8C%87Offer03.%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97.md)
 - [剑指Offer04.二维数组中的查找](https://github.com/stronglxp/learnNote/blob/main/%E5%89%91%E6%8C%87offer%E7%B3%BB%E5%88%97/%E5%89%91%E6%8C%87Offer04.%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9F%A5%E6%89%BE.md)
@@ -57,7 +61,7 @@
 - [剑指Offer37.序列化二叉树](https://github.com/stronglxp/learnNote/blob/main/%E5%89%91%E6%8C%87offer%E7%B3%BB%E5%88%97/%E5%89%91%E6%8C%87Offer37.%E5%BA%8F%E5%88%97%E5%8C%96%E4%BA%8C%E5%8F%89%E6%A0%91.md)
 - [剑指 Offer 38. 字符串的排列](https://github.com/stronglxp/learnNote/blob/main/%E5%89%91%E6%8C%87offer%E7%B3%BB%E5%88%97/%E5%89%91%E6%8C%87Offer38.%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%8E%92%E5%88%97.md)
 
-#### 八、LeetCode
+#### 九、LeetCode
 
 ##### 0、解题方法总结
 
