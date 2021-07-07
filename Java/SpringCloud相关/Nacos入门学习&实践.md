@@ -821,10 +821,12 @@ mysql -uroot -p1311664842 nacos_config < /usr/local/nacos/nacos/conf/nacos-mysql
 spring.datasource.platform=mysql
 
 db.num=1
-db.url.0=jdbc:mysql://127.0.0.1:3306/nacos_config?characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true
+db.url.0=jdbc:mysql://127.0.0.1:3306/nacos_config?characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&serverTimezone=UTC
 db.user=root
 db.password=1311664842
 ```
+
+**注意**：官网文档没有加上`&serverTimezone=UTC`，建议在后面加上，不然有的MySQL版本可能启动会报错。
 
 ##### 5.3.3 nacos集群配置
 
