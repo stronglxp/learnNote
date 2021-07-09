@@ -188,6 +188,7 @@
 - [1833. 雪糕的最大数量](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/1833.%E9%9B%AA%E7%B3%95%E7%9A%84%E6%9C%80%E5%A4%A7%E6%95%B0%E9%87%8F.md)
 - [645. 错误的集合](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/645.%E9%94%99%E8%AF%AF%E7%9A%84%E9%9B%86%E5%90%88.md)
 - [面试题 17.10. 主要元素](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/%E9%9D%A2%E8%AF%95%E9%A2%9817.10.%E4%B8%BB%E8%A6%81%E5%85%83%E7%B4%A0.md)
+- [169. 多数元素](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/169.%E5%A4%9A%E6%95%B0%E5%85%83%E7%B4%A0.md)
 
 ##### 12、滑动窗口
 
