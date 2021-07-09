@@ -67,6 +67,7 @@
 ##### 0、解题方法总结
 
 - [回溯法解决全排列问题总结](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E8%A7%A3%E9%A2%98%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/%E5%9B%9E%E6%BA%AF%E6%B3%95%E8%A7%A3%E5%86%B3%E5%85%A8%E6%8E%92%E5%88%97%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93.md)
+- [使用摩尔投票法解决求多数问题](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E8%A7%A3%E9%A2%98%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/%E4%BD%BF%E7%94%A8%E6%91%A9%E5%B0%94%E6%8A%95%E7%A5%A8%E6%B3%95%E8%A7%A3%E5%86%B3%E6%B1%82%E5%A4%9A%E6%95%B0%E9%97%AE%E9%A2%98.md)
 
 ##### 1、BFS
 
