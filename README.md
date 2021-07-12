@@ -190,6 +190,7 @@
 - [645. 错误的集合](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/645.%E9%94%99%E8%AF%AF%E7%9A%84%E9%9B%86%E5%90%88.md)
 - [面试题 17.10. 主要元素](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/%E9%9D%A2%E8%AF%95%E9%A2%9817.10.%E4%B8%BB%E8%A6%81%E5%85%83%E7%B4%A0.md)
 - [169. 多数元素](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/169.%E5%A4%9A%E6%95%B0%E5%85%83%E7%B4%A0.md)
+- [274. H 指数](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/274.H%E6%8C%87%E6%95%B0.md)
 
 ##### 12、滑动窗口
 
