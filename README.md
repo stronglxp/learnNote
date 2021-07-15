@@ -225,7 +225,11 @@
 - [279.完全平方数](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/279.%E5%AE%8C%E5%85%A8%E5%B9%B3%E6%96%B9%E6%95%B0.md)
 - [322.零钱兑换](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/322.%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2.md)
 
-##### 18、程序员面试经典
+##### 18、贪心
+
+- [1846. 减小和重新排列数组后的最大元素](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E8%B4%AA%E5%BF%83/1846.%E5%87%8F%E5%B0%8F%E5%92%8C%E9%87%8D%E6%96%B0%E6%8E%92%E5%88%97%E6%95%B0%E7%BB%84%E5%90%8E%E7%9A%84%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0.md)
+
+##### 19、程序员面试经典
 
 - [面试题 01.01. 判定字符是否唯一](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E7%A8%8B%E5%BA%8F%E5%91%98%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%85%B8/%E9%9D%A2%E8%AF%95%E9%A2%9801.01.%E5%88%A4%E5%AE%9A%E5%AD%97%E7%AC%A6%E6%98%AF%E5%90%A6%E5%94%AF%E4%B8%80.md)
 - [面试题 01.02. 判定是否互为字符重排](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E7%A8%8B%E5%BA%8F%E5%91%98%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%85%B8/%E9%9D%A2%E8%AF%95%E9%A2%9801.02.%E5%88%A4%E5%AE%9A%E6%98%AF%E5%90%A6%E4%BA%92%E4%B8%BA%E5%AD%97%E7%AC%A6%E9%87%8D%E6%8E%92.md)
