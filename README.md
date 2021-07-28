@@ -20,6 +20,7 @@
 - [面试官：你给我讲讲SpringBoot的依赖管理和自动配置？](https://github.com/stronglxp/learnNote/blob/main/Java/Spring%E7%9B%B8%E5%85%B3/SpringBoot%E7%9A%84%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86%E5%92%8C%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE%E6%98%AF%E6%80%8E%E4%B9%88%E5%81%9A%E7%9A%84%EF%BC%9F.md)
 - [SpringBoot2配置文件application.yaml](https://github.com/stronglxp/learnNote/blob/main/Java/Spring%E7%9B%B8%E5%85%B3/SpringBoot2%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6application.yaml.md)
 - [SpringBoot拦截器及源码分析](https://github.com/stronglxp/learnNote/blob/main/Java/Spring%E7%9B%B8%E5%85%B3/SpringBoot%E6%8B%A6%E6%88%AA%E5%99%A8%E5%8F%8A%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md)
+- [Spring5新功能WebFlux学习](https://github.com/stronglxp/learnNote/blob/main/Java/Spring%E7%9B%B8%E5%85%B3/Spring5%E6%96%B0%E5%8A%9F%E8%83%BDWebFlux%E5%AD%A6%E4%B9%A0.md)
 
 #### 四、SpringCloud系列
 
