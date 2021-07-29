@@ -191,6 +191,7 @@
 - [810.黑板异或游戏](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/810.%E9%BB%91%E6%9D%BF%E5%BC%82%E6%88%96%E6%B8%B8%E6%88%8F.md)
 - [1744.你能在你最喜欢的那天吃到你最喜欢的糖果吗](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/1744.%E4%BD%A0%E8%83%BD%E5%9C%A8%E4%BD%A0%E6%9C%80%E5%96%9C%E6%AC%A2%E7%9A%84%E9%82%A3%E5%A4%A9%E5%90%83%E5%88%B0%E4%BD%A0%E6%9C%80%E5%96%9C%E6%AC%A2%E7%9A%84%E7%B3%96%E6%9E%9C%E5%90%97.md)
 - [168. Excel表列名称](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/168.Excel%E8%A1%A8%E5%88%97%E5%90%8D%E7%A7%B0.md)
+- [1104.二叉树寻路](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/1104.%E4%BA%8C%E5%8F%89%E6%A0%91%E5%AF%BB%E8%B7%AF.md)
 
 ##### 11、数组
 
