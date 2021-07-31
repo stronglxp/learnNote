@@ -27,6 +27,7 @@
 - [SpringCloud入门及创建分布式项目](https://github.com/stronglxp/learnNote/blob/main/Java/SpringCloud%E7%9B%B8%E5%85%B3/SpringCloud%E5%85%A5%E9%97%A8%E5%8F%8A%E5%88%9B%E5%BB%BA%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE.md)
 - [GateWay入门学习&实践](https://github.com/stronglxp/learnNote/blob/main/Java/SpringCloud%E7%9B%B8%E5%85%B3/GateWay%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%26%E5%AE%9E%E8%B7%B5.md)
 - [Nacos入门学习&实践](https://github.com/stronglxp/learnNote/blob/main/Java/SpringCloud%E7%9B%B8%E5%85%B3/Nacos%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%26%E5%AE%9E%E8%B7%B5.md)
+- [Sentinel入门学习&实践](https://github.com/stronglxp/learnNote/blob/main/Java/SpringCloud%E7%9B%B8%E5%85%B3/Sentinel%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%26%E5%AE%9E%E8%B7%B5.md)
 
 #### 五、数据库相关
 
