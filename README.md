@@ -173,6 +173,7 @@
 - [451. 根据字符出现频率排序](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%93%88%E5%B8%8C%E8%A1%A8/451.%E6%A0%B9%E6%8D%AE%E5%AD%97%E7%AC%A6%E5%87%BA%E7%8E%B0%E9%A2%91%E7%8E%87%E6%8E%92%E5%BA%8F.md)
 - [1418.点菜展示表](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%93%88%E5%B8%8C%E8%A1%A8/1418.%E7%82%B9%E8%8F%9C%E5%B1%95%E7%A4%BA%E8%A1%A8.md)
 - [1711. 大餐计数](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%93%88%E5%B8%8C%E8%A1%A8/1711.%E5%A4%A7%E9%A4%90%E8%AE%A1%E6%95%B0.md)
+- [1337.矩阵中战斗力最弱的K行](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%93%88%E5%B8%8C%E8%A1%A8/1337.%E7%9F%A9%E9%98%B5%E4%B8%AD%E6%88%98%E6%96%97%E5%8A%9B%E6%9C%80%E5%BC%B1%E7%9A%84K%E8%A1%8C.md)
 
 ##### 8、回溯
 
