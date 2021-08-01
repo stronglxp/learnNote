@@ -32,6 +32,7 @@
 #### 五、数据库相关
 
 - [MySQL学习笔记--高级部分（全文快2w字数）](https://github.com/stronglxp/learnNote/blob/main/MySQL/MySQL%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86.md)
+- [Redis从入门到放弃](https://github.com/stronglxp/learnNote/blob/main/NoSQL/Redis%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83.md)
 
 #### 六、Vue相关
 
