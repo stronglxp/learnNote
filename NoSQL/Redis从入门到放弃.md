@@ -1,3 +1,5 @@
+可以结合我之前写的几篇Redis的文章一起看。[点击这里](https://blog.csdn.net/a_helloword/category_7726785.html)
+
 ### 1、Redis介绍及安装
 
 #### 1.1 Redis概述
@@ -729,3 +731,176 @@ Redis事务的主要作用就是**串联多个命令防止别的命令插队**�
 （3）**不保证原子性** 
 
 事务中如果有一条命令执行失败，其后的命令仍然会被执行，没有回滚 
+
+### 6、Redis结合秒杀案例
+
+#### 6.1 代码准备
+
+关于秒杀的代码，可以参考我之前写的，[点击这里](https://blog.csdn.net/a_helloword/category_7741603.html)
+
+不同的是，我们这里把库存和秒杀成功的用户信息放在redis里。秒杀成功，库存-1，用户+1。
+
+![image-20210805220846198](Redis从入门到放弃.assets/image-20210805220846198.png)
+
+#### 6.2 模拟并发秒杀
+
+使用apache bench(简称ab)模拟并发请求，关于ab工具，[点击这里](https://www.jianshu.com/p/43d04d8baaf7)
+
+centos可以直接通过`yum install httpd-tools`命令进行安装，安装完成后，使用命令模拟并发
+
+```shell
+# 2000个请求，200的并发
+ab -n 2000 -c 200 -k -p ~/postfile -T application/x-www-form-urlencoded http://ip:port/path
+```
+
+假设我们的商品数量为10，那么执行上面的命令后，再查看redis中商品的数量，已经变成负数了，这就是**超卖问题**。
+
+多个请求同时访问，读取库存发现都还充足，于是发起库存-1请求，最后变成了负库存。
+
+![image-20210805221657735](Redis从入门到放弃.assets/image-20210805221657735.png)
+
+在并发过程中，可能还会出现jedis连接超时的请求，因为大量请求同时访问redis，可能需要等待连接，在这过程中出现连接超时的情况。
+
+#### 6.3 并发带来的问题
+
+（1）**jedis连接失败的问题**
+
+对于jedis连接超时的问题，可以使用**连接池**解决。合理设置连接池的容量大小，循环使用jedis实例，节省资源。
+
+```java
+public class JedisPoolUtil {
+    public static JedisPool getJedisPoolInstance() {
+        if (null == jedisPool) {
+            synchronized (JedisPoolUtil.class) {
+                if (null == jedisPool) {
+                    JedisPoolConfig	poolConfig = new JedisPoolConfig();
+                    poolConfig.setMaxTotal(200);
+                    poolConfig.setMaxIdle(32);
+                    poolConfig.setMaxWaitMillis(100 * 1000);
+                    poolCOnfig.setBlockWhenExhausted(true);
+                    poolConfig.setTestOnBorrow(true);
+
+                    JedisPool = new JedisPool(poolConfig, "120.0.0.1", 6379, 60000);
+                }
+            }
+        }
+        return jedisPool;
+    }
+}
+```
+
+链接池参数：
+
+（1）MaxTotal：控制一个pool可分配多少个jedis实例，通过pool.getResource()来获取；如果赋值为-1，则表示不限制；如果pool已经分配了MaxTotal个jedis实例，则此时pool的状态为exhausted。
+
+（2）maxIdle：控制一个pool最多有多少个状态为idle(空闲)的jedis实例；
+
+（3）MaxWaitMillis：表示当borrow一个jedis实例时，最大的等待毫秒数，如果超过等待时间，则直接抛JedisConnectionException；
+
+（4）testOnBorrow：获得一个jedis实例的时候是否检查连接可用性（ping()）；如果为true，则得到的jedis实例均是可用的；
+
+使用的时候
+
+```java
+JedisPool jedisPool = JedisPoolUtil.getJedisPoolInstance();
+Jedis jedis = jedisPool.getResource();
+// ....
+jedis.close();
+```
+
+（2）**超卖问题**
+
+可以利用乐观锁淘汰用户，从而解决超卖问题。
+
+![image-20210805224459245](Redis从入门到放弃.assets/image-20210805224459245.png)
+
+前面已经讲过可以使用redis的`watch`命令监视key，这样在操作key的时候，就会检查版本号是否一致，如果不一致就不让执行操作。
+
+体现在代码中
+
+```java
+//增加乐观锁
+jedis.watch(qtkey);
+ 
+//3.判断库存
+String qtkeystr = jedis.get(qtkey);
+if(qtkeystr == null || "".equals(qtkeystr.trim())) {
+    System.out.println("未初始化库存");
+    jedis.close();
+    return false ;
+}
+ 
+int qt = Integer.parseInt(qtkeystr);
+if(qt <= 0) {
+    System.err.println("已经秒光");
+    jedis.close();	
+    return false;
+}
+
+//增加事务
+Transaction multi = jedis.multi();
+ 
+//4.减少库存
+//jedis.decr(qtkey);
+multi.decr(qtkey);
+ 
+//5.加人
+//jedis.sadd(usrkey, uid);
+multi.sadd(usrkey, uid);
+ 
+//执行事务
+List<Object> list = multi.exec();
+ 
+//判断事务提交是否失败
+if(list == null || list.size() == 0) {
+    System.out.println("秒杀失败");
+    jedis.close();
+    return false;
+}
+System.err.println("秒杀成功");
+jedis.close();
+```
+
+（3）**乐观锁带来的库存遗留问题**
+
+加大商品的库存，比如库存500个，然后使用ab模拟并发，2000个请求，300的并发，执行可能会出现库存还有剩余的情况。这就是乐观锁带来的库存遗留问题。
+
+比如同时有多个请求读取库存500，版本号1.0，最终一个请求秒杀成功，库存-1，版本号+1，那么其他同时读取的请求都秒杀失败，这到最后就可能出现库存遗留。
+
+这个问题可以使用Lua脚本来解决。如何使用可以看我这篇文章。[点击这里](https://blog.csdn.net/a_helloword/article/details/81878759)
+
+Lua 是一个小巧的[脚本语言](http://baike.baidu.com/item/脚本语言)，Lua脚本可以很容易的被C/C++ 代码调用，也可以反过来调用C/C++的函数，Lua并没有提供强大的库，一个完整的Lua解释器不过200k，所以Lua不适合作为开发独立应用程序的语言，而是作为嵌入式脚本语言。很多应用程序、游戏使用LUA作为自己的嵌入式脚本语言，以此来实现可配置性、可扩展性。
+
+将复杂的或者多步的redis操作，写为一个脚本，一次提交给redis执行，减少反复连接redis的次数。提升性能。LUA脚本是类似redis事务，有一定的原子性（**如果脚本内某条命令执行出错，前面执行的命令不会回滚**），不会被其他命令插队，可以完成一些redis事务性的操作。
+
+但是注意redis的lua脚本功能，只有在Redis 2.6以上的版本才可以使用。
+
+通过lua脚本解决**争抢问题**，实际上是**redis** **利用其单线程的特性，用任务队列的方式解决多任务并发问题**。
+
+![image-20210805231533762](Redis从入门到放弃.assets/image-20210805231533762.png)
+
+lua脚本如下
+
+```lua
+local userid=KEYS[1]; 
+local prodid=KEYS[2];
+local qtkey="sk:"..prodid..":qt";
+local usersKey="sk:"..prodid.":usr'; 
+local userExists=redis.call("sismember",usersKey,userid);
+if tonumber(userExists)==1 then 
+  return 2;
+end
+local num= redis.call("get" ,qtkey);
+if tonumber(num)<=0 then 
+  return 0; 
+else 
+  redis.call("decr",qtkey);
+  redis.call("sadd",usersKey,userid);
+end
+return 1;
+```
+
+秒杀失败返回2，秒杀成功返回1，秒杀结束返回0，然后在代码中调用Lua脚本即可。
+
+
+
