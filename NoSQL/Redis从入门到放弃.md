@@ -1378,3 +1378,146 @@ key对应的数据存在，但在redis中过期，此时若有大量并发请求
 （3）**设置过期标志更新缓存**：记录缓存数据是否过期（设置提前量），如果过期会触发通知另外的线程在后台去更新实际key的缓存。
 
 （4）**将缓存失效时间分散开**：比如我们可以在原有的失效时间基础上增加一个随机值，比如1-5分钟随机，这样每一个缓存的过期时间的重复率就会降低，就很难引发集体失效的事件。
+
+### 11、分布式锁
+
+#### 11.1 问题描述
+
+随着业务发展的需要，原单体单机部署的系统被演化成分布式集群系统后，由于分布式系统多线程、多进程并且分布在不同机器上，这将使原单机部署情况下的并发控制锁策略失效，单纯的Java API并不能提供分布式锁的能力。为了解决这个问题就需要一种跨JVM的互斥机制来控制共享资源的访问，这就是分布式锁要解决的问题！
+
+分布式锁主流的实现方案：
+
+（1）基于数据库实现分布式锁
+
+（2）基于缓存（Redis等）
+
+（3）基于Zookeeper
+
+每一种分布式锁解决方案都有各自的优缺点：
+
+（1）性能：redis最高
+
+（2）可靠性：zookeeper最高
+
+这里，我们就基于redis实现分布式锁。
+
+#### 11.2 使用Redis实现分布式锁
+
+redis:命令
+
+\# set sku:1:info “OK” NX PX 10000
+
+EX second ：设置键的过期时间为 second 秒。 SET key value EX second 效果等同于 SETEX key second value 。
+
+PX millisecond ：设置键的过期时间为 millisecond 毫秒。 SET key value PX millisecond 效果等同于 PSETEX key millisecond value 。
+
+NX ：只在键不存在时，才对键进行设置操作。 SET key value NX 效果等同于 SETNX key value 。
+
+XX ：只在键已经存在时，才对键进行设置操作。
+
+![image-20210807232725957](Redis从入门到放弃.assets/image-20210807232725957.png)
+
+（1）多个客户端同时获取锁（setnx）
+
+（2）获取成功，执行业务逻辑{从db获取数据，放入缓存}，执行完成释放锁（del）
+
+（3）其他客户端等待重试
+
+**存在的问题**：setnx刚好获取到锁，业务逻辑出现异常，导致锁无法释放
+
+**解决方法**：设置过期时间，自动释放锁。
+
+#### 11.3 设置锁的过期时间
+
+设置过期时间有两种方式：
+
+（1）首先想到通过expire设置过期时间（缺乏原子性：如果在setnx和expire之间出现异常，锁也无法释放）
+
+（2）在set时指定过期时间（推荐）
+
+![image-20210807232903619](Redis从入门到放弃.assets/image-20210807232903619.png)
+
+场景：如果业务逻辑的执行时间是7s。执行流程如下
+
+（1）index1业务逻辑没执行完，3秒后锁被自动释放。
+
+（2）index2获取到锁，执行业务逻辑，3秒后锁被自动释放。
+
+（3）index3获取到锁，执行业务逻辑
+
+（4）index1业务逻辑执行完成，开始调用del释放锁，这时释放的是index3的锁，导致index3的业务只执行1s就被别人释放。
+
+最终等于没锁的情况。
+
+**解决方法**：setnx获取锁时，设置一个指定的唯一值（例如：uuid）；释放前获取这个值，判断是否自己的锁
+
+#### 11.4 UUID防止锁误删
+
+![image-20210807233226760](Redis从入门到放弃.assets/image-20210807233226760.png)
+
+**问题**：删除操作缺乏原子性。
+
+场景：
+
+（1）index1执行删除时，查询到的lock值确实和uuid相等
+
+（2）index1执行删除前，lock刚好过期时间已到，被redis自动释放
+
+（3）index2获取了lock
+
+（4）index1执行删除，此时会把index2的lock删除
+
+#### 11.5 使用Lua脚本保证删除的原子性
+
+（1）加锁
+
+```java
+// 1. 从redis中获取锁,set k1 v1 px 20000 nx
+String uuid = UUID.randomUUID().toString();
+Boolean lock = this.redisTemplate.opsForValue().setIfAbsent("lock", uuid, 2, TimeUnit.SECONDS);
+```
+
+（2）使用Lua释放锁
+
+```java
+// 2. 释放锁 del
+String script = "if redis.call('get', KEYS[1]) == ARGV[1] then return redis.call('del', KEYS[1]) else return 0 end";
+// 设置lua脚本返回的数据类型
+DefaultRedisScript<Long> redisScript = new DefaultRedisScript<>();
+// 设置lua脚本返回类型为Long
+redisScript.setResultType(Long.class);
+redisScript.setScriptText(script);
+redisTemplate.execute(redisScript, Arrays.asList("lock"),uuid);
+```
+
+（3）重试
+
+```java
+Thread.sleep(500);
+testLock();
+```
+
+#### 11.6 总结
+
+为了确保分布式锁可用，我们至少要确保锁的实现同时**满足以下四个条件**：
+
+- 互斥性。在任意时刻，只有一个客户端能持有锁。
+- 不会发生死锁。即使有一个客户端在持有锁的期间崩溃而没有主动解锁，也能保证后续其他客户端能加锁。
+- 解铃还须系铃人。加锁和解锁必须是同一个客户端，客户端自己不能把别人加的锁给解了。
+- 加锁和解锁必须具有原子性。
+
+### 12、Redis6的一些新功能
+
+#### 12.1 访问控制列表（ACL）
+
+Redis ACL是Access Control List（访问控制列表）的缩写，该功能允许根据可以执行的命令和可以访问的键来限制某些连接。
+
+在Redis 5版本之前，Redis 安全规则只有密码控制 还有通过rename 来调整高危命令比如 flushdb ， KEYS* ， shutdown 等。Redis 6 则提供ACL的功能对用户进行更细粒度的权限控制 ：
+
+（1）接入权限:用户名和密码 
+
+（2）可以执行的命令 
+
+（3）可以操作的 KEY
+
+[官方文档](https://redis.io/topics/acl)
