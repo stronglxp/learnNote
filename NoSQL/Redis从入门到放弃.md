@@ -1521,3 +1521,37 @@ Redis ACL是Access Control List（访问控制列表）的缩写，该功能允�
 （3）可以操作的 KEY
 
 [官方文档](https://redis.io/topics/acl)
+
+#### 12.2 IO多线程
+
+Redis6终于支撑多线程了，告别单线程了吗？
+
+IO多线程其实指**客户端交互部分**的**网络IO**交互处理模块**多线程**，而非**执行命令多线程**。Redis6执行命令依然是单线程。
+
+Redis 6 加入多线程,但跟 Memcached 这种从 IO处理到数据访问多线程的实现模式有些差异。Redis 的多线程部分只是用来处理网络数据的读写和协议解析，执行命令仍然是单线程。之所以这么设计是不想因为多线程而变得复杂，需要去控制 key、lua、事务，LPUSH/LPOP 等等的并发问题。整体的设计大体如下：
+
+![image-20210807235813604](Redis从入门到放弃.assets/image-20210807235813604.png)
+
+另外，多线程IO默认也是不开启的，需要再配置文件中配置
+
+io-threads-do-reads yes 
+
+io-threads 4
+
+#### 12.3 工具支持Cluster
+
+之前老版Redis想要搭集群需要单独安装ruby环境，Redis 5 将 redis-trib.rb 的功能集成到 redis-cli 。另外官方 redis-benchmark 工具开始支持 cluster 模式了，通过多线程的方式对多个分片进行压测。
+
+![image-20210807235931946](Redis从入门到放弃.assets/image-20210807235931946.png)
+
+#### 12.4 Redis新功能持续关注
+
+Redis6新功能还有：
+
+（1）RESP3新的 Redis 通信协议：优化服务端与客户端之间通信
+
+（2）Client side caching客户端缓存：基于 RESP3 协议实现的客户端缓存功能。为了进一步提升缓存的性能，将客户端经常访问的数据cache到客户端。减少TCP网络交互。
+
+（3）Proxy集群代理模式：Proxy 功能，让 Cluster 拥有像单实例一样的接入方式，降低大家使用cluster的门槛。不过需要注意的是代理不改变 Cluster 的功能限制，不支持的命令还是不会支持，比如跨 slot 的多Key操作。
+
+（4）Modules API：Redis 6中模块API开发进展非常大，因为Redis Labs为了开发复杂的功能，从一开始就用上Redis模块。Redis可以变成一个框架，利用Modules来构建不同系统，而不需要从头开始写然后还要BSD许可。Redis一开始就是一个向编写各种系统开放的平台。
