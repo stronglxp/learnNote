@@ -120,6 +120,7 @@
 - [474.一和零](https://github.com/stronglxp/learnNote/blob/main/leetcode/DP/474.%E4%B8%80%E5%92%8C%E9%9B%B6.md)
 - [62.不同路径](https://github.com/stronglxp/learnNote/blob/main/leetcode/DP/62.%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%84.md)
 - [剑指Offer42.连续子数组的最大和](https://github.com/stronglxp/learnNote/blob/main/%E5%89%91%E6%8C%87offer%E7%B3%BB%E5%88%97/%E5%89%91%E6%8C%87Offer42.%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C.md)
+- [413.等差数列划分](https://github.com/stronglxp/learnNote/blob/main/leetcode/DP/413.%E7%AD%89%E5%B7%AE%E6%95%B0%E5%88%97%E5%88%92%E5%88%86.md)
 
 ##### 4、二分
 
