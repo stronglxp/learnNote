@@ -171,6 +171,7 @@
 - [剑指 Offer 57. 和为s的两个数字](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%8F%8C%E6%8C%87%E9%92%88/%E5%89%91%E6%8C%87%20Offer%2057.%20%E5%92%8C%E4%B8%BAs%E7%9A%84%E4%B8%A4%E4%B8%AA%E6%95%B0%E5%AD%97.md)
 - [面试题02.02.返回倒数第k个节点](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%8F%8C%E6%8C%87%E9%92%88/%E9%9D%A2%E8%AF%95%E9%A2%9802.02.%E8%BF%94%E5%9B%9E%E5%80%92%E6%95%B0%E7%AC%ACk%E4%B8%AA%E8%8A%82%E7%82%B9.md)
 - [面试题10.01.合并排序的数组](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%8F%8C%E6%8C%87%E9%92%88/%E9%9D%A2%E8%AF%95%E9%A2%9810.01.%E5%90%88%E5%B9%B6%E6%8E%92%E5%BA%8F%E7%9A%84%E6%95%B0%E7%BB%84.md)
+- [345.反转字符串中的元音字母](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%8F%8C%E6%8C%87%E9%92%88/345.%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E5%85%83%E9%9F%B3%E5%AD%97%E6%AF%8D.md)
 
 ##### 7、哈希表
 
