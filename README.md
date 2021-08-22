@@ -210,6 +210,7 @@
 - [1104.二叉树寻路](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/1104.%E4%BA%8C%E5%8F%89%E6%A0%91%E5%AF%BB%E8%B7%AF.md)
 - [171.Excel表列序号](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/171.Excel%E8%A1%A8%E5%88%97%E5%BA%8F%E5%8F%B7.md)
 - [1137.第N个泰波那契数](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/1137.%E7%AC%ACN%E4%B8%AA%E6%B3%B0%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0.md)
+- [789.逃脱阻碍者](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/789.%E9%80%83%E8%84%B1%E9%98%BB%E7%A2%8D%E8%80%85.md)
 
 ##### 11、数组
 
