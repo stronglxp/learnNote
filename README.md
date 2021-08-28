@@ -253,6 +253,7 @@
 - [523.连续的子数组和](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%89%8D%E7%BC%80%E5%92%8C/523.%E8%BF%9E%E7%BB%AD%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84%E5%92%8C.md)
 - [525.连续数组](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%89%8D%E7%BC%80%E5%92%8C/525.%E8%BF%9E%E7%BB%AD%E6%95%B0%E7%BB%84.md)
 - [930. 和相同的二元子数组](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%89%8D%E7%BC%80%E5%92%8C/930.%E5%92%8C%E7%9B%B8%E5%90%8C%E7%9A%84%E4%BA%8C%E5%85%83%E5%AD%90%E6%95%B0%E7%BB%84.md)
+- [1480.一维数组的动态和](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%89%8D%E7%BC%80%E5%92%8C/1480.%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E5%8A%A8%E6%80%81%E5%92%8C.md)
 
 ##### 17、背包问题
 
