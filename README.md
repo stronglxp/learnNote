@@ -174,6 +174,7 @@
 - [面试题10.01.合并排序的数组](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%8F%8C%E6%8C%87%E9%92%88/%E9%9D%A2%E8%AF%95%E9%A2%9810.01.%E5%90%88%E5%B9%B6%E6%8E%92%E5%BA%8F%E7%9A%84%E6%95%B0%E7%BB%84.md)
 - [345.反转字符串中的元音字母](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%8F%8C%E6%8C%87%E9%92%88/345.%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E5%85%83%E9%9F%B3%E5%AD%97%E6%AF%8D.md)
 - [881.救生艇](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%8F%8C%E6%8C%87%E9%92%88/881.%E6%95%91%E7%94%9F%E8%89%87.md)
+- [剑指Offer22.链表中倒数第k个节点](https://github.com/stronglxp/learnNote/blob/main/%E5%89%91%E6%8C%87offer%E7%B3%BB%E5%88%97/%E5%89%91%E6%8C%87Offer22.%E9%93%BE%E8%A1%A8%E4%B8%AD%E5%80%92%E6%95%B0%E7%AC%ACk%E4%B8%AA%E8%8A%82%E7%82%B9.md)
 
 ##### 7、哈希表
 
