@@ -142,6 +142,7 @@
 - [275. H 指数 II](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BA%8C%E5%88%86/275.H%E6%8C%87%E6%95%B0II.md)
 - [34.在排序数组中查找元素的第一个和最后一个位置](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BA%8C%E5%88%86/34.%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%92%8C%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E4%BD%8D%E7%BD%AE.md)
 - [611.有效三角形的个数](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BA%8C%E5%88%86/611.%E6%9C%89%E6%95%88%E4%B8%89%E8%A7%92%E5%BD%A2%E7%9A%84%E4%B8%AA%E6%95%B0.md)
+- [704.二分查找](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BA%8C%E5%88%86/704.%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE.md)
 
 ##### 5、位运算
 
