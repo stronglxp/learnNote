@@ -196,6 +196,7 @@
 - [1337.矩阵中战斗力最弱的K行](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%93%88%E5%B8%8C%E8%A1%A8/1337.%E7%9F%A9%E9%98%B5%E4%B8%AD%E6%88%98%E6%96%97%E5%8A%9B%E6%9C%80%E5%BC%B1%E7%9A%84K%E8%A1%8C.md)
 - [49.字母异位词分组](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%93%88%E5%B8%8C%E8%A1%A8/49.%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D%E5%88%86%E7%BB%84.md)
 - [1583.统计不开心的朋友](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%93%88%E5%B8%8C%E8%A1%A8/1583.%E7%BB%9F%E8%AE%A1%E4%B8%8D%E5%BC%80%E5%BF%83%E7%9A%84%E6%9C%8B%E5%8F%8B.md)
+- [447.回旋镖的数量](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%93%88%E5%B8%8C%E8%A1%A8/447.%E5%9B%9E%E6%97%8B%E9%95%96%E7%9A%84%E6%95%B0%E9%87%8F.md)
 
 ##### 8、回溯
 
