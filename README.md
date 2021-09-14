@@ -183,6 +183,7 @@
 - [881.救生艇](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%8F%8C%E6%8C%87%E9%92%88/881.%E6%95%91%E7%94%9F%E8%89%87.md)
 - [剑指Offer22.链表中倒数第k个节点](https://github.com/stronglxp/learnNote/blob/main/%E5%89%91%E6%8C%87offer%E7%B3%BB%E5%88%97/%E5%89%91%E6%8C%87Offer22.%E9%93%BE%E8%A1%A8%E4%B8%AD%E5%80%92%E6%95%B0%E7%AC%ACk%E4%B8%AA%E8%8A%82%E7%82%B9.md)
 - [165.比较版本号](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%8F%8C%E6%8C%87%E9%92%88/165.%E6%AF%94%E8%BE%83%E7%89%88%E6%9C%AC%E5%8F%B7.md)
+- [524.通过删除字母匹配到字典里最长单词](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%8F%8C%E6%8C%87%E9%92%88/524.%E9%80%9A%E8%BF%87%E5%88%A0%E9%99%A4%E5%AD%97%E6%AF%8D%E5%8C%B9%E9%85%8D%E5%88%B0%E5%AD%97%E5%85%B8%E9%87%8C%E6%9C%80%E9%95%BF%E5%8D%95%E8%AF%8D.md)
 
 ##### 7、哈希表
 
