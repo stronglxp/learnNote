@@ -133,6 +133,7 @@
 - [1646.获取生成数组中的最大值](https://github.com/stronglxp/learnNote/blob/main/leetcode/DP/1646.%E8%8E%B7%E5%8F%96%E7%94%9F%E6%88%90%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC.md)
 - [300.最长递增子序列](https://github.com/stronglxp/learnNote/blob/main/leetcode/DP/300.%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97.md)
 - [354.俄罗斯套娃信封问题](https://github.com/stronglxp/learnNote/blob/main/leetcode/DP/354.%E4%BF%84%E7%BD%97%E6%96%AF%E5%A5%97%E5%A8%83%E4%BF%A1%E5%B0%81%E9%97%AE%E9%A2%98.md)
+- [673.最长递增子序列的个数](https://github.com/stronglxp/learnNote/blob/main/leetcode/DP/673.%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97%E7%9A%84%E4%B8%AA%E6%95%B0.md)
 
 ##### 4、二分
 
