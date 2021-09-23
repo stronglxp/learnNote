@@ -228,6 +228,7 @@
 - [1137.第N个泰波那契数](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/1137.%E7%AC%ACN%E4%B8%AA%E6%B3%B0%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0.md)
 - [789.逃脱阻碍者](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/789.%E9%80%83%E8%84%B1%E9%98%BB%E7%A2%8D%E8%80%85.md)
 - [470.用Rand7()实现Rand10()](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/470.%E7%94%A8Rand7()%E5%AE%9E%E7%8E%B0Rand10().md)
+- [326.3的幂](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/326.3%E7%9A%84%E5%B9%82.md)
 
 ##### 11、数组
 
