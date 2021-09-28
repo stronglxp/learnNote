@@ -108,6 +108,7 @@
 - [494.目标和](https://github.com/stronglxp/learnNote/blob/main/leetcode/DFS/494.%E7%9B%AE%E6%A0%87%E5%92%8C.md)
 - [1600.皇位继承顺序](https://github.com/stronglxp/learnNote/blob/main/leetcode/DFS/1600.%E7%9A%87%E4%BD%8D%E7%BB%A7%E6%89%BF%E9%A1%BA%E5%BA%8F.md)
 - [671.二叉树中第二小的节点](https://github.com/stronglxp/learnNote/blob/main/leetcode/DFS/671.%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E7%AC%AC%E4%BA%8C%E5%B0%8F%E7%9A%84%E8%8A%82%E7%82%B9.md)
+- [112.路径总和](https://github.com/stronglxp/learnNote/blob/main/leetcode/DFS/112.%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C.md)
 
 ##### 3、DP
 
