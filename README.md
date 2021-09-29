@@ -269,6 +269,7 @@
 ##### 15、堆
 
 - [1190.反转每对括号间的子串](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%A0%86/1190.%E5%8F%8D%E8%BD%AC%E6%AF%8F%E5%AF%B9%E6%8B%AC%E5%8F%B7%E9%97%B4%E7%9A%84%E5%AD%90%E4%B8%B2.md)
+- [232.用栈实现队列](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%A0%86/232.%E7%94%A8%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97.md)
 
 ##### 16、前缀和
 
