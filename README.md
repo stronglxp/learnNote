@@ -205,6 +205,7 @@
 - [1583.统计不开心的朋友](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%93%88%E5%B8%8C%E8%A1%A8/1583.%E7%BB%9F%E8%AE%A1%E4%B8%8D%E5%BC%80%E5%BF%83%E7%9A%84%E6%9C%8B%E5%8F%8B.md)
 - [447.回旋镖的数量](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%93%88%E5%B8%8C%E8%A1%A8/447.%E5%9B%9E%E6%97%8B%E9%95%96%E7%9A%84%E6%95%B0%E9%87%8F.md)
 - [1436.旅行终点站](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%93%88%E5%B8%8C%E8%A1%A8/1436.%E6%97%85%E8%A1%8C%E7%BB%88%E7%82%B9%E7%AB%99.md)
+- [166.分数到小数](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%93%88%E5%B8%8C%E8%A1%A8/166.%E5%88%86%E6%95%B0%E5%88%B0%E5%B0%8F%E6%95%B0.md)
 
 ##### 8、回溯
 
