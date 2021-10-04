@@ -266,6 +266,7 @@
 - [237. 删除链表中的节点](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E9%93%BE%E8%A1%A8/237.%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9.md)
 - [138.复制带随机指针的链表](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E9%93%BE%E8%A1%A8/138.%E5%A4%8D%E5%88%B6%E5%B8%A6%E9%9A%8F%E6%9C%BA%E6%8C%87%E9%92%88%E7%9A%84%E9%93%BE%E8%A1%A8.md)
 - [725.分隔链表](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E9%93%BE%E8%A1%A8/725.%E5%88%86%E9%9A%94%E9%93%BE%E8%A1%A8.md)
+- [146.LRU缓存机制](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E9%93%BE%E8%A1%A8/146.LRU%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6.md)
 
 ##### 14、字典树
 
