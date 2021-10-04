@@ -222,6 +222,7 @@
 - [541.反转字符串II](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/541.%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2II.md)
 - [443.压缩字符串](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/443.%E5%8E%8B%E7%BC%A9%E5%AD%97%E7%AC%A6%E4%B8%B2.md)
 - [58.最后一个单词的长度](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/58.%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E5%8D%95%E8%AF%8D%E7%9A%84%E9%95%BF%E5%BA%A6.md)
+- [482.密钥格式化](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/482.%E5%AF%86%E9%92%A5%E6%A0%BC%E5%BC%8F%E5%8C%96.md)
 
 ##### 10、数学
 
