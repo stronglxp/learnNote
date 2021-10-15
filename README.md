@@ -226,6 +226,7 @@
 - [58.最后一个单词的长度](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/58.%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E5%8D%95%E8%AF%8D%E7%9A%84%E9%95%BF%E5%BA%A6.md)
 - [482.密钥格式化](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/482.%E5%AF%86%E9%92%A5%E6%A0%BC%E5%BC%8F%E5%8C%96.md)
 - [434.字符串中的单词数](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/434.%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E5%8D%95%E8%AF%8D%E6%95%B0.md)
+- [38.外观数列](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/38.%E5%A4%96%E8%A7%82%E6%95%B0%E5%88%97.md)
 
 ##### 10、数学
 
