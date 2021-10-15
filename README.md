@@ -275,6 +275,7 @@
 - [725.分隔链表](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E9%93%BE%E8%A1%A8/725.%E5%88%86%E9%9A%94%E9%93%BE%E8%A1%A8.md)
 - [146.LRU缓存机制](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E9%93%BE%E8%A1%A8/146.LRU%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6.md)
 - [206.反转链表](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E9%93%BE%E8%A1%A8/206.%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8.md)
+- [2.两数相加](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E9%93%BE%E8%A1%A8/2.%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0.md)
 
 ##### 14、字典树
 
