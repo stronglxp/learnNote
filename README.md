@@ -193,6 +193,7 @@
 - [165.比较版本号](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%8F%8C%E6%8C%87%E9%92%88/165.%E6%AF%94%E8%BE%83%E7%89%88%E6%9C%AC%E5%8F%B7.md)
 - [524.通过删除字母匹配到字典里最长单词](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%8F%8C%E6%8C%87%E9%92%88/524.%E9%80%9A%E8%BF%87%E5%88%A0%E9%99%A4%E5%AD%97%E6%AF%8D%E5%8C%B9%E9%85%8D%E5%88%B0%E5%AD%97%E5%85%B8%E9%87%8C%E6%9C%80%E9%95%BF%E5%8D%95%E8%AF%8D.md)
 - [11.盛最多水的容器](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%8F%8C%E6%8C%87%E9%92%88/11.%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8.md)
+- [15.三数之和](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%8F%8C%E6%8C%87%E9%92%88/15.%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C.md)
 
 ##### 7、哈希表
 
