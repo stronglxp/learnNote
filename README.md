@@ -260,6 +260,7 @@
 - [36.有效的数独](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/36.%E6%9C%89%E6%95%88%E7%9A%84%E6%95%B0%E7%8B%AC.md)
 - [284.窥探迭代器](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/284.%E7%AA%A5%E6%8E%A2%E8%BF%AD%E4%BB%A3%E5%99%A8.md)
 - [414.第三大的数](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/414.%E7%AC%AC%E4%B8%89%E5%A4%A7%E7%9A%84%E6%95%B0.md)
+- [66.加一](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/66.%E5%8A%A0%E4%B8%80.md)
 
 ##### 12、滑动窗口
 
