@@ -137,6 +137,7 @@
 - [300.最长递增子序列](https://github.com/stronglxp/learnNote/blob/main/leetcode/DP/300.%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97.md)
 - [354.俄罗斯套娃信封问题](https://github.com/stronglxp/learnNote/blob/main/leetcode/DP/354.%E4%BF%84%E7%BD%97%E6%96%AF%E5%A5%97%E5%A8%83%E4%BF%A1%E5%B0%81%E9%97%AE%E9%A2%98.md)
 - [673.最长递增子序列的个数](https://github.com/stronglxp/learnNote/blob/main/leetcode/DP/673.%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97%E7%9A%84%E4%B8%AA%E6%95%B0.md)
+- [1312.让字符串成为回文串的最少插入次数](https://github.com/stronglxp/learnNote/blob/main/leetcode/DP/1312.%E8%AE%A9%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%88%90%E4%B8%BA%E5%9B%9E%E6%96%87%E4%B8%B2%E7%9A%84%E6%9C%80%E5%B0%91%E6%8F%92%E5%85%A5%E6%AC%A1%E6%95%B0.md)
 
 ##### 4、二分
 
