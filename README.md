@@ -268,6 +268,7 @@
 - [414.第三大的数](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/414.%E7%AC%AC%E4%B8%89%E5%A4%A7%E7%9A%84%E6%95%B0.md)
 - [66.加一](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/66.%E5%8A%A0%E4%B8%80.md)
 - [229.求众数II](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/229.%E6%B1%82%E4%BC%97%E6%95%B0II.md)
+- [575.分糖果](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/575.%E5%88%86%E7%B3%96%E6%9E%9C.md)
 
 ##### 12、滑动窗口
 
