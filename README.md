@@ -215,6 +215,7 @@
 - [1436.旅行终点站](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%93%88%E5%B8%8C%E8%A1%A8/1436.%E6%97%85%E8%A1%8C%E7%BB%88%E7%82%B9%E7%AB%99.md)
 - [166.分数到小数](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%93%88%E5%B8%8C%E8%A1%A8/166.%E5%88%86%E6%95%B0%E5%88%B0%E5%B0%8F%E6%95%B0.md)
 - [187.重复的DNA序列](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%93%88%E5%B8%8C%E8%A1%A8/187.%E9%87%8D%E5%A4%8D%E7%9A%84DNA%E5%BA%8F%E5%88%97.md)
+- [1218.最长定差子序列](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%93%88%E5%B8%8C%E8%A1%A8/1218.%E6%9C%80%E9%95%BF%E5%AE%9A%E5%B7%AE%E5%AD%90%E5%BA%8F%E5%88%97.md)
 
 ##### 8、回溯
 
