@@ -237,6 +237,7 @@
 - [434.字符串中的单词数](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/434.%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E5%8D%95%E8%AF%8D%E6%95%B0.md)
 - [38.外观数列](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/38.%E5%A4%96%E8%A7%82%E6%95%B0%E5%88%97.md)
 - [500.键盘行](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/500.%E9%94%AE%E7%9B%98%E8%A1%8C.md)
+- [299.猜数字游戏](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/299.%E7%8C%9C%E6%95%B0%E5%AD%97%E6%B8%B8%E6%88%8F.md)
 
 ##### 10、数学
 
