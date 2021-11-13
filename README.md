@@ -240,6 +240,7 @@
 - [500.键盘行](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/500.%E9%94%AE%E7%9B%98%E8%A1%8C.md)
 - [299.猜数字游戏](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/299.%E7%8C%9C%E6%95%B0%E5%AD%97%E6%B8%B8%E6%88%8F.md)
 - [20.有效的括号](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/20.%E6%9C%89%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7.md)
+- [520.检测大写字母](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/520.%E6%A3%80%E6%B5%8B%E5%A4%A7%E5%86%99%E5%AD%97%E6%AF%8D.md)
 
 ##### 10、数学
 
