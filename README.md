@@ -274,6 +274,7 @@
 - [492.构造矩形](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/492.%E6%9E%84%E9%80%A0%E7%9F%A9%E5%BD%A2.md)
 - [869.重新排序得到2的幂](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/869.%E9%87%8D%E6%96%B0%E6%8E%92%E5%BA%8F%E5%BE%97%E5%88%B02%E7%9A%84%E5%B9%82.md)
 - [319.灯泡开关](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/319.%E7%81%AF%E6%B3%A1%E5%BC%80%E5%85%B3.md)
+- [384.打乱数组](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/384.%E6%89%93%E4%B9%B1%E6%95%B0%E7%BB%84.md)
 
 ##### 11、数组
 
