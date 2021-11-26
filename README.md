@@ -119,6 +119,7 @@
 - [437.路径总和III](https://github.com/stronglxp/learnNote/blob/main/leetcode/DFS/437.%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8CIII.md)
 - [563.二叉树的坡度](https://github.com/stronglxp/learnNote/blob/main/leetcode/DFS/563.%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%9D%A1%E5%BA%A6.md)
 - [559.N叉树的最大深度](https://github.com/stronglxp/learnNote/blob/main/leetcode/DFS/559.N%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6.md)
+- [700.二叉搜索树中的搜索](https://github.com/stronglxp/learnNote/blob/main/leetcode/DFS/700.%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E6%90%9C%E7%B4%A2.md)
 
 ##### 3、DP
 
