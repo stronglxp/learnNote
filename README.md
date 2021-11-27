@@ -5,6 +5,32 @@
 
 ##### 另一个目的也是怕笔记丢了，毕竟typora虽然强大，但不能云端存储。
 
+#### 零、学习书籍
+
+##### 0、Java相关的
+
+- [Java并发编程实战（中文版）](https://github.com/stronglxp/learnNote/blob/2e30f46d7b/%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%9A%84%E4%B9%A6%E7%B1%8D/Java%E7%9B%B8%E5%85%B3%E7%9A%84/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%EF%BC%88%E4%B8%AD%E6%96%87%E7%89%88%EF%BC%89.pdf)
+- [Java并发编程的艺术(方腾飞)](https://github.com/stronglxp/learnNote/blob/2e30f46d7b/%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%9A%84%E4%B9%A6%E7%B1%8D/Java%E7%9B%B8%E5%85%B3%E7%9A%84/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9A%84%E8%89%BA%E6%9C%AF(%E6%96%B9%E8%85%BE%E9%A3%9E).pdf)
+- [Java开发手册（嵩山版）](https://github.com/stronglxp/learnNote/blob/2e30f46d7b/%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%9A%84%E4%B9%A6%E7%B1%8D/Java%E7%9B%B8%E5%85%B3%E7%9A%84/Java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C%EF%BC%88%E5%B5%A9%E5%B1%B1%E7%89%88%EF%BC%89.pdf)
+- [深入理解Java内存模型](https://github.com/stronglxp/learnNote/blob/2e30f46d7b/%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%9A%84%E4%B9%A6%E7%B1%8D/Java%E7%9B%B8%E5%85%B3%E7%9A%84/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.pdf)
+- [深入理解Java虚拟机：JVM高级特性与最佳实践（第三版）](https://github.com/stronglxp/learnNote/blob/2e30f46d7b/%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%9A%84%E4%B9%A6%E7%B1%8D/Java%E7%9B%B8%E5%85%B3%E7%9A%84/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%EF%BC%9AJVM%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%EF%BC%88%E7%AC%AC%E4%B8%89%E7%89%88%EF%BC%89.pdf)
+
+##### 1、数据库相关的
+
+- [高性能MySQL(第3版)](https://github.com/stronglxp/learnNote/blob/2e30f46d7b/%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%9A%84%E4%B9%A6%E7%B1%8D/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9B%B8%E5%85%B3%E7%9A%84/%E3%80%8A%E9%AB%98%E6%80%A7%E8%83%BDMySQL(%E7%AC%AC3%E7%89%88)%E3%80%8B%E4%B8%AD%E6%96%87PDF.pdf)
+
+##### 2、系统设计相关的
+
+- [大话设计模式](https://github.com/stronglxp/learnNote/blob/2e30f46d7b/%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%9A%84%E4%B9%A6%E7%B1%8D/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%9B%B8%E5%85%B3%E7%9A%84/%E5%A4%A7%E8%AF%9D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F(%E5%B8%A6%E7%9B%AE%E5%BD%95%E5%AE%8C%E6%95%B4%E7%89%88).pdf)
+
+##### 3、计算机网络相关的
+
+- [TCP-IP详解卷1：协议](https://github.com/stronglxp/learnNote/blob/2e30f46d7b/%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%9A%84%E4%B9%A6%E7%B1%8D/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%E7%9A%84/TCP-IP%E8%AF%A6%E8%A7%A3%E5%8D%B71%EF%BC%9A%E5%8D%8F%E8%AE%AE.pdf)
+- [TCP-IP详解卷2：实现](https://github.com/stronglxp/learnNote/blob/2e30f46d7b/%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%9A%84%E4%B9%A6%E7%B1%8D/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%E7%9A%84/TCP-IP%E8%AF%A6%E8%A7%A3%E5%8D%B72%EF%BC%9A%E5%AE%9E%E7%8E%B0.pdf)
+- [TCP-IP详解卷3：TCP事务协议](https://github.com/stronglxp/learnNote/blob/2e30f46d7b/%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%9A%84%E4%B9%A6%E7%B1%8D/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%E7%9A%84/TCP-IP%E8%AF%A6%E8%A7%A3%E5%8D%B73%EF%BC%9ATCP%E4%BA%8B%E5%8A%A1%E5%8D%8F%E8%AE%AE.pdf)
+- [图解HTTP](https://github.com/stronglxp/learnNote/blob/2e30f46d7b/%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%9A%84%E4%B9%A6%E7%B1%8D/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%E7%9A%84/%E3%80%8A%E5%9B%BE%E8%A7%A3HTTP%E3%80%8B%E5%AE%8C%E6%95%B4%E5%BD%A9%E8%89%B2%E7%89%88.pdf)
+- [图解TCP-IP(第5版)](https://github.com/stronglxp/learnNote/blob/main/%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%9A%84%E4%B9%A6%E7%B1%8D/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%E7%9A%84/%E5%9B%BE%E8%A7%A3TCP-IP(%E7%AC%AC5%E7%89%88).pdf)
+
 #### 一、Docker
 
 - [Docker学习笔记（分为基础篇和高级篇，总共1.3w字）](https://github.com/stronglxp/learnNote/blob/main/Docker/Docker%E5%AD%A6%E4%B9%A0.md)
