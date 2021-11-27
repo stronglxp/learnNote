@@ -22,6 +22,7 @@
 ##### 2、系统设计相关的
 
 - [大话设计模式](https://github.com/stronglxp/learnNote/blob/2e30f46d7b/%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%9A%84%E4%B9%A6%E7%B1%8D/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%9B%B8%E5%85%B3%E7%9A%84/%E5%A4%A7%E8%AF%9D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F(%E5%B8%A6%E7%9B%AE%E5%BD%95%E5%AE%8C%E6%95%B4%E7%89%88).pdf)
+- [凤凰架构](http://icyfenix.cn/)
 
 ##### 3、计算机网络相关的
 
