@@ -259,6 +259,7 @@
 - [1218.最长定差子序列](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%93%88%E5%B8%8C%E8%A1%A8/1218.%E6%9C%80%E9%95%BF%E5%AE%9A%E5%B7%AE%E5%AD%90%E5%BA%8F%E5%88%97.md)
 - [1.两数之和](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%93%88%E5%B8%8C%E8%A1%A8/1.%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C.md)
 - [594.最长和谐子序列](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%93%88%E5%B8%8C%E8%A1%A8/594.%E6%9C%80%E9%95%BF%E5%92%8C%E8%B0%90%E5%AD%90%E5%BA%8F%E5%88%97.md)
+- [506.相对名次](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%93%88%E5%B8%8C%E8%A1%A8/506.%E7%9B%B8%E5%AF%B9%E5%90%8D%E6%AC%A1.md)
 
 ##### 8、回溯
 
