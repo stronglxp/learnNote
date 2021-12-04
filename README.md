@@ -59,6 +59,7 @@
 - [GateWay入门学习&实践](https://github.com/stronglxp/learnNote/blob/main/Java/SpringCloud%E7%9B%B8%E5%85%B3/GateWay%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%26%E5%AE%9E%E8%B7%B5.md)
 - [Nacos入门学习&实践](https://github.com/stronglxp/learnNote/blob/main/Java/SpringCloud%E7%9B%B8%E5%85%B3/Nacos%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%26%E5%AE%9E%E8%B7%B5.md)
 - [Sentinel入门学习&实践](https://github.com/stronglxp/learnNote/blob/main/Java/SpringCloud%E7%9B%B8%E5%85%B3/Sentinel%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%26%E5%AE%9E%E8%B7%B5.md)
+- [Zookeeper学习笔记](https://github.com/stronglxp/learnNote/blob/main/Java/SpringCloud%E7%9B%B8%E5%85%B3/Zookeeper%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.md)
 
 #### 五、数据库相关
 
