@@ -287,6 +287,7 @@
 - [520.检测大写字母](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/520.%E6%A3%80%E6%B5%8B%E5%A4%A7%E5%86%99%E5%AD%97%E6%AF%8D.md)
 - [859.亲密字符串](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/859.%E4%BA%B2%E5%AF%86%E5%AD%97%E7%AC%A6%E4%B8%B2.md)
 - [1446.连续字符](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/1446.%E8%BF%9E%E7%BB%AD%E5%AD%97%E7%AC%A6.md)
+- [383.赎金信](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/383.%E8%B5%8E%E9%87%91%E4%BF%A1.md)
 
 ##### 10、数学
 
