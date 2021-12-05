@@ -311,6 +311,7 @@
 - [319.灯泡开关](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/319.%E7%81%AF%E6%B3%A1%E5%BC%80%E5%85%B3.md)
 - [384.打乱数组](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/384.%E6%89%93%E4%B9%B1%E6%95%B0%E7%BB%84.md)
 - [400.第N位数字](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/400.%E7%AC%ACN%E4%BD%8D%E6%95%B0%E5%AD%97.md)
+- [372.超级次方](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/372.%E8%B6%85%E7%BA%A7%E6%AC%A1%E6%96%B9.md)
 
 ##### 11、数组
 
