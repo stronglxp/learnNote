@@ -291,6 +291,7 @@
 - [1446.连续字符](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/1446.%E8%BF%9E%E7%BB%AD%E5%AD%97%E7%AC%A6.md)
 - [383.赎金信](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/383.%E8%B5%8E%E9%87%91%E4%BF%A1.md)
 - [1816.截断句子](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/1816.%E6%88%AA%E6%96%AD%E5%8F%A5%E5%AD%90.md)
+- [794.有效的井字游戏](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/794.%E6%9C%89%E6%95%88%E7%9A%84%E4%BA%95%E5%AD%97%E6%B8%B8%E6%88%8F.md)
 
 ##### 10、数学
 
