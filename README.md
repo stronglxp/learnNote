@@ -390,6 +390,7 @@
 - [1846. 减小和重新排列数组后的最大元素](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E8%B4%AA%E5%BF%83/1846.%E5%87%8F%E5%B0%8F%E5%92%8C%E9%87%8D%E6%96%B0%E6%8E%92%E5%88%97%E6%95%B0%E7%BB%84%E5%90%8E%E7%9A%84%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0.md)
 - [1877. 数组中最大数对和的最小值](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E8%B4%AA%E5%BF%83/1877.%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9C%80%E5%A4%A7%E6%95%B0%E5%AF%B9%E5%92%8C%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC.md)
 - [1221.分割平衡字符串](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E8%B4%AA%E5%BF%83/1221.%E5%88%86%E5%89%B2%E5%B9%B3%E8%A1%A1%E5%AD%97%E7%AC%A6%E4%B8%B2.md)
+- [807.保持城市天际线](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E8%B4%AA%E5%BF%83/807.%E4%BF%9D%E6%8C%81%E5%9F%8E%E5%B8%82%E5%A4%A9%E9%99%85%E7%BA%BF.md)
 
 ##### 19、程序员面试经典
 
