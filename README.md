@@ -392,7 +392,11 @@
 - [1221.分割平衡字符串](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E8%B4%AA%E5%BF%83/1221.%E5%88%86%E5%89%B2%E5%B9%B3%E8%A1%A1%E5%AD%97%E7%AC%A6%E4%B8%B2.md)
 - [807.保持城市天际线](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E8%B4%AA%E5%BF%83/807.%E4%BF%9D%E6%8C%81%E5%9F%8E%E5%B8%82%E5%A4%A9%E9%99%85%E7%BA%BF.md)
 
-##### 19、程序员面试经典
+##### 19、图
+
+- [851.喧闹和富有](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%9B%BE/851.%E5%96%A7%E9%97%B9%E5%92%8C%E5%AF%8C%E6%9C%89.md)
+
+##### 20、程序员面试经典
 
 - [面试题 01.01. 判定字符是否唯一](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E7%A8%8B%E5%BA%8F%E5%91%98%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%85%B8/%E9%9D%A2%E8%AF%95%E9%A2%9801.01.%E5%88%A4%E5%AE%9A%E5%AD%97%E7%AC%A6%E6%98%AF%E5%90%A6%E5%94%AF%E4%B8%80.md)
 - [面试题 01.02. 判定是否互为字符重排](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E7%A8%8B%E5%BA%8F%E5%91%98%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%85%B8/%E9%9D%A2%E8%AF%95%E9%A2%9801.02.%E5%88%A4%E5%AE%9A%E6%98%AF%E5%90%A6%E4%BA%92%E4%B8%BA%E5%AD%97%E7%AC%A6%E9%87%8D%E6%8E%92.md)
