@@ -196,6 +196,7 @@
 - [162.寻找峰值](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BA%8C%E5%88%86/162.%E5%AF%BB%E6%89%BE%E5%B3%B0%E5%80%BC.md)
 - [剑指OfferII069.山峰数组的顶部](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BA%8C%E5%88%86/%E5%89%91%E6%8C%87OfferII069.%E5%B1%B1%E5%B3%B0%E6%95%B0%E7%BB%84%E7%9A%84%E9%A1%B6%E9%83%A8.md)
 - [240.搜索二维矩阵II](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BA%8C%E5%88%86/240.%E6%90%9C%E7%B4%A2%E4%BA%8C%E7%BB%B4%E7%9F%A9%E9%98%B5II.md)
+- [33.搜索旋转排序数组](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BA%8C%E5%88%86/33.%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84.md)
 
 ##### 5、位运算
 
