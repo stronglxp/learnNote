@@ -264,6 +264,7 @@
 - [594.最长和谐子序列](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%93%88%E5%B8%8C%E8%A1%A8/594.%E6%9C%80%E9%95%BF%E5%92%8C%E8%B0%90%E5%AD%90%E5%BA%8F%E5%88%97.md)
 - [506.相对名次](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%93%88%E5%B8%8C%E8%A1%A8/506.%E7%9B%B8%E5%AF%B9%E5%90%8D%E6%AC%A1.md)
 - [911.在线选举](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%93%88%E5%B8%8C%E8%A1%A8/911.%E5%9C%A8%E7%BA%BF%E9%80%89%E4%B8%BE.md)
+- [997.找到小镇的法官](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%93%88%E5%B8%8C%E8%A1%A8/997.%E6%89%BE%E5%88%B0%E5%B0%8F%E9%95%87%E7%9A%84%E6%B3%95%E5%AE%98.md)
 
 ##### 8、回溯
 
