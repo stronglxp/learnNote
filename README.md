@@ -383,6 +383,7 @@
 - [1588.所有奇数长度子数组的和](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%89%8D%E7%BC%80%E5%92%8C/1588.%E6%89%80%E6%9C%89%E5%A5%87%E6%95%B0%E9%95%BF%E5%BA%A6%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E5%92%8C.md)
 - [1109.航班预订统计](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%89%8D%E7%BC%80%E5%92%8C/1109.%E8%88%AA%E7%8F%AD%E9%A2%84%E8%AE%A2%E7%BB%9F%E8%AE%A1.md)
 - [1894.找到需要补充粉笔的学生编号](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%89%8D%E7%BC%80%E5%92%8C/1894.%E6%89%BE%E5%88%B0%E9%9C%80%E8%A6%81%E8%A1%A5%E5%85%85%E7%B2%89%E7%AC%94%E7%9A%84%E5%AD%A6%E7%94%9F%E7%BC%96%E5%8F%B7.md)
+- [1154.一年中的第几天](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%89%8D%E7%BC%80%E5%92%8C/1154.%E4%B8%80%E5%B9%B4%E4%B8%AD%E7%9A%84%E7%AC%AC%E5%87%A0%E5%A4%A9.md)
 
 ##### 17、背包问题
 
