@@ -297,6 +297,7 @@
 - [794.有效的井字游戏](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/794.%E6%9C%89%E6%95%88%E7%9A%84%E4%BA%95%E5%AD%97%E6%B8%B8%E6%88%8F.md)
 - [748.最短补全词](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/748.%E6%9C%80%E7%9F%AD%E8%A1%A5%E5%85%A8%E8%AF%8D.md)
 - [709.转换成小写字母](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/709.%E8%BD%AC%E6%8D%A2%E6%88%90%E5%B0%8F%E5%86%99%E5%AD%97%E6%AF%8D.md)
+- [686.重复叠加字符串匹配](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/686.%E9%87%8D%E5%A4%8D%E5%8F%A0%E5%8A%A0%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D.md)
 
 ##### 10、数学
 
