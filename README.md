@@ -136,6 +136,7 @@
 - [剑指Offer37.序列化二叉树](https://github.com/stronglxp/learnNote/blob/main/%E5%89%91%E6%8C%87offer%E7%B3%BB%E5%88%97/%E5%89%91%E6%8C%87Offer37.%E5%BA%8F%E5%88%97%E5%8C%96%E4%BA%8C%E5%8F%89%E6%A0%91.md)
 - [LCP 07. 传递信息](https://github.com/stronglxp/learnNote/blob/main/leetcode/BFS/LCP07.%E4%BC%A0%E9%80%92%E4%BF%A1%E6%81%AF.md)
 - [1034.边界着色](https://github.com/stronglxp/learnNote/blob/main/leetcode/BFS/1034.%E8%BE%B9%E7%95%8C%E7%9D%80%E8%89%B2.md)
+- [1609.奇偶树](https://github.com/stronglxp/learnNote/blob/main/leetcode/BFS/1609.%E5%A5%87%E5%81%B6%E6%A0%91.md)
 
 ##### 2、DFS
 
