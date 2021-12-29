@@ -346,6 +346,7 @@
 - [598.范围求和II](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/598.%E8%8C%83%E5%9B%B4%E6%B1%82%E5%92%8CII.md)
 - [495.提莫攻击](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/495.%E6%8F%90%E8%8E%AB%E6%94%BB%E5%87%BB.md)
 - [419.甲板上的战舰](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/419.%E7%94%B2%E6%9D%BF%E4%B8%8A%E7%9A%84%E6%88%98%E8%88%B0.md)
+- [1995.统计特殊四元组](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/1995.%E7%BB%9F%E8%AE%A1%E7%89%B9%E6%AE%8A%E5%9B%9B%E5%85%83%E7%BB%84.md)
 
 ##### 12、滑动窗口
 
