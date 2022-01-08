@@ -356,6 +356,7 @@
 - [419.甲板上的战舰](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/419.%E7%94%B2%E6%9D%BF%E4%B8%8A%E7%9A%84%E6%88%98%E8%88%B0.md)
 - [1995.统计特殊四元组](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/1995.%E7%BB%9F%E8%AE%A1%E7%89%B9%E6%AE%8A%E5%9B%9B%E5%85%83%E7%BB%84.md)
 - [2022.将一维数组转变成二维数组](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/2022.%E5%B0%86%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84%E8%BD%AC%E5%8F%98%E6%88%90%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84.md)
+- [1629.按键持续时间最长的键](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/1629.%E6%8C%89%E9%94%AE%E6%8C%81%E7%BB%AD%E6%97%B6%E9%97%B4%E6%9C%80%E9%95%BF%E7%9A%84%E9%94%AE.md)
 
 ##### 12、滑动窗口
 
