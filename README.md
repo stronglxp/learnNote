@@ -45,6 +45,7 @@
 - [ReentrantLock源码学习](https://github.com/stronglxp/learnNote/blob/main/Java/%E4%B8%80%E4%BA%9B%E6%BA%90%E7%A0%81%E6%8E%A2%E7%A9%B6/ReentrantLock%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0.md)
 - JVM相关的
   - [1、Java内存区域](https://github.com/stronglxp/learnNote/blob/main/Java/JVM/1%E3%80%81Java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F.md)
+  - [2、垃圾收集器与内存分配](https://github.com/stronglxp/learnNote/blob/main/Java/JVM/2%E3%80%81%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E4%B8%8E%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D.md)
 
 
 #### 三、Spring系列
