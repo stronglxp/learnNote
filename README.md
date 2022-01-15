@@ -332,6 +332,7 @@
 - [372.超级次方](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/372.%E8%B6%85%E7%BA%A7%E6%AC%A1%E6%96%B9.md)
 - [1518.换酒问题](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/1518.%E6%8D%A2%E9%85%92%E9%97%AE%E9%A2%98.md)
 - [1185.一周中的第几天](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/1185.%E4%B8%80%E5%91%A8%E4%B8%AD%E7%9A%84%E7%AC%AC%E5%87%A0%E5%A4%A9.md)
+- [1716.计算力扣银行的钱](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/1716.%E8%AE%A1%E7%AE%97%E5%8A%9B%E6%89%A3%E9%93%B6%E8%A1%8C%E7%9A%84%E9%92%B1.md)
 
 ##### 11、数组
 
