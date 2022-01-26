@@ -273,6 +273,7 @@
 - [846.一手顺子](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%93%88%E5%B8%8C%E8%A1%A8/846.%E4%B8%80%E6%89%8B%E9%A1%BA%E5%AD%90.md)
 - [219.存在重复元素II](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%93%88%E5%B8%8C%E8%A1%A8/219.%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0II.md)
 - [2034.股票价格波动](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%93%88%E5%B8%8C%E8%A1%A8/2034.%E8%82%A1%E7%A5%A8%E4%BB%B7%E6%A0%BC%E6%B3%A2%E5%8A%A8.md)
+- [2013.检测正方形](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%93%88%E5%B8%8C%E8%A1%A8/2013.%E6%A3%80%E6%B5%8B%E6%AD%A3%E6%96%B9%E5%BD%A2.md)
 
 ##### 8、回溯
 
