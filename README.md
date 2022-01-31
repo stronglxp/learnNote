@@ -226,6 +226,7 @@
 - [318.最大单词长度乘积](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BD%8D%E8%BF%90%E7%AE%97/318.%E6%9C%80%E5%A4%A7%E5%8D%95%E8%AF%8D%E9%95%BF%E5%BA%A6%E4%B9%98%E7%A7%AF.md)
 - [397.整数替换](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BD%8D%E8%BF%90%E7%AE%97/397.%E6%95%B4%E6%95%B0%E6%9B%BF%E6%8D%A2.md)
 - [89.格雷编码](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BD%8D%E8%BF%90%E7%AE%97/89.%E6%A0%BC%E9%9B%B7%E7%BC%96%E7%A0%81.md)
+- [1342.将数字变成0的操作次数](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BD%8D%E8%BF%90%E7%AE%97/1342.%E5%B0%86%E6%95%B0%E5%AD%97%E5%8F%98%E6%88%900%E7%9A%84%E6%93%8D%E4%BD%9C%E6%AC%A1%E6%95%B0.md)
 
 ##### 6、双指针
 
