@@ -52,3 +52,22 @@
 
 #### 1.3 kafka基础架构
 
+![image-20220202202641003](Kafka学习笔记.assets/image-20220202202641003-3804802.png)
+
+（1）broker：一台kafka服务器就是一个broker，一个kafka集群中有多个broker，每个broker中可以有多个topic。
+
+（2）topic：主题，可以理解成一个队列，生产者和消费者面向的都是一个队列。
+
+（3）partition：分区。为了实现扩展性，一个非常大的topic可以分布到多个broker上，一个topic可以分成多个partition，每个partition是一个有序的队列。
+
+（4）replication：副本，为保证集群中的某个节点发生故障时，该节点上的partition数据不丢失且kafka仍然能正常工作，kafka提供了副本机制，一个topic的每个分区都有若干副本，即一个leader个若干个follower。
+
+（5）leader： 每个分区多个副本的“主”，生产者发送数据的对象，以及消费者消费数据的对象都是 leader。
+
+（6）follower：每个分区多个副本中的“从”，实时从 leader 中同步数据，保持和 leader 数据的同步。leader 发生故障时，某个 follower 会成为新的 leader。
+
+（7）producer：生产者，向broker发消息的客户端。
+
+（8）consumer：消费者，从broker取消息的客户端。
+
+（9）consumer group：消费者组，由多个 consumer 组成。**消费者组内每个消费者负责消费不同分区的数据，一个分区只能由一个组内消费者消费**；消费者组之间互不影响，所有的消费者都属于某个消费者组，即消费者组是逻辑上的一个订阅者。
