@@ -32,6 +32,10 @@
 - [图解HTTP](https://github.com/stronglxp/learnNote/blob/2e30f46d7b/%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%9A%84%E4%B9%A6%E7%B1%8D/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%E7%9A%84/%E3%80%8A%E5%9B%BE%E8%A7%A3HTTP%E3%80%8B%E5%AE%8C%E6%95%B4%E5%BD%A9%E8%89%B2%E7%89%88.pdf)
 - [图解TCP-IP(第5版)](https://github.com/stronglxp/learnNote/blob/main/%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%9A%84%E4%B9%A6%E7%B1%8D/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%E7%9A%84/%E5%9B%BE%E8%A7%A3TCP-IP(%E7%AC%AC5%E7%89%88).pdf)
 
+##### 4、Kafka
+
+- [Kafka权威指南](https://github.com/stronglxp/learnNote/blob/main/%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%9A%84%E4%B9%A6%E7%B1%8D/kafka/Kafka%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97.pdf)
+
 #### 一、Docker
 
 - [Docker学习笔记（分为基础篇和高级篇，总共1.3w字）](https://github.com/stronglxp/learnNote/blob/main/Docker/Docker%E5%AD%A6%E4%B9%A0.md)
