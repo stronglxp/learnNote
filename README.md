@@ -426,6 +426,7 @@
 - [1221.分割平衡字符串](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E8%B4%AA%E5%BF%83/1221.%E5%88%86%E5%89%B2%E5%B9%B3%E8%A1%A1%E5%AD%97%E7%AC%A6%E4%B8%B2.md)
 - [807.保持城市天际线](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E8%B4%AA%E5%BF%83/807.%E4%BF%9D%E6%8C%81%E5%9F%8E%E5%B8%82%E5%A4%A9%E9%99%85%E7%BA%BF.md)
 - [334.递增的三元子序列](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E8%B4%AA%E5%BF%83/334.%E9%80%92%E5%A2%9E%E7%9A%84%E4%B8%89%E5%85%83%E5%AD%90%E5%BA%8F%E5%88%97.md)
+- [1414.和为K的最少斐波那契数字数目](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E8%B4%AA%E5%BF%83/1414.%E5%92%8C%E4%B8%BAK%E7%9A%84%E6%9C%80%E5%B0%91%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%AD%97%E6%95%B0%E7%9B%AE.md)
 
 ##### 19、图
 
