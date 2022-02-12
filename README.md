@@ -144,6 +144,7 @@
 - [1034.边界着色](https://github.com/stronglxp/learnNote/blob/main/leetcode/BFS/1034.%E8%BE%B9%E7%95%8C%E7%9D%80%E8%89%B2.md)
 - [1609.奇偶树](https://github.com/stronglxp/learnNote/blob/main/leetcode/BFS/1609.%E5%A5%87%E5%81%B6%E6%A0%91.md)
 - [1765.地图中的最高点](https://github.com/stronglxp/learnNote/blob/main/leetcode/BFS/1765.%E5%9C%B0%E5%9B%BE%E4%B8%AD%E7%9A%84%E6%9C%80%E9%AB%98%E7%82%B9.md)
+- [1020.飞地的数量](https://github.com/stronglxp/learnNote/blob/main/leetcode/BFS/1020.%E9%A3%9E%E5%9C%B0%E7%9A%84%E6%95%B0%E9%87%8F.md)
 
 ##### 2、DFS
 
