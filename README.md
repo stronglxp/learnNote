@@ -383,6 +383,7 @@
 - [1725.可以形成最大正方形的矩形数目](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/1725.%E5%8F%AF%E4%BB%A5%E5%BD%A2%E6%88%90%E6%9C%80%E5%A4%A7%E6%AD%A3%E6%96%B9%E5%BD%A2%E7%9A%84%E7%9F%A9%E5%BD%A2%E6%95%B0%E7%9B%AE.md)
 - [1748.唯一元素的和](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/1748.%E5%94%AF%E4%B8%80%E5%85%83%E7%B4%A0%E7%9A%84%E5%92%8C.md)
 - [1984.学生分数的最小差值](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/1984.%E5%AD%A6%E7%94%9F%E5%88%86%E6%95%B0%E7%9A%84%E6%9C%80%E5%B0%8F%E5%B7%AE%E5%80%BC.md)
+- [1380.矩阵中的幸运数](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/1380.%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E5%B9%B8%E8%BF%90%E6%95%B0.md)
 
 ##### 12、滑动窗口
 
