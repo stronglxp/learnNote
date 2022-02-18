@@ -446,6 +446,7 @@
 ##### 19、图
 
 - [851.喧闹和富有](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%9B%BE/851.%E5%96%A7%E9%97%B9%E5%92%8C%E5%AF%8C%E6%9C%89.md)
+- [1791.找出星型图的中心节点](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%9B%BE/1791.%E6%89%BE%E5%87%BA%E6%98%9F%E5%9E%8B%E5%9B%BE%E7%9A%84%E4%B8%AD%E5%BF%83%E8%8A%82%E7%82%B9.md)
 
 ##### 20、程序员面试经典
 
