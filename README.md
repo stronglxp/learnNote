@@ -187,6 +187,7 @@
 - [1312.让字符串成为回文串的最少插入次数](https://github.com/stronglxp/learnNote/blob/main/leetcode/DP/1312.%E8%AE%A9%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%88%90%E4%B8%BA%E5%9B%9E%E6%96%87%E4%B8%B2%E7%9A%84%E6%9C%80%E5%B0%91%E6%8F%92%E5%85%A5%E6%AC%A1%E6%95%B0.md)
 - [42.接雨水](https://github.com/stronglxp/learnNote/blob/main/leetcode/DP/42.%E6%8E%A5%E9%9B%A8%E6%B0%B4.md)
 - [10.正则表达式匹配](https://github.com/stronglxp/learnNote/blob/main/leetcode/DP/10.%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D.md)
+- [53.最大子数组和](https://github.com/stronglxp/learnNote/blob/main/leetcode/DP/53.%E6%9C%80%E5%A4%A7%E5%AD%90%E6%95%B0%E7%BB%84%E5%92%8C.md)
 
 ##### 4、二分
 
