@@ -61,7 +61,7 @@
 - [SpringBoot文件上传及源码分析](https://github.com/stronglxp/learnNote/blob/main/Java/Spring%E7%9B%B8%E5%85%B3/SpringBoot%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%8F%8A%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md)
 - [Spring的Ioc是什么东西](https://github.com/stronglxp/learnNote/blob/c4fd3196f7/Java/Spring%E7%9B%B8%E5%85%B3/Spring%E7%9A%84Ioc%E6%98%AF%E4%BB%80%E4%B9%88%E4%B8%9C%E8%A5%BF.md)
 
-#### 四、SpringCloud系列
+#### 四、分布式系列
 
 - [分布式系统CAP理论](https://github.com/stronglxp/learnNote/blob/main/Java/SpringCloud%E7%9B%B8%E5%85%B3/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9FCAP%E7%90%86%E8%AE%BA.md)
 - [SpringCloud入门及创建分布式项目](https://github.com/stronglxp/learnNote/blob/main/Java/SpringCloud%E7%9B%B8%E5%85%B3/SpringCloud%E5%85%A5%E9%97%A8%E5%8F%8A%E5%88%9B%E5%BB%BA%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE.md)
