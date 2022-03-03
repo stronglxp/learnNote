@@ -362,6 +362,7 @@
 - [1688.比赛中的配对次数](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/1688.%E6%AF%94%E8%B5%9B%E4%B8%AD%E7%9A%84%E9%85%8D%E5%AF%B9%E6%AC%A1%E6%95%B0.md)
 - [1447.最简分数](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/1447.%E6%9C%80%E7%AE%80%E5%88%86%E6%95%B0.md)
 - [48.旋转图像](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/48.%E6%97%8B%E8%BD%AC%E5%9B%BE%E5%83%8F.md)
+- [258.各位相加](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/258.%E5%90%84%E4%BD%8D%E7%9B%B8%E5%8A%A0.md)
 
 ##### 11、数组
 
