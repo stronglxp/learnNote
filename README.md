@@ -332,6 +332,7 @@
 - [2047.句子中的有效单词数](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/2047.%E5%8F%A5%E5%AD%90%E4%B8%AD%E7%9A%84%E6%9C%89%E6%95%88%E5%8D%95%E8%AF%8D%E6%95%B0.md)
 - [1189.“气球”的最大数量](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/1189.%E2%80%9C%E6%B0%94%E7%90%83%E2%80%9D%E7%9A%84%E6%9C%80%E5%A4%A7%E6%95%B0%E9%87%8F.md)
 - [537.复数乘法](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/537.%E5%A4%8D%E6%95%B0%E4%B9%98%E6%B3%95.md)
+- [521.最长特殊序列Ⅰ](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/521.%E6%9C%80%E9%95%BF%E7%89%B9%E6%AE%8A%E5%BA%8F%E5%88%97%E2%85%A0.md)
 
 ##### 10、数学
 
