@@ -160,6 +160,7 @@
 - [559.N叉树的最大深度](https://github.com/stronglxp/learnNote/blob/main/leetcode/DFS/559.N%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6.md)
 - [700.二叉搜索树中的搜索](https://github.com/stronglxp/learnNote/blob/main/leetcode/DFS/700.%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E6%90%9C%E7%B4%A2.md)
 - [589.N叉树的前序遍历](https://github.com/stronglxp/learnNote/blob/main/leetcode/DFS/589.N%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86.md)
+- [590.N叉树的后序遍历](https://github.com/stronglxp/learnNote/blob/main/leetcode/DFS/590.N%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86.md)
 
 ##### 3、DP
 
