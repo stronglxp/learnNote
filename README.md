@@ -304,6 +304,7 @@
 - [17.电话号码的字母组合](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%9B%9E%E6%BA%AF/17.%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81%E7%9A%84%E5%AD%97%E6%AF%8D%E7%BB%84%E5%90%88.md)
 - [39.组合总和](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%9B%9E%E6%BA%AF/39.%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C.md)
 - [1219.黄金矿工](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%9B%9E%E6%BA%AF/1219.%E9%BB%84%E9%87%91%E7%9F%BF%E5%B7%A5.md)
+- [2044.统计按位或能得到最大值的子集数目](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%9B%9E%E6%BA%AF/2044.%E7%BB%9F%E8%AE%A1%E6%8C%89%E4%BD%8D%E6%88%96%E8%83%BD%E5%BE%97%E5%88%B0%E6%9C%80%E5%A4%A7%E5%80%BC%E7%9A%84%E5%AD%90%E9%9B%86%E6%95%B0%E7%9B%AE.md)
 
 ##### 9、字符串
 
