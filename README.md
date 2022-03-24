@@ -404,6 +404,7 @@
 - [717.1比特与2比特字符](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/717.1%E6%AF%94%E7%89%B9%E4%B8%8E2%E6%AF%94%E7%89%B9%E5%AD%97%E7%AC%A6.md)
 - [1706.球会落何处](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/1706.%E7%90%83%E4%BC%9A%E8%90%BD%E4%BD%95%E5%A4%84.md)
 - [2016.增量元素之间的最大差值](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/2016.%E5%A2%9E%E9%87%8F%E5%85%83%E7%B4%A0%E4%B9%8B%E9%97%B4%E7%9A%84%E6%9C%80%E5%A4%A7%E5%B7%AE%E5%80%BC.md)
+- [661.图片平滑器](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/661.%E5%9B%BE%E7%89%87%E5%B9%B3%E6%BB%91%E5%99%A8.md)
 
 ##### 12、滑动窗口
 
