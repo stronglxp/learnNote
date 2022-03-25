@@ -373,6 +373,7 @@
 - [48.旋转图像](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/48.%E6%97%8B%E8%BD%AC%E5%9B%BE%E5%83%8F.md)
 - [258.各位相加](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/258.%E5%90%84%E4%BD%8D%E7%9B%B8%E5%8A%A0.md)
 - [504.七进制数](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/504.%E4%B8%83%E8%BF%9B%E5%88%B6%E6%95%B0.md)
+- [172.阶乘后的零](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/172.%E9%98%B6%E4%B9%98%E5%90%8E%E7%9A%84%E9%9B%B6.md)
 
 ##### 11、数组
 
