@@ -374,6 +374,7 @@
 - [258.各位相加](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/258.%E5%90%84%E4%BD%8D%E7%9B%B8%E5%8A%A0.md)
 - [504.七进制数](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/504.%E4%B8%83%E8%BF%9B%E5%88%B6%E6%95%B0.md)
 - [172.阶乘后的零](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/172.%E9%98%B6%E4%B9%98%E5%90%8E%E7%9A%84%E9%9B%B6.md)
+- [2028.找出缺失的观测数据](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/2028.%E6%89%BE%E5%87%BA%E7%BC%BA%E5%A4%B1%E7%9A%84%E8%A7%82%E6%B5%8B%E6%95%B0%E6%8D%AE.md)
 
 ##### 11、数组
 
