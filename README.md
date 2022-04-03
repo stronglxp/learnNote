@@ -88,7 +88,11 @@
 
 - [HTTPS加密过程](https://github.com/stronglxp/learnNote/blob/main/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/HTTPS%E5%8A%A0%E5%AF%86%E8%BF%87%E7%A8%8B.md)
 
-#### 八、十大排序算法
+#### 八、大数据
+
+- [一些基本概念](https://github.com/stronglxp/learnNote/blob/main/%E5%A4%A7%E6%95%B0%E6%8D%AE/%E4%B8%80%E4%BA%9B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5.md)
+
+#### 九、十大排序算法
 
 - [0.开场篇](https://github.com/stronglxp/learnNote/blob/main/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/0.%E5%BC%80%E5%9C%BA%E7%AF%87.md)
 - [1.冒泡排序](https://github.com/stronglxp/learnNote/blob/main/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/1.%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F.md)
@@ -102,7 +106,7 @@
 - [9.桶排序](https://github.com/stronglxp/learnNote/blob/main/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/9.%E6%A1%B6%E6%8E%92%E5%BA%8F.md)
 - [10.基数排序](https://github.com/stronglxp/learnNote/blob/main/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/10.%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F.md)
 
-#### 九、剑指offer系列
+#### 十、剑指offer系列
 
 - [剑指Offer03.数组中重复的数字](https://github.com/stronglxp/learnNote/blob/main/%E5%89%91%E6%8C%87offer%E7%B3%BB%E5%88%97/%E5%89%91%E6%8C%87Offer03.%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97.md)
 - [剑指Offer04.二维数组中的查找](https://github.com/stronglxp/learnNote/blob/main/%E5%89%91%E6%8C%87offer%E7%B3%BB%E5%88%97/%E5%89%91%E6%8C%87Offer04.%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9F%A5%E6%89%BE.md)
@@ -119,7 +123,7 @@
 - [剑指Offer52.两个链表的第一个公共节点](https://github.com/stronglxp/learnNote/blob/main/%E5%89%91%E6%8C%87offer%E7%B3%BB%E5%88%97/%E5%89%91%E6%8C%87Offer52.%E4%B8%A4%E4%B8%AA%E9%93%BE%E8%A1%A8%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%85%AC%E5%85%B1%E8%8A%82%E7%82%B9.md)
 - [剑指Offer53-I.在排序数组中查找数字I](https://github.com/stronglxp/learnNote/blob/main/%E5%89%91%E6%8C%87offer%E7%B3%BB%E5%88%97/%E5%89%91%E6%8C%87Offer53-I.%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9F%A5%E6%89%BE%E6%95%B0%E5%AD%97I.md)
 
-#### 十、LeetCode
+#### 十一、LeetCode
 
 ##### 0、解题方法总结
 
