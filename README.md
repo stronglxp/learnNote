@@ -91,6 +91,7 @@
 #### 八、大数据
 
 - [一些基本概念](https://github.com/stronglxp/learnNote/blob/main/%E5%A4%A7%E6%95%B0%E6%8D%AE/%E4%B8%80%E4%BA%9B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5.md)
+- [Hadoop框架学习](https://github.com/stronglxp/learnNote/blob/main/%E5%A4%A7%E6%95%B0%E6%8D%AE/Hadoop%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0.md)
 
 #### 九、十大排序算法
 
