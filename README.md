@@ -248,6 +248,7 @@
 - [89.格雷编码](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BD%8D%E8%BF%90%E7%AE%97/89.%E6%A0%BC%E9%9B%B7%E7%BC%96%E7%A0%81.md)
 - [1342.将数字变成0的操作次数](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BD%8D%E8%BF%90%E7%AE%97/1342.%E5%B0%86%E6%95%B0%E5%AD%97%E5%8F%98%E6%88%900%E7%9A%84%E6%93%8D%E4%BD%9C%E6%AC%A1%E6%95%B0.md)
 - [693.交替位二进制数](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BD%8D%E8%BF%90%E7%AE%97/693.%E4%BA%A4%E6%9B%BF%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%95%B0.md)
+- [762.二进制表示中质数个计算置位](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BD%8D%E8%BF%90%E7%AE%97/762.%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%A1%A8%E7%A4%BA%E4%B8%AD%E8%B4%A8%E6%95%B0%E4%B8%AA%E8%AE%A1%E7%AE%97%E7%BD%AE%E4%BD%8D.md)
 
 ##### 6、双指针
 
