@@ -386,6 +386,7 @@
 - [172.阶乘后的零](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/172.%E9%98%B6%E4%B9%98%E5%90%8E%E7%9A%84%E9%9B%B6.md)
 - [2028.找出缺失的观测数据](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/2028.%E6%89%BE%E5%87%BA%E7%BC%BA%E5%A4%B1%E7%9A%84%E8%A7%82%E6%B5%8B%E6%95%B0%E6%8D%AE.md)
 - [908.最小差值I](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/908.%E6%9C%80%E5%B0%8F%E5%B7%AE%E5%80%BCI.md)
+- [1823.找出游戏的获胜者](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E5%AD%A6/1823.%E6%89%BE%E5%87%BA%E6%B8%B8%E6%88%8F%E7%9A%84%E8%8E%B7%E8%83%9C%E8%80%85.md)
 
 ##### 11、数组
 
