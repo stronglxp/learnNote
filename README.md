@@ -353,6 +353,7 @@
 - [537.复数乘法](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/537.%E5%A4%8D%E6%95%B0%E4%B9%98%E6%B3%95.md)
 - [521.最长特殊序列Ⅰ](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/521.%E6%9C%80%E9%95%BF%E7%89%B9%E6%AE%8A%E5%BA%8F%E5%88%97%E2%85%A0.md)
 - [720.词典中最长的单词](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/720.%E8%AF%8D%E5%85%B8%E4%B8%AD%E6%9C%80%E9%95%BF%E7%9A%84%E5%8D%95%E8%AF%8D.md)
+- [1021.删除最外层的括号](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/1021.%E5%88%A0%E9%99%A4%E6%9C%80%E5%A4%96%E5%B1%82%E7%9A%84%E6%8B%AC%E5%8F%B7.md)
 
 ##### 10、数学
 
