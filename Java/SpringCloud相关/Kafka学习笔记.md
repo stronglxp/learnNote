@@ -71,3 +71,160 @@
 （8）consumer：消费者，从broker取消息的客户端。
 
 （9）consumer group：消费者组，由多个 consumer 组成。**消费者组内每个消费者负责消费不同分区的数据，一个分区只能由一个组内消费者消费**；消费者组之间互不影响，所有的消费者都属于某个消费者组，即消费者组是逻辑上的一个订阅者。
+
+### 二、kafka集群配置
+
+#### 2.1 下载安装配置
+
+[下载链接](https://kafka.apache.org/downloads)
+
+下载后进行解压
+
+![image-20220203103248076](Kafka学习笔记.assets/image-20220203103248076-3855570.png)
+
+修改配置文件`config/server.properties`
+
+```properties
+#broker 的全局唯一编号，不能重复
+broker.id=0
+#处理网络请求的线程数量
+num.network.threads=3
+#用来处理磁盘 IO 的现成数量
+num.io.threads=8
+#发送套接字的缓冲区大小
+socket.send.buffer.bytes=102400 
+#接收套接字的缓冲区大小
+socket.receive.buffer.bytes=102400 
+#请求套接字的缓冲区大小
+socket.request.max.bytes=104857600 
+#kafka 运行日志存放的路径
+log.dirs=/opt/module/kafka/logs
+#topic 在当前 broker 上的分区个数
+num.partitions=1
+#用来恢复和清理 data 下数据的线程数量
+num.recovery.threads.per.data.dir=1 
+#segment 文件保留的最长时间，超时将被删除
+log.retention.hours=168
+#配置连接Zookeeper 集群地址
+zookeeper.connect=192.168.1.190:2181,192.168.1.191:2181,192.168.1.192:2181
+```
+
+配置环境变量
+
+```bash
+vi /etc/profile
+
+#KAFKA_HOME
+export KAFKA_HOME=/opt/module/kafka 
+export PATH=$PATH:$KAFKA_HOME/bin
+
+source /etc/profile
+```
+
+`192.168.1.190,192.168.1.191,192.168.1.192`三台机器上同步上面的配置，`broker.id`不能重复。
+
+启动集群
+
+```bash
+# 三台机器分别执行
+bin/kafka-server-start.sh	-daemon config/server.properties
+```
+
+关闭集群
+
+```bash
+bin/kafka-server-stop.sh stop
+```
+
+#### 2.2 kafka命令行操作
+
+![image-20220203104210658](Kafka学习笔记.assets/image-20220203104210658-3856132.png)
+
+##### 2.2.1 kafka-topic.sh
+
+![image-20220203104426428](Kafka学习笔记.assets/image-20220203104426428-3856268.png)
+
+（1）查看当前服务器中所有的topic
+
+```bash
+./kafka-topic.sh --list --bootstrap-server localhost:9092
+```
+
+![image-20220203104622747](Kafka学习笔记.assets/image-20220203104622747-3856384.png)
+
+（2）创建topic
+
+```bash
+# --topic 定义topic名
+# --partitions 定义分区数
+# --replication-factor 定义副本数
+./kafka-topic.sh --bootstrap-server localhost:9092 --create --replication-factor 3 --partitions 1 --topic first
+```
+
+（3）删除topic
+
+```bash
+./kafka-topic.sh --bootstrap-server localhost:9092 --delete --topic first
+```
+
+（4）修改分区数
+
+```bash
+./kafka-topic.sh --bootstrap-server localhost:9092 --alter --topic first --partitions 2
+```
+
+##### 2.2.2 kafka-console-producer.sh
+
+（1）发送消息
+
+```bash
+./kafka-console-producer.sh --bootstrap-server localhost:9092 --topic first
+```
+
+##### 2.2.3 kafka-console-consumer.sh
+
+（1）接收消息
+
+```bash
+./kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic first --form-begining
+```
+
+![image-20220203111006305](Kafka学习笔记.assets/image-20220203111006305-3857807.png)
+
+### 三、kafka架构深入
+
+#### 3.1 kafka工作流程
+
+![image-20220205100848350](Kafka学习笔记.assets/image-20220205100848350-4026934.png)
+
+kafka中消息是以topic进行分类的，生产者生产消息，消费者消费消息，都是面向topic。
+
+topic是逻辑上的概念，partition是物理上的概念。每个 partition 对应于一个 log 文件，该 log 文件中存储的就是 producer 生产的数据。Producer 生产的数据会被不断**追加**到该log 文件末端，且每条数据都有自己的 offset。消费者组中的每个消费者，都会实时记录自己消费到了哪个offset，以便出错恢复时，从上次的位置继续消费。
+
+![image-20220205102129839](Kafka学习笔记.assets/image-20220205102129839-4027691.png)
+
+由于生产者生产的消息会不断追加到log文件末尾，为了防止log文件过大导致数据定位效率降低，kafka采取了==分片==和==索引==的机制。将每个partition分成多个segment，每个segment对应一个log文件和index文件，这些文件位于topic为文件夹下。
+
+```properties
+lxp@doraemon kafka_2.12-2.8.1 % vi config/server.properties
+
+# The maximum size of a log segment file. When this size is reached a new lo    g segment will be created. 1GB
+log.segment.bytes=1073741824
+```
+
+对于每个topic，都会在配置的log目录下生成对应的文件夹，命名规则是“**topic名 + 分区序号**”。比如名为first的topic有3个分区
+
+![image-20220205103305342](Kafka学习笔记.assets/image-20220205103305342-4028386.png)
+
+在每个文件夹下，都存在log和index文件
+
+![image-20220205103410914](Kafka学习笔记.assets/image-20220205103410914-4028452.png)
+
+**index和log文件以当前segment的第一条消息的offset命名**，
+
+#### 3.2 index文件和log文件
+
+[官方文档](https://kafka.apache.org/documentation/#log)
+
+log文件存储数据，index文件存储索引信息，记录offset对应的物理位置，正是因为有index文件，才能对任一数据写入和查看具有O(1)复杂度。
+
