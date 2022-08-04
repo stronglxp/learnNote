@@ -423,6 +423,7 @@
 - [2016.增量元素之间的最大差值](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/2016.%E5%A2%9E%E9%87%8F%E5%85%83%E7%B4%A0%E4%B9%8B%E9%97%B4%E7%9A%84%E6%9C%80%E5%A4%A7%E5%B7%AE%E5%80%BC.md)
 - [661.图片平滑器](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/661.%E5%9B%BE%E7%89%87%E5%B9%B3%E6%BB%91%E5%99%A8.md)
 - [682.棒球比赛](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/682.%E6%A3%92%E7%90%83%E6%AF%94%E8%B5%9B.md)
+- [1403.非递增顺序的最小子序列](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/1403.%E9%9D%9E%E9%80%92%E5%A2%9E%E9%A1%BA%E5%BA%8F%E7%9A%84%E6%9C%80%E5%B0%8F%E5%AD%90%E5%BA%8F%E5%88%97.md)
 
 ##### 12、滑动窗口
 
