@@ -574,5 +574,273 @@ enable 'test'
 [root@ hbase-2.4.13]#: ./bin/hbase shell /root/simple_script.txt
 ```
 
+#### 4、传递VM参数
 
+可以使用HBase_Shell_OPTS环境变量将VM选项传递给HBase Shell。可以在环境中设置它，例如编辑~/.bashrc，或者将其设置为启动HBase Shell命令的一部分。下面的示例设置了几个与垃圾回收相关的变量，这些变量只在运行HBase Shell的VM的生存期内使用。该命令应在一行上运行，但为了可读性，它被字符\打断。
 
+```shell
+HBASE_SHELL_OPTS="-verbose:gc -XX:+PrintGCApplicationStoppedTime
+-XX:+PrintGCDateStamps \
+  -XX:+PrintGCDetails -Xloggc:$HBASE_HOME/logs/gc-hbase.log" ./bin/hbase shell
+```
+
+#### 5、覆盖配置项
+
+在hbase-2.0.5，hbase-2.1.3，hbase-2.2.0，hbase-1.4.10，hbase-1.5.0，可以在hbase shell中设置或者覆盖`base-*.xml`文件中的配置项。
+
+在key/value中加上前缀`-D`
+
+```shell
+$ ./bin/hbase shell
+-Dhbase.zookeeper.quorum=ZK0.remote.cluster.example.org,ZK1.remote.cluster.example.org
+,ZK2.remote.cluster.example.org -Draining=false
+...
+hbase(main):001:0> @shell.hbase.configuration.get("hbase.zookeeper.quorum")
+=>
+"ZK0.remote.cluster.example.org,ZK1.remote.cluster.example.org,ZK2.remote.cluster.exam
+ple.org"
+hbase(main):002:0> @shell.hbase.configuration.get("raining")
+=> "false"
+```
+
+#### 6、开启debug模式
+
+方式1:
+
+```shell
+hbase(main):007:0> debug
+Debug mode is ON
+
+hbase(main):008:0> debug
+Debug mode is OFF
+```
+
+方式2:
+
+```shell
+$ ./bin/hbase shell -d
+```
+
+#### 7、表变量
+
+HBase 0.95添加了为表提供jruby样式的面向对象引用的shell命令。以前，作用于表的所有shell命令都有一个过程样式，该样式始终将表的名称作为参数。HBase 0.95引入了将表分配给jruby变量的功能。表引用可用于执行数据读写操作，如放置、扫描和获取，以及管理功能，如禁用、删除和描述表。
+
+比如，之前总是需要指定表名
+
+```shell
+hbase(main):000:0> create 't', 'f'
+0 row(s) in 1.0970 seconds
+
+hbase(main):001:0> put 't', 'rold', 'f', 'v'
+0 row(s) in 0.0080 seconds
+
+hbase(main):002:0> scan 't'
+ROW COLUMN+CELL
+rold column=f:, timestamp=1378473207660, value=v
+1 row(s) in 0.0130 seconds
+
+hbase(main):003:0> describe 't'
+DESCRIPTION
+ENABLED
+'t', {NAME => 'f', DATA_BLOCK_ENCODING => 'NONE', BLOOMFILTER => 'ROW', REPLICATION_
+true
+SCOPE => '0', VERSIONS => '1', COMPRESSION => 'NONE', MIN_VERSIONS => '0', TTL => '2
+ 147483647', KEEP_DELETED_CELLS => 'false', BLOCKSIZE => '65536', IN_MEMORY => 'false
+', BLOCKCACHE => 'true'}
+1 row(s) in 1.4430 seconds
+
+hbase(main):004:0> disable 't'
+0 row(s) in 14.8700 seconds
+
+hbase(main):005:0> drop 't'
+0 row(s) in 23.1670 seconds
+```
+
+现在，可以将表分配给一个变量，并在jruby shell代码中使用。
+
+```shell
+hbase(main):007 > t = create 't', 'f'
+0 row(s) in 1.0970 seconds
+=> Hbase::Table - t
+
+hbase(main):008 > t.put 'r', 'f', 'v'
+0 row(s) in 0.0640 seconds
+
+hbase(main):009 > t.scan
+ROW COLUMN+CELL
+r column=f:, timestamp=1331865816290, value=v
+1 row(s) in 0.0110 seconds
+
+hbase(main):010:0> t.describe
+DESCRIPTION
+ENABLED
+'t', {NAME => 'f', DATA_BLOCK_ENCODING => 'NONE', BLOOMFILTER => 'ROW', REPLICATION_
+true
+SCOPE => '0', VERSIONS => '1', COMPRESSION => 'NONE', MIN_VERSIONS => '0', TTL => '2
+ 147483647', KEEP_DELETED_CELLS => 'false', BLOCKSIZE => '65536', IN_MEMORY => 'false
+', BLOCKCACHE => 'true'}
+1 row(s) in 0.0210 seconds
+
+hbase(main):038:0> t.disable
+0 row(s) in 6.2350 seconds
+
+hbase(main):039:0> t.drop
+0 row(s) in 0.2340 seconds
+```
+
+如果表已经创建，可以使用`get_table`方法把表赋值给一个变量
+
+```shell
+hbase(main):011 > create 't','f'
+0 row(s) in 1.2500 seconds
+=> Hbase::Table - t
+
+hbase(main):012:0> tab = get_table 't'
+0 row(s) in 0.0010 seconds
+=> Hbase::Table - t
+
+hbase(main):013:0> tab.put 'r1' ,'f', 'v'
+0 row(s) in 0.0100 seconds
+
+hbase(main):014:0> tab.scan
+ROW COLUMN+CELL
+r1 column=f:, timestamp=1378473876949, value=v
+1 row(s) in 0.0240 seconds
+```
+
+列表功能也得到了扩展，以便它以字符串形式返回表名列表。然后可以使用jruby根据这些名称编写表操作脚本。list_snapshots命令的作用也类似。
+
+```shell
+hbase(main):016 > tables = list('t.*')
+TABLE
+t
+1 row(s) in 0.1040 seconds
+=> ["t"]
+
+hbase(main):017:0> tables.map { |t| disable t ; drop t}
+0 row(s) in 2.2510 seconds
+=> [nil]
+```
+
+#### 8、irbrc
+
+在home目录下创建一个.irbrc文件，添加自定义命令。有一个有用的命令就是纪录历史命令
+
+```shell
+$ more .irbrc
+require 'irb/ext/save-history'
+IRB.conf[:SAVE_HISTORY] = 100
+IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb-save-history"
+```
+
+如果你不想在执行表达式的时候把结果输出到stderr，比如执行`list`命令的时候返回table列表
+
+```shell
+$ echo "IRB.conf[:ECHO] = false" >>~/.irbrc
+```
+
+可以查看ruby的文档了解更多.irbrc的相关知识。
+
+#### 9、LOG时间转换
+
+可以将日期'08/08/16 20:56:29'从hbase log 转换成一个 timestamp, 操作如下:
+
+```shell
+hbase(main):021:0> import java.text.SimpleDateFormat
+hbase(main):022:0> import java.text.ParsePosition
+hbase(main):023:0> SimpleDateFormat.new("yy/MM/dd HH:mm:ss").parse("08/08/16 20:56:29
+", ParsePosition.new(0)).getTime() => 1218920189000
+```
+
+也可以反过来操作
+
+```shell
+hbase(main):021:0> import java.util.Date
+hbase(main):022:0> Date.new(1218920189000).toString() => "Sat Aug 16 20:56:29 UTC
+2008"
+```
+
+#### 10、查询配置项
+
+```shell
+hbase(main):001:0> @shell.hbase.configuration.get("hbase.rpc.timeout")
+=> "60000"
+```
+
+在shell中设置一个配置项
+
+```shell
+hbase(main):005:0> @shell.hbase.configuration.setInt("hbase.rpc.timeout", 61010)
+hbase(main):006:0> @shell.hbase.configuration.get("hbase.rpc.timeout")
+=> "61010"
+```
+
+#### 11、count命令
+
+`count`命令返回表的行数。使用正确的 CACHE 配置时速度非常快
+
+```shell
+hbase> count '<tablename>', CACHE => 1000
+```
+
+上述计数一次获取 1000 行。如果一行数据很大，可以把CACHE设置小一点。默认情况下一次获取一行。
+
+#### 12、预拆分表（预分区）
+
+了解预分区，参考[这篇文章](https://www.jianshu.com/p/cb92b61f66fc)
+
+```shell
+hbase>create 't1','f',SPLITS => ['10','20','30']
+```
+
+上面的命令将会创建4个regions，从hbase ui界面可以看到
+
+![img](HBase学习.assets/webp)
+
+也可以把分区信息写到一个文件中，在hbase shell中调用，一个数字占一行
+
+```shell
+# splits.txt
+10
+20
+30
+```
+
+```shell
+hbase>create 't14','f',SPLITS_FILE=>'splits.txt'
+```
+
+也可以指定regions的数量和分区算法，可以自定义分区算法
+
+```shell
+# create table with four regions based on random bytes keys
+hbase>create 't2','f1', { NUMREGIONS => 4 , SPLITALGO => 'UniformSplit' }
+
+# create table with five regions based on hex keys
+hbase>create 't3','f1', { NUMREGIONS => 5, SPLITALGO => 'HexStringSplit' }
+```
+
+也可以使用ruby脚本
+
+```shell
+# generate splits for long (Ruby fixnum) key range from start to end key
+hbase(main):070:0> def gen_splits(start_key,end_key,num_regions)
+hbase(main):071:1>   results=[]
+hbase(main):072:1>   range=end_key-start_key
+hbase(main):073:1>   incr=(range/num_regions).floor
+hbase(main):074:1>   for i in 1 .. num_regions-1
+hbase(main):075:2>     results.push([i*incr+start_key].pack("N"))
+hbase(main):076:2>   end
+hbase(main):077:1>   return results
+hbase(main):078:1> end
+hbase(main):079:0>
+
+hbase(main):080:0> splits=gen_splits(1,2000000,10)
+=> ["\000\003\r@", "\000\006\032\177", "\000\t'\276", "\000\f4\375", "\000\017B<",
+"\000\022O{", "\000\025\\\272", "\000\030i\371", "\000\ew8"]
+hbase(main):081:0> create 'test_splits','f',SPLITS=>splits
+0 row(s) in 0.2670 seconds
+=> Hbase::Table - test_splits
+```
+
+注意`truncate`命令删除表后会使用默认选项重新创建表，并且不会使用预分区。
