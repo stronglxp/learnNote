@@ -844,3 +844,153 @@ hbase(main):081:0> create 'test_splits','f',SPLITS=>splits
 ```
 
 注意`truncate`命令删除表后会使用默认选项重新创建表，并且不会使用预分区。
+
+### 五、数据模型
+
+HBase中，数据是存储在表里的，表由行和列构成。这跟关系型数据库的描述很像，但两者并不一样。或许把HBase表理解成一个多维地图比较合适。
+
+HBase数据模型相关的术语：
+
+- **Table**：Hbase表由多行组成。
+- **Row**：HBase 中的一行由一个行键和一个或多个列以及与之关联的值组成。行在存储时按行键的字母顺序排序。所以行键的设计很重要，目标是把有关联的行尽量放在一起。比较常见的row key就是网站域名，如果你的row key是网站域名，那么需要把它们反过来存储，比如`org.apache.www`，`org.apache.mail`，`org.apache.jira`。这样的话，所有apache相关的域名在表中就存储在一起。
+- **Column**：HBase中的一列由一个列族和一个列限定符组成，它们之间通过`:`分隔。
+- **Column Family**：列族通常出于性能原因在物理上共置一组列及其值。每个列族都有一组存储属性，例如它的值是否应该缓存在内存中，它的数据是如何压缩的，或者它的行键是如何编码的，等等。表中的每一行都具有相同的列族，尽管给定的行可能不会在给定的列族中存储任何内容。
+- **Column Qualifier**：将列限定符添加到列族以提供给定数据的索引。给定一个列族内容，一个列限定符可能是 content:html，另一个可能是 content:pdf。 尽管列族在表创建时是固定的，但列限定符是可变的
+  并且行之间可能有很大差异。
+- **Cell**：单元格是行、列族和列限定符的组合，包含一个值和一个时间戳，它表示该值的版本。
+- **Timestamp**：时间戳写在每个值旁边，是给定版本值的标识符。 默认情况下，时间戳表示写入数据时 RegionServer 上的时间，但您可以在将数据放入单元格时指定不同的时间戳值。
+
+#### 1、概念视图
+
+你可以通过[Understanding HBase and BigTable](https://dzone.com/articles/understanding-hbase-and-bigtab)这篇文章通俗易懂的理解HBase的数据模型，另外这份pdf对于理解HBase也是不错的：[Introduction to HBase Schema Design](http://0b4af6cdc2f0c5998459-c0245c5c937c5dedcca3f1764ecc9b2f.r43.cf2.rackcdn.com/9353-login1210_khurana.pdf)
+
+阅读不同的观点可能有助于深入了解 HBase 模式设计，链接的文章涵盖与本节中相同的信息。
+
+以下示例是[BigTable](https://research.google/pubs/pub27898/)论文第 2 页上示例的略微修改形式。有一个名为webtable的表，它有两行（com.cnn.www和com.example.www），三个列族（contents，anchor，people）。在这个例子中，对于第一行com.cnn.www，anchor包含两列（anchor:cssnsi.com，anchor:my.look.ca），contents包含一列（contents:html）。此示例包含行键为 com.cnn.www 的行的 5 个版本，以及行键为 com.example.www 的行的一个版本。`contents:html` 列限定符包含给定网站的整个 HTML。`anchor`限定符每个都包含链接到由该行表示的站点的外部站点，以及它在其链接的锚点中使用的文本。`people`列族代表与站点相关的人员。
+
+一个列名是由它的列族前缀和*修饰符(qualifier)*连接而成。例如列*contents:html*是列族 `contents`加冒号(`:`)加 *修饰符* `html`组成的。
+
+![image-20220814114721769](HBase学习.assets/image-20220814114721769-0448843.png)
+
+此表中看似为空的单元格在 HBase 中不占用空间，或者实际上存在。 这就是使 HBase “稀疏”的原因。 表格视图不是查看 HBase 中数据的唯一可能方式，甚至不是最准确的方式。 以下表示与多维地图相同的信息。 这只是一个用于说明目的的模型，可能并不完全准确。
+
+![image-20220814115116337](HBase学习.assets/image-20220814115116337-0449077.png)
+
+#### 2、物理视图
+
+尽管在概念视图里，表可以被看成是一个稀疏的行的集合。但在物理上，它是区分列族 存储的。新的columns可以不经过声明直接加入一个列族。
+
+![image-20220814141419306](HBase学习.assets/image-20220814141419306-0457660.png)
+
+值得注意的是在上面的概念视图中空白cell在物理上是不存储的，因为根本没有必要存储。因此若一个请求为要获取`t8`时间的`contents:html`，他的结果就是空。相似的，若请求为获取`t9`时间的`anchor:my.look.ca`，结果也是空。但是，如果不指明时间，将会返回最新时间的行，每个最新的都会返回。例如，如果请求为获取行键为"com.cnn.www"，没有指明时间戳的话，活动的结果是`t6`下的contents:html，`t9`下的`anchor:cnnsi.com`和`t8`下`anchor:my.look.ca`。
+
+#### 3、NameSpace
+
+命名空间是表的逻辑分组，类似于关系数据库系统中的数据库。 这种抽象为即将推出的多租户相关功能奠定了基础：
+
+- 配额管理 (HBASE-8410) - 限制命名空间可以消耗的资源量（即区域、表）。
+- 命名空间安全管理 (HBASE-9206) - 为租户提供另一个级别的安全管理。
+- Region server组 (HBASE-6721) - 命名空间/表可以固定到RegionServers的子集上，从而保证粗略的隔离级别。
+
+##### 3.1 命名空间管理
+
+命名空间可以创建、修改、删除。命名空间成员资格在表创建期间通过指定格式的完全限定表名来确定：`<table namespace>:<table qualifier>`。
+
+比如
+
+```shell
+#Create a namespace
+create_namespace 'my_ns'
+
+#create my_table in my_ns namespace
+create 'my_ns:my_table', 'fam'
+
+#drop namespace
+drop_namespace 'my_ns'
+
+#alter namespace
+alter_namespace 'my_ns', {METHOD => 'set', 'PROPERTY_NAME' => 'PROPERTY_VALUE'}
+
+#list namespace
+list_namespace
+```
+
+##### 3.2 默认的命名空间
+
+有两个默认的命名空间：
+
+- hbase：系统命名空间，用于存放hbase的内置表。
+- default：表如果没有指定命名空间，默认放在default里。
+
+比如
+
+```shell
+#namespace=foo and table qualifier=bar
+create 'foo:bar', 'fam'
+
+#namespace=default and table qualifier=bar
+create 'bar', 'fam'
+```
+
+#### 4、表（Table）
+
+表是在schema定义时预先声明的。
+
+#### 5、行（Row）
+
+行键是不可分割的字节数组。行是按字典排序由低到高存储在表中的。一个空的数组是用来标识表空间的起始或者结尾。
+
+#### 6、列族（Column Family）
+
+Apache HBase 中的列是按列族进行分组的，一个列族所有列成员是有着相同的前缀。比如，列*courses:history* 和 *courses:math*都是 列族 *courses*的成员。冒号(:)是列族的分隔符，用来区分前缀和列名。column 前缀必须是可打印的字符，剩下的部分(称为qualify),可以由任意字节数组组成。列族必须在表建立的时候声明。column就不需要了，随时可以新建。
+
+在物理上，一个列族的所有成员在文件系统上都是存储在一起。因为存储优化是在列族级别完成的，所以建议所有列族成员都具有相同的一般访问模式和大小特征。
+
+#### 7、Cells
+
+在hbase中，一个*{row, column, version}* 元组就是一个 `cell`。Cell的内容是不可分割的字节数组。
+
+#### 8、数据模型操作
+
+四个主要的数据模型操作是 Get、Put、Scan 和 Delete。 通过 [Table](https://hbase.apache.org/apidocs/org/apache/hadoop/hbase/client/Table.html) 实例应用操作。
+
+##### 8.1 Get
+
+[Get](http://hbase.apache.org/apidocs/org/apache/hadoop/hbase/client/Get.html) 返回特定行的属性。 Gets 通过 [Table.get](https://hbase.apache.org/apidocs/org/apache/hadoop/hbase/client/Table.html#get-org.apache.hadoop.hbase.client.Get-) 执行。
+
+##### 8.2 Put
+
+[Put](https://hbase.apache.org/apidocs/org/apache/hadoop/hbase/client/Put.html) 要么向表增加新行 (如果key是新的) 或更新行 (如果key已经存在)。 Puts 通过 [Table.put](https://hbase.apache.org/apidocs/org/apache/hadoop/hbase/client/Table.html#put-org.apache.hadoop.hbase.client.Put-) (writeBuffer) 或 [Table.batch](https://hbase.apache.org/apidocs/org/apache/hadoop/hbase/client/Table.html#batch-java.util.List-java.lang.Object:A-) (non-writeBuffer)执行。
+
+##### 8.3 Scans
+
+[Scan](https://hbase.apache.org/apidocs/org/apache/hadoop/hbase/client/Scan.html)允许对指定属性的多行进行迭代。
+
+下面是一个在 HTable 表实例上的示例。 假设表有几行键值为 "row1", "row2", "row3", 还有一些行有键值 "abc1", "abc2", 和 "abc3"。下面的示例展示如何构建一个Scan 实例，以返回"row"为前缀的行。
+
+```java
+public static final byte[] CF = "cf".getBytes();
+public static final byte[] ATTR = "attr".getBytes();
+...
+Table table = ... // instantiate a Table instance
+Scan scan = new Scan();
+scan.addColumn(CF, ATTR);
+scan.setStartStopRowForPrefixScan(Bytes.toBytes("row"));
+ResultScanner rs = table.getScanner(scan);
+try {
+  for (Result r = rs.next(); r != null; r = rs.next()) {
+  // process result...
+  }
+} finally {
+  rs.close(); // always close the ResultScanner!
+}
+```
+
+请注意，通常为scan设置过滤规则最简单方法是使用 [InclusiveStopFilter](https://hbase.apache.org/apidocs/org/apache/hadoop/hbase/filter/InclusiveStopFilter.html) 类。
+
+##### 8.4 Delete
+
+[Delete](https://hbase.apache.org/apidocs/org/apache/hadoop/hbase/client/Delete.html)从表中删除一行，删除通过[Table.delete](https://hbase.apache.org/apidocs/org/apache/hadoop/hbase/client/Table.html#delete-org.apache.hadoop.hbase.client.Delete-) 执行。
+
+HBase does not modify data in place, and so deletes are handled by creating new markers called tombstones. These tombstones, along with the dead values, are cleaned up on major compactions.
+
