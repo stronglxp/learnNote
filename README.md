@@ -173,6 +173,7 @@
 - [590.N叉树的后序遍历](https://github.com/stronglxp/learnNote/blob/main/leetcode/DFS/590.N%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86.md)
 - [606.根据二叉树创建字符串](https://github.com/stronglxp/learnNote/blob/main/leetcode/DFS/606.%E6%A0%B9%E6%8D%AE%E4%BA%8C%E5%8F%89%E6%A0%91%E5%88%9B%E5%BB%BA%E5%AD%97%E7%AC%A6%E4%B8%B2.md)
 - [965.单值二叉树](https://github.com/stronglxp/learnNote/blob/main/leetcode/DFS/965.%E5%8D%95%E5%80%BC%E4%BA%8C%E5%8F%89%E6%A0%91.md)
+- [654.最大二叉树](https://github.com/stronglxp/learnNote/blob/main/leetcode/DFS/654.%E6%9C%80%E5%A4%A7%E4%BA%8C%E5%8F%89%E6%A0%91.md)
 
 ##### 3、DP
 
