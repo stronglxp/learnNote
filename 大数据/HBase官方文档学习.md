@@ -994,3 +994,157 @@ try {
 
 HBase does not modify data in place, and so deletes are handled by creating new markers called tombstones. These tombstones, along with the dead values, are cleaned up on major compactions.
 
+#### 9、版本
+
+一个 *{row, column, version}* 元组是HBase中的一个单元(`cell`)。但是有可能会有很多的单元的行和列是相同的，可以使用版本来区分不同的单元。
+
+rows和column key是用字节数组表示的，version则是用一个长整型表示。这个long的值使用 `java.util.Date.getTime()` 或者 `System.currentTimeMillis()`产生的。这就意味着他的含义是“当前时间和1970-01-01 UTC的时间差，单位毫秒。”
+
+在HBase中，版本是按倒序排列的，因此当读取这个文件的时候，最先找到的是最近的版本。
+
+在 HBase 中，单元版本的语义存在很多混淆。 尤其是：
+
+- 如果对一个单元格的多次写入具有相同的版本，则只有最后一次写入是可获取的。
+- 可以按不递增的版本顺序写入单元格。
+
+##### 9.1 指定版本号存储
+
+列的最大版本数可以在创建表时指定，或者使用alter命令，或者[HColumnDescriptor.DEFAULT_VERSIONS](https://hbase.apache.org/apidocs/org/apache/hadoop/hbase/HColumnDescriptor.html)。在0.96版本之前，默认保存三个版本的历史数据，0.96版本的时候默认值修改为1。
+
+建表时设置
+
+```shell
+hbase> create '表名',{NAME='列族名1',VERSIONS=给定一个版本号},{NAME='列族名2',VERSIONS=给定的版本号}
+```
+
+alter命令
+
+```shell
+hbase> disable 'table'
+hbase> alter 'table' , NAME => 'f', VERSION => 1
+hbase> enable 'table'
+```
+
+可以指定查询几个版本的数据
+
+```shell
+scan 'test', { VERSIONS=>3}
+scan 'test', { COLUMNS => ['f:t1', 'f:t2'],VERSIONS=>3}
+```
+
+同样可以指定每个列族的最小版本数，默认是设置为1，表示禁用该功能。下面的例子表示把列族f1的最小版本号设置为1
+
+```shell
+hbase> alter ‘t1′, NAME => ‘f1′, MIN_VERSIONS => 2
+```
+
+从0.98.2开始，可以为所有新创建的列指定一个全局的最大版本数，通过设置`hbase-site.xml`文件中的`hbase.column.max.version`。
+
+##### 9.2 版本和HBase操作
+
+在本节中，我们将了解每个核心 HBase 操作的版本维度的行为。
+
+（1）Get/Scan
+
+Gets是在Scans的基础上实现的。下面对于[Get](https://hbase.apache.org/apidocs/org/apache/hadoop/hbase/client/Get.html)的讨论等同于[Scans](https://hbase.apache.org/apidocs/org/apache/hadoop/hbase/client/Scan.html)。
+
+默认情况下，如果你没有指定版本，当你使用get命令的时候，会返回版本最大的单元（该Cell可能是最新写入的，但不能保证）。默认的行为可以通过下面的方式修改：
+
+- 如果想返回不止一个版本，参考[Get.setMaxVersions()](https://hbase.apache.org/apidocs/org/apache/hadoop/hbase/client/Get.html#setMaxVersions--)
+- 如果想要返回的版本不只是最近的，参考[Get.setTimeRange()](https://hbase.apache.org/apidocs/org/apache/hadoop/hbase/client/Get.html#setTimeRange-long-long-)
+
+要检索小于或等于给定值的最新版本，从而在某个时间点给出记录的“最新”状态，只需使用从 0 到所需版本的范围并将最大版本设置为 1。
+
+（2）默认Get例子
+
+下面的Get操作会只获得最新的一个版本。
+
+```java
+public static final byte[] CF = "cf".getBytes();
+public static final byte[] ATTR = "attr".getBytes();
+...
+Get get = new Get(Bytes.toBytes("row1"));
+Result r = table.get(get);
+byte[] b = r.getValue(CF, ATTR); // returns current version of value
+```
+
+（3）指定版本获取
+
+下面的Get操作会返回最近三个版本
+
+```java
+public static final byte[] CF = "cf".getBytes();
+public static final byte[] ATTR = "attr".getBytes();
+...
+Get get = new Get(Bytes.toBytes("row1"));
+get.setMaxVersions(3); // will return last 3 versions of row
+Result r = table.get(get);
+byte[] b = r.getValue(CF, ATTR); // returns current version of value
+List<Cell> cells = r.getColumnCells(CF, ATTR); // returns all versions of this column
+```
+
+（4）Put操作
+
+一个Put操作会给一个`cell`创建一个版本，默认使用当前时间戳，当然你也可以自己设置时间戳。这就意味着你可以把时间设置在过去或者未来，或者随意使用一个Long值。
+
+要想覆盖一个现有的值，就意味着你的row,column和版本必须完全相等。
+
+下面的例子没有指明版本，则HBase会使用当前时间做为版本
+
+```java
+public static final byte[] CF = "cf".getBytes();
+public static final byte[] ATTR = "attr".getBytes();
+...
+Put put = new Put(Bytes.toBytes(row));
+put.add(CF, ATTR, Bytes.toBytes( data));
+table.put(put);
+```
+
+下面的例子指明了版本
+
+```java
+public static final byte[] CF = "cf".getBytes();
+public static final byte[] ATTR = "attr".getBytes();
+...
+Put put = new Put( Bytes.toBytes(row));
+long explicitTimeInMs = 555; // just an example
+put.add(CF, ATTR, explicitTimeInMs, Bytes.toBytes(data));
+table.put(put);
+```
+
+注意：版本时间戳在 HBase 内部用于诸如生存时间计算之类的事情。 通常最好避免自己设置此时间戳。 最好使用行的单独时间戳属性，或将时间戳作为行键的一部分，或两者兼而有之。
+
+下面的 Put 使用方法 getCellBuilder() 来获取已设置相关 Type 和 Row 的 CellBuilder 实例。
+
+```java
+public static final byte[] CF = "cf".getBytes();
+public static final byte[] ATTR = "attr".getBytes();
+...
+Put put = new Put(Bytes.toBytes(row));
+put.add(put.getCellBuilder().setQualifier(ATTR)
+  .setFamily(CF)
+  .setValue(Bytes.toBytes(data))
+  .build());
+table.put(put);
+```
+
+（5）Delete操作
+
+有三种不同类型的内部删除标记：
+
+- Delete: 删除列的指定版本。
+- Delete column: 删除列的所有版本。
+- Delete family: 删除特定列族所有列。
+
+删除整行时，HBase 将在内部为每个 ColumnFamily 创建一个墓碑（即，不是每个单独的列）。
+
+通过创建墓碑标记删除作品。 例如，假设我们要删除一行。 为此，您可以指定一个版本，否则默认使用 currentTimeMillis。 这意味着是删除版本小于或等于该版本的所有单元格。 HBase 从不就地修改数据，因此删除操作不会立即删除（或标记为已删除）删除条件对应的存储文件。 相反，会写入一个所谓的墓碑，它将掩盖已删除的值。 当 HBase 进行主要压缩时，会处理 tombstones 以实际删除死值，以及 tombstones 本身。 如果您在删除行时指定的版本大于该行中任何值的版本，则可以考虑删除整行。
+
+删除标记会在下一次Major Compaction时从内存中清除，除非为列族设置了`KEEP_DELETED_CELLS`选项。通过设置`hbase-site.xml`文件中的`hbase.hstore.time.to.purge.deletes`属性，可以为删除标记设置过期时间。如果`hbase.hstore.time.to.purge.deletes`没有设置或者设置为0，所有的删除标记包括它们的时间戳都会在下一次Major Compaction的时候从内存中清除。否则，删除标记将会在它们对应的时间戳加上`hbase.hstore.time.to.purge.deletes`属性值所对应时间的下一次Major Compaction时从内存中清除。
+
+##### 9.3 HBase-2.0.0 中的可选新版本和删除行为
+
+在 hbase-2.0.0 中，操作员可以通过将列描述符属性 NEW_VERSION_BEHAVIOR 设置为 true 来指定备用版本和删除处理（设置列描述符属性之前，需要先把表设置为disable状态）。
+
+
+
