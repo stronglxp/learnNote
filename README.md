@@ -92,7 +92,8 @@
 
 - [一些基本概念](https://github.com/stronglxp/learnNote/blob/main/%E5%A4%A7%E6%95%B0%E6%8D%AE/%E4%B8%80%E4%BA%9B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5.md)
 - [Hadoop框架学习](https://github.com/stronglxp/learnNote/blob/main/%E5%A4%A7%E6%95%B0%E6%8D%AE/Hadoop%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0.md)
-- [HBase学习](https://github.com/stronglxp/learnNote/blob/main/%E5%A4%A7%E6%95%B0%E6%8D%AE/HBase%E5%AD%A6%E4%B9%A0.md)
+- [HBase官方文档学习](https://github.com/stronglxp/learnNote/blob/main/%E5%A4%A7%E6%95%B0%E6%8D%AE/HBase%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E5%AD%A6%E4%B9%A0.md)
+- [HBase视频学习笔记](https://github.com/stronglxp/learnNote/blob/main/%E5%A4%A7%E6%95%B0%E6%8D%AE/HBase%E8%A7%86%E9%A2%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.md)
 
 #### 九、十大排序算法
 
