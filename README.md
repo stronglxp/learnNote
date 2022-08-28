@@ -157,6 +157,7 @@
 - [429.N叉树的层序遍历](https://github.com/stronglxp/learnNote/blob/main/leetcode/BFS/429.N%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86.md)
 - [623.在二叉树中增加一行](https://github.com/stronglxp/learnNote/blob/main/leetcode/BFS/623.%E5%9C%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E5%A2%9E%E5%8A%A0%E4%B8%80%E8%A1%8C.md)
 - [1302.层数最深叶子节点的和](https://github.com/stronglxp/learnNote/blob/main/leetcode/BFS/1302.%E5%B1%82%E6%95%B0%E6%9C%80%E6%B7%B1%E5%8F%B6%E5%AD%90%E8%8A%82%E7%82%B9%E7%9A%84%E5%92%8C.md)
+- [662.二叉树最大宽度](https://github.com/stronglxp/learnNote/blob/main/leetcode/BFS/662.%E4%BA%8C%E5%8F%89%E6%A0%91%E6%9C%80%E5%A4%A7%E5%AE%BD%E5%BA%A6.md)
 
 ##### 2、DFS
 
