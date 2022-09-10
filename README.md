@@ -177,6 +177,7 @@
 - [965.单值二叉树](https://github.com/stronglxp/learnNote/blob/main/leetcode/DFS/965.%E5%8D%95%E5%80%BC%E4%BA%8C%E5%8F%89%E6%A0%91.md)
 - [654.最大二叉树](https://github.com/stronglxp/learnNote/blob/main/leetcode/DFS/654.%E6%9C%80%E5%A4%A7%E4%BA%8C%E5%8F%89%E6%A0%91.md)
 - [998.最大二叉树II](https://github.com/stronglxp/learnNote/blob/main/leetcode/DFS/998.%E6%9C%80%E5%A4%A7%E4%BA%8C%E5%8F%89%E6%A0%91II.md)
+- [669.修剪二叉搜索树](https://github.com/stronglxp/learnNote/blob/main/leetcode/DFS/669.%E4%BF%AE%E5%89%AA%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91.md)
 
 ##### 3、DP
 
