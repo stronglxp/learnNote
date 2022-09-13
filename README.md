@@ -512,6 +512,7 @@
 - [1405.最长快乐字符串](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E8%B4%AA%E5%BF%83/1405.%E6%9C%80%E9%95%BF%E5%BF%AB%E4%B9%90%E5%AD%97%E7%AC%A6%E4%B8%B2.md)
 - [55.跳跃游戏](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E8%B4%AA%E5%BF%83/55.%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F.md)
 - [646.最长数对链](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E8%B4%AA%E5%BF%83/646.%E6%9C%80%E9%95%BF%E6%95%B0%E5%AF%B9%E9%93%BE.md)
+- [670.最大交换](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E8%B4%AA%E5%BF%83/670.%E6%9C%80%E5%A4%A7%E4%BA%A4%E6%8D%A2.md)
 
 ##### 19、图
 
