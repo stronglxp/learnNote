@@ -222,32 +222,32 @@ echo hadoop3 > conf/backup-masters
 idea新建maven项目，在pom里导入相关的依赖
 
 ```xml
-	<dependencies>
-    <dependency>
-      <groupId>org.apache.hbase</groupId>
-      <artifactId>hbase-client</artifactId>
-      <version>2.4.11</version>
-    </dependency>
-  </dependencies>
+<dependencies>
+  <dependency>
+    <groupId>org.apache.hbase</groupId>
+    <artifactId>hbase-client</artifactId>
+    <version>2.4.11</version>
+  </dependency>
+</dependencies>
 
-  <repositories>
-    <repository>
-      <id>HDPReleases2</id>
-      <name>HDPReleases2</name>
-      <url>https://repo.hortonworks.com/content/repositories/releases/</url>
-      <layout>default</layout>
-      <releases>
-        <enabled>true</enabled>
-        <updatePolicy>daily</updatePolicy>
-        <checksumPolicy>warn</checksumPolicy>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-        <updatePolicy>never</updatePolicy>
-        <checksumPolicy>fail</checksumPolicy>
-      </snapshots>
-    </repository>
-  </repositories>
+<repositories>
+  <repository>
+    <id>HDPReleases2</id>
+    <name>HDPReleases2</name>
+    <url>https://repo.hortonworks.com/content/repositories/releases/</url>
+    <layout>default</layout>
+    <releases>
+      <enabled>true</enabled>
+      <updatePolicy>daily</updatePolicy>
+      <checksumPolicy>warn</checksumPolicy>
+    </releases>
+    <snapshots>
+      <enabled>false</enabled>
+      <updatePolicy>never</updatePolicy>
+      <checksumPolicy>fail</checksumPolicy>
+    </snapshots>
+  </repository>
+</repositories>
 ```
 
 #### 3.2 创建连接
@@ -391,59 +391,59 @@ public static boolean isTableExists(String namespace, String tableName) throws I
 ##### 3.3.3 创建表格
 
 ```java
-		public static void createTable(String namespace, String tableName, String ... columnFamilies) throws IOException {
-        if (columnFamilies.length == 0) {
-            log.error("列族不能为空");
-            return;
-        }
-        if (isTableExists(namespace, tableName)) {
-            log.error("表格已经存在");
-            return;
-        }
-        Connection connection = HBaseConnection.getConnection();
-        Admin admin = connection.getAdmin();
-        TableDescriptorBuilder tableDescriptorBuilder = TableDescriptorBuilder.newBuilder(TableName.valueOf(namespace, tableName));
-        for (String columnFamily : columnFamilies) {
-            tableDescriptorBuilder.setColumnFamily(ColumnFamilyDescriptorBuilder.newBuilder(Bytes.toBytes(columnFamily)).setMaxVersions(3).build());
-        }
-        admin.createTable(tableDescriptorBuilder.build());
-        admin.close();
-        connection.close();
+public static void createTable(String namespace, String tableName, String ... columnFamilies) throws IOException {
+    if (columnFamilies.length == 0) {
+      log.error("列族不能为空");
+      return;
     }
+    if (isTableExists(namespace, tableName)) {
+      log.error("表格已经存在");
+      return;
+    }
+    Connection connection = HBaseConnection.getConnection();
+    Admin admin = connection.getAdmin();
+    TableDescriptorBuilder tableDescriptorBuilder = TableDescriptorBuilder.newBuilder(TableName.valueOf(namespace, tableName));
+    for (String columnFamily : columnFamilies) {
+      tableDescriptorBuilder.setColumnFamily(ColumnFamilyDescriptorBuilder.newBuilder(Bytes.toBytes(columnFamily)).setMaxVersions(3).build());
+    }
+    admin.createTable(tableDescriptorBuilder.build());
+    admin.close();
+    connection.close();
+}
 ```
 
 ##### 3.3.4 修改表格
 
 ```java
-		public static void modifyTable(String namespace, String tableName, String columnFamily, Integer version) throws IOException {
-        Connection connection = HBaseConnection.getConnection();
-        Admin admin = connection.getAdmin();
-        // 获取原先的
-        TableDescriptor descriptor = admin.getDescriptor(TableName.valueOf(namespace, tableName));
-        TableDescriptorBuilder tableDescriptorBuilder = TableDescriptorBuilder.newBuilder(descriptor);
+public static void modifyTable(String namespace, String tableName, String columnFamily, Integer version) throws IOException {
+    Connection connection = HBaseConnection.getConnection();
+    Admin admin = connection.getAdmin();
+    // 获取原先的
+    TableDescriptor descriptor = admin.getDescriptor(TableName.valueOf(namespace, tableName));
+    TableDescriptorBuilder tableDescriptorBuilder = TableDescriptorBuilder.newBuilder(descriptor);
 
-        ColumnFamilyDescriptor columnFamily1 = descriptor.getColumnFamily(Bytes.toBytes(columnFamily));
-        tableDescriptorBuilder.modifyColumnFamily(ColumnFamilyDescriptorBuilder.newBuilder(columnFamily1).setMaxVersions(version).build());
-        admin.modifyTable(tableDescriptorBuilder.build());
+    ColumnFamilyDescriptor columnFamily1 = descriptor.getColumnFamily(Bytes.toBytes(columnFamily));
+    tableDescriptorBuilder.modifyColumnFamily(ColumnFamilyDescriptorBuilder.newBuilder(columnFamily1).setMaxVersions(version).build());
+    admin.modifyTable(tableDescriptorBuilder.build());
 
-        admin.close();
-        connection.close();
-    }
+    admin.close();
+    connection.close();
+}
 ```
 
 ##### 3.3.5 删除表格
 
 ```java
-		public static void deleteTable(String namespace, String tableName) throws IOException {
-        Connection connection = HBaseConnection.getConnection();
-        Admin admin = connection.getAdmin();
+public static void deleteTable(String namespace, String tableName) throws IOException {
+    Connection connection = HBaseConnection.getConnection();
+    Admin admin = connection.getAdmin();
 
-        admin.disableTable(TableName.valueOf(namespace, tableName));
-        admin.deleteTable(TableName.valueOf(namespace, tableName));
+    admin.disableTable(TableName.valueOf(namespace, tableName));
+    admin.deleteTable(TableName.valueOf(namespace, tableName));
 
-        admin.close();
-        connection.close();
-    }
+    admin.close();
+    connection.close();
+}
 ```
 
 #### 3.4 DML
@@ -463,87 +463,87 @@ public static boolean isTableExists(String namespace, String tableName) throws I
 ##### 3.4.2 读取数据
 
 ```java
-		public static void getCells(String namespace, String tableName, String rowKey, String columnFamily, String columnName) throws IOException {
-        Table table = connection.getTable(TableName.valueOf(namespace, tableName));
-        Get get = new Get(Bytes.toBytes(rowKey));
-        get.addColumn(Bytes.toBytes(columnFamily), Bytes.toBytes(columnName));
-        get.readAllVersions();
-        Result result = table.get(get);
-        Arrays.stream(result.rawCells()).forEach(cell -> System.out.println(new String(CellUtil.cloneValue(cell))));
-    }
+public static void getCells(String namespace, String tableName, String rowKey, String columnFamily, String columnName) throws IOException {
+    Table table = connection.getTable(TableName.valueOf(namespace, tableName));
+    Get get = new Get(Bytes.toBytes(rowKey));
+    get.addColumn(Bytes.toBytes(columnFamily), Bytes.toBytes(columnName));
+    get.readAllVersions();
+    Result result = table.get(get);
+    Arrays.stream(result.rawCells()).forEach(cell -> System.out.println(new String(CellUtil.cloneValue(cell))));
+}
 ```
 
 ##### 3.4.3 扫描数据
 
 ```java
-		public static void scanRows(String namespace, String tableName, String startRow, String stopRow) throws IOException {
-        Table table = connection.getTable(TableName.valueOf(namespace, tableName));
-        Scan scan = new Scan();
-        // 默认包含startRow
-        scan.withStartRow(Bytes.toBytes(startRow));
-        // 默认不包含stopRow
-        scan.withStopRow(Bytes.toBytes(stopRow));
-        ResultScanner scanner = table.getScanner(scan);
-        for (Result result : scanner) {
-            Cell[] cells = result.rawCells();
-            for (Cell cell : cells) {
-                System.out.print(new String(CellUtil.cloneRow(cell)) + "-" + new String(CellUtil.cloneFamily(cell)) +
-                        "-" + new String(CellUtil.cloneQualifier(cell)) + "-" + new String(CellUtil.cloneValue(cell)) + "\t");
-            }
-            System.out.println();
-        }
-        table.close();
+public static void scanRows(String namespace, String tableName, String startRow, String stopRow) throws IOException {
+    Table table = connection.getTable(TableName.valueOf(namespace, tableName));
+    Scan scan = new Scan();
+    // 默认包含startRow
+    scan.withStartRow(Bytes.toBytes(startRow));
+    // 默认不包含stopRow
+    scan.withStopRow(Bytes.toBytes(stopRow));
+    ResultScanner scanner = table.getScanner(scan);
+    for (Result result : scanner) {
+      Cell[] cells = result.rawCells();
+      for (Cell cell : cells) {
+        System.out.print(new String(CellUtil.cloneRow(cell)) + "-" + new String(CellUtil.cloneFamily(cell)) +
+                         "-" + new String(CellUtil.cloneQualifier(cell)) + "-" + new String(CellUtil.cloneValue(cell)) + "\t");
+      }
+      System.out.println();
     }
+    table.close();
+}
 ```
 
 ##### 3.4.4 过滤数据
 
 ```java
-		public static void filterRows(String namespace, String tableName, String startRow, String stopRow, String columnFamily, String columnName, String value) throws IOException {
-        Table table = connection.getTable(TableName.valueOf(namespace, tableName));
-        Scan scan = new Scan();
-        // 默认包含startRow
-        scan.withStartRow(Bytes.toBytes(startRow));
-        // 默认不包含stopRow
-        scan.withStopRow(Bytes.toBytes(stopRow));
+public static void filterRows(String namespace, String tableName, String startRow, String stopRow, String columnFamily, String columnName, String value) throws IOException {
+    Table table = connection.getTable(TableName.valueOf(namespace, tableName));
+    Scan scan = new Scan();
+    // 默认包含startRow
+    scan.withStartRow(Bytes.toBytes(startRow));
+    // 默认不包含stopRow
+    scan.withStopRow(Bytes.toBytes(stopRow));
 
-        FilterList filterList = new FilterList();
-        // 结果只保留当前列的数据
-        ColumnValueFilter columnValueFilter = new ColumnValueFilter(Bytes.toBytes(columnFamily), Bytes.toBytes(columnName), CompareOperator.EQUAL, Bytes.toBytes(value));
-        filterList.addFilter(columnValueFilter);
-        // 结果会保留整行数据，如果rowKey没有对应的column，也会被保留
-        SingleColumnValueFilter singleColumnValueFilter = new SingleColumnValueFilter(Bytes.toBytes(columnFamily), Bytes.toBytes(columnName), CompareOperator.EQUAL, Bytes.toBytes(value));
-        filterList.addFilter(singleColumnValueFilter);
-        scan.setFilter(filterList);
-        ResultScanner scanner = table.getScanner(scan);
-        for (Result result : scanner) {
-            Cell[] cells = result.rawCells();
-            for (Cell cell : cells) {
-                System.out.print(new String(CellUtil.cloneRow(cell)) + "-" + new String(CellUtil.cloneFamily(cell)) +
-                        "-" + new String(CellUtil.cloneQualifier(cell)) + "-" + new String(CellUtil.cloneValue(cell)) + "\t");
-            }
-            System.out.println();
-        }
-        table.close();
+    FilterList filterList = new FilterList();
+    // 结果只保留当前列的数据
+    ColumnValueFilter columnValueFilter = new ColumnValueFilter(Bytes.toBytes(columnFamily), Bytes.toBytes(columnName), CompareOperator.EQUAL, Bytes.toBytes(value));
+    filterList.addFilter(columnValueFilter);
+    // 结果会保留整行数据，如果rowKey没有对应的column，也会被保留
+    SingleColumnValueFilter singleColumnValueFilter = new SingleColumnValueFilter(Bytes.toBytes(columnFamily), Bytes.toBytes(columnName), CompareOperator.EQUAL, Bytes.toBytes(value));
+    filterList.addFilter(singleColumnValueFilter);
+    scan.setFilter(filterList);
+    ResultScanner scanner = table.getScanner(scan);
+    for (Result result : scanner) {
+      Cell[] cells = result.rawCells();
+      for (Cell cell : cells) {
+        System.out.print(new String(CellUtil.cloneRow(cell)) + "-" + new String(CellUtil.cloneFamily(cell)) +
+                         "-" + new String(CellUtil.cloneQualifier(cell)) + "-" + new String(CellUtil.cloneValue(cell)) + "\t");
+      }
+      System.out.println();
     }
+    table.close();
+}
 ```
 
 ##### 3.4.5 删除数据
 
 ```java
-		public static void deleteColumn(String namespace, String tableName, String rowKey, String columnFamily, String columnName) throws IOException {
-        Table table = connection.getTable(TableName.valueOf(namespace, tableName));
-        Delete delete = new Delete(Bytes.toBytes(rowKey));
-        // 删除单个版本
-        delete.addColumn(Bytes.toBytes(columnFamily), Bytes.toBytes(columnName));
-        // 删除所有版本
-        delete.addColumns(Bytes.toBytes(columnFamily), Bytes.toBytes(columnName));
-        // 删除列族
-        delete.addFamily(Bytes.toBytes(columnFamily));
+public static void deleteColumn(String namespace, String tableName, String rowKey, String columnFamily, String columnName) throws IOException {
+    Table table = connection.getTable(TableName.valueOf(namespace, tableName));
+    Delete delete = new Delete(Bytes.toBytes(rowKey));
+    // 删除单个版本
+    delete.addColumn(Bytes.toBytes(columnFamily), Bytes.toBytes(columnName));
+    // 删除所有版本
+    delete.addColumns(Bytes.toBytes(columnFamily), Bytes.toBytes(columnName));
+    // 删除列族
+    delete.addFamily(Bytes.toBytes(columnFamily));
 
-        table.delete(delete);
-        table.close();
-    }
+    table.delete(delete);
+    table.close();
+}
 ```
 
 ### 四、HBase架构
