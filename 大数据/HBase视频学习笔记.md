@@ -582,7 +582,7 @@ RowKey：([table], [region start key], [region id])即表名，region起始位�
 
 （2）WAL
 
-由于数据要经过MemStore排序后才能刷写到HFile，但把数据保存在内存中有很高的概率会导致数据丢失，为了解决这个问题，数据会写写到一个叫做Write-Ahead-Logfile的文件中，然后再写入到MemStore中。所以在系统出现故障的时候，数据可以通过这个日志文件重建。
+由于数据要经过MemStore排序后才能刷写到HFile，但把数据保存在内存中有很高的概率会导致数据丢失，为了解决这个问题，数据会写到一个叫做Write-Ahead-Logfile的文件中，然后再写入到MemStore中。所以在系统出现故障的时候，数据可以通过这个日志文件重建。
 
 （3）BlockCache
 
@@ -610,7 +610,74 @@ RowKey：([table], [region start key], [region id])即表名，region起始位�
 
 （7）等达到MemStore的刷写时机后，将数据刷写到对应的story中。
 
+#### 4.4 MemStore Flush
 
+MemStore刷写由多个线程控制，条件相互独立。
 
+主要的刷写规则是控制刷写文件的大小，在每一个刷写线程中都会进行监控。
 
+（1）当某个memstore的大小达到了`hbase.hregion.memstore.flush.size`(默认值128M)，其所在region的所有memstore都会刷写。
 
+当memstore的大小达到了`hbase.hregion.memstore.flush.size * hbase.hregion.memstore.block.multiplier`(128M * 4)的时候，会刷写同时阻止继续往该memstore写数据（由于线程监控是周期性的，所以有可能面对数据洪峰，尽管可能性比较小）
+
+（2）由HRegionServer中的属性MemStoreFlusher内部线程FlushHandler控制。标准为`LOWER_MARK`（低水位线）和`HIGH_MARK`（高水位线），意义在于避免写缓存使用过多的内存造成OOM。
+
+当region server中memstore的总大小达到低水位线`java_heapsize * hbase.regionserver.global.memstore.size（默认值0.4） * hbase.regionserver.global.memstore.size.lower.limit（默认值0.95）`，region会按照其所有memstore的大小顺序（由大到小）依次进行刷写，直到region server中所有memstore的总大小减小到上述值以下。
+
+当region server中memstore的总大小达到高水位线`java_heapsize * hbase.regionserver.global.memstore.size（默认值0.4）`时，会同时阻止继续往所有的memstore写数据。
+
+（3）为了避免数据长时间处于内存中，到达自动刷写时间也会触发memstore flush。由HRegionServer的属性PeriodicMemStoreFlusher控制进行，由于重要性比较低，5min才会执行一次。
+
+自动刷新的时间间隔由该属性进行配置`hbase.regionserver.optionalcacheflushinterval`（默认1h）。
+
+（4）当WAL文件的数量超过`hbase.regionserver.max.logs`，region会按照时间顺序依次进行刷写，直到WAL文件数量减小到`hbase.regionserver.max.logs`以下（该属性名已经废弃，现在无需手动设置，最大值为32）。
+
+#### 4.5 读流程
+
+##### 4.5.1 HFile结构
+
+在了解读流程之前，需要先知道读取的数据是什么样子的。
+
+HFile是存储在HDFS上每一个store文件夹下实际存储数据的文件，里面存储多种内容，包括数据本身（KV键值对）、元数据记录、文件信息、数据索引、元数据索引和一个固定长度的尾部信息（记录文件的修改情况）。
+
+键值对按照块大小（默认64K）保存在文件中，数据索引按照块创建，块越多，索引越大。每一个HFile还会维护一个布隆过滤器（读取时可以大致判断要get的key是否存在HFile中）。
+
+KV内容如下：
+
+- rowlength：key的长度
+- row：key的值
+- columnfamilylength：列族长度
+- columnfamily：列族
+- columnqualifier：列名
+- timestamp：时间戳，默认系统时间
+- keytype：Put
+
+由于HFile存储经过序列化，所以无法直接查看。可以通过HBase提供的命令来查看存储在HDFS上面的HFile元数据内容。
+
+```shell
+bin/hbase hfile -m -f /hbase/data/命名空间/表名/regionID/列族/HFile名
+```
+
+##### 4.5.2 读流程
+
+![image-20221006215348521](HBase视频学习笔记.assets/image-20221006215348521-5064429.png)
+
+创建连接同写流程。
+
+（1）创建Table对象发送get请求。
+
+（2）优先访问Block Cache，查找之前是否读取过，并且可以读取HFile的索引信息和布隆过滤器。
+
+（3）不管读缓存中是否有数据（可能已经过期了），都需要再次读取写缓存和store中的文件。
+
+（4）最终将所有读取到的数据合并版本，按照get的要求返回即可。
+
+##### 4.5.3 合并读取数据优化
+
+每次读取数据都要读取三个位置，最后进行版本的合并，效率比较低，所以需要对此优化。
+
+（1）HFile带有索引文件，读取对应RowKey数据会比较快。
+
+（2）Block Cache会缓存之前读取的内容和元数据信息，如果HFile没有发生变化（记录在HFile尾信息中），则不需要再次读取。
+
+（3）使用布隆过滤器能够快速过滤当前HFile是否存在对应的RowKey，从而避免读取文件。（布隆过滤器使用HASH选法，不是绝对准确的，出错会造成多扫描一个文件，多读取数据结果没有影响）
