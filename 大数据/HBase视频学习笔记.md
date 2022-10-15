@@ -681,3 +681,203 @@ bin/hbase hfile -m -f /hbase/data/命名空间/表名/regionID/列族/HFile名
 （2）Block Cache会缓存之前读取的内容和元数据信息，如果HFile没有发生变化（记录在HFile尾信息中），则不需要再次读取。
 
 （3）使用布隆过滤器能够快速过滤当前HFile是否存在对应的RowKey，从而避免读取文件。（布隆过滤器使用HASH选法，不是绝对准确的，出错会造成多扫描一个文件，多读取数据结果没有影响）
+
+#### 4.6 StoreFile Compaction
+
+由于memstore每次刷写都会生成一个新的HFile，文件过多读取不方便，所以会进行文件的合并，清理掉过期和删除的数据，会进行StoreFile Compaction。
+
+Compaction分为两种，分别是Minor Compaction和Major Compaction，通常我们简称为小合并和大合并。
+
+**Minor Compaction**：指选取一些小的、相邻的StoreFile将它们合并成一个更大的StoreFile，在这个过程中不会处理已经Deleted或Expired的Cell。一次Minor Compaction的结果是更少并且更大的StoreFile。
+
+**Major Compaction**：指将所有的StoreFile合并成一个StoreFile，由参数`hbase.hregion.majorcompaction`控制，默认7天。这个过程会清理三类没有意义的数据：被删除的数据、TTL过期数据、版本号超过设定版本号的数据。另外，一般情况下，major compaction持续时间比较长，整个过程会消耗大量系统资源，对上层业务影响比较大，因此线程业务都会关闭自动触发major compaction功能，改为手动在业务低峰期触发。
+
+这里值得关注的一点是只有在触发执行major compaction后才会真正删除数据，包含写入的delete数据、设置TTL的列族中已经过期的数据以及版本号过大的数据。
+
+![image-20221007204545892](HBase视频学习笔记.assets/image-20221007204545892-5146747.png)
+
+HBase触发Compaction的条件有三种：**memstore flush、后台线程周期性检查、手动触发**。
+
+- memstore flush：可以说compaction的根源就在于flush，memstore达到一定阈值或其他条件时就会触发flush刷写到磁盘生成HFile文件，正是因为HFile文件越来越多才需要compact。HBase每次flush后，都会判断是否要进行compaction，一旦满足minor compaction或者major compaction的条件便会触发执行。
+- 后台线程周期性检查：后台线程CompactionChecker会定期检查是否需要执行compaction，检查周期为hbase.server.thread.wakefrequency * hbase.server.compactchecker.interval.multiplier，这里主要考虑的是一段时间内没有写入请求仍然需要做compact检查。其中参数hbase.server.thread.wakefrequency默认值为1000即10s，是hbase服务端线程唤醒时间间隔，用于log roller、memstore flusher等操作周期性检查。参数hbase.server.compactchecker.interval.multiplier默认值为1000，是compaction操作周期性检查乘数因子。10 * 1000 s 时间上约等于2hrs, 46mins, 40sec。
+- 手动触发：是指通过HBase Shell、Master UI界面或者HBase API等任一种方式 执行 compact、major_compact等命令。
+
+Major Compaction主要涉及到两个参数：
+
+- hbase.hregion.majorcompaction：Major Compaction周期性时间间隔，默认值为604800000，单位ms。表示major compaction默认7天调度一次，hbase 0.96x及之前默认为1天调度一次。设置为0时表示禁用自动触发major compaction。需要强调的是一般major compaction持续时间较长、系统资源消耗较大，对上层业务也有比较大的影响，一般生产环境下为了避免影响读写请求，会禁用自动触发major compaction。
+- hbase.hregion.majorcompaction.jitter：Major compaction抖动参数，默认值0.5。这个参数是为了避免major compaction同时在各个regionserver上同时发生，避免此操作给集群带来很大压力。 这样节点major compaction就会在 + 或 - 两者乘积的时间范围内随机发生。
+
+Minor Compaction涉及的参数比Major Compaction要多，各个参数的目标时为了选择合适的storefile，具体参数如下：
+
+- hbase.hstore.compaction.min：一次minor compaction最少合并的StoreFile数量，默认值 3。表示至少有3个符合条件的StoreFile,minor compaction才会启动。一般情况下不建议调整该参数。
+
+    如果要调整，不建议调小该参数，这样会带来更频繁的压缩，调大该参数的同时其他相关参数也应该做调整。早期参数名称为hbase.hstore.compactionthreshold。
+
+- hbase.hstore.compaction.max：一次minor compaction最多合并的StoreFile数量，默认值 10。这个参数也是控制着一次压缩的时间。一般情况下不建议调整该参数。调大该值意味着一次compaction将会合并更多的StoreFile，压缩时间将会延长。
+
+- hbase.hstore.compaction.min.size：文件大小 < 该参数值的StoreFile一定是适合进行minor compaction文件，默认值 128M（memstore flush size）。意味着小于该大小的StoreFile将会自动加入（automatic include）压缩队列。一般情况下不建议调整该参数。
+
+    但是，在write-heavy就是写压力非常大的场景，可能需要微调该参数、减小参数值，假如每次memstore大小达到1~2M时就会flush生成StoreFile，此时生成的每个StoreFile都会加入压缩队列，而且压缩生成的StoreFile仍然可能小于该配置值会再次加入压缩队列，这样将会导致压缩队列持续很长。
+
+- hbase.hstore.compaction.max.size：文件大小 > 该参数值的StoreFile将会被排除，不会加入minor compaction，默认值Long.MAX_VALUE，表示没有什么限制。一般情况下也不建议调整该参数。
+
+- hbase.hstore.compaction.ratio：这个ratio参数的作用是判断文件大小 > hbase.hstore.compaction.min.size的StoreFile是否也是适合进行minor compaction的，默认值1.2。更大的值将压缩产生更大的StoreFile，建议取值范围在1.0~1.4之间。大多数场景下也不建议调整该参数。
+
+- hbase.hstore.compaction.ratio.offpeak：此参数与compaction ratio参数含义相同，是在原有文件选择策略基础上增加了一个非高峰期的ratio控制，默认值5.0。这个参数受另外两个参数 hbase.offpeak.start.hour 与 hbase.offpeak.end.hour 控制，这两个参数值为[0, 23]的整数，用于定义非高峰期时间段，默认值均为-1表示禁用非高峰期ratio设置。
+
+参考：https://cloud.tencent.com/developer/article/1488439
+
+#### 4.7 Region Split
+
+Region切分分为两种，创建表时的预分区即自定义分区，同时系统默认还会启动一个切分规则，避免单个Region中的数据量太大。
+
+##### 4.7.1 预分区
+
+每一个region维护着startKey和endKey，如果加入的数据符合某个region维护的rowKey范围，则该数据交给这个region维护。那么依照这个原则，可以将数据所要投放的分区提前规划好，以提高hbase的性能。
+
+（1）手动设定预分区
+
+```shell
+create 'table', 'info', SPLITS => {'1000','2000','3000','4000'}
+```
+
+（2）生成16进制序列预分区
+
+```shell
+create 'table', 'info', {NUMREGIONS => 15, SPLITALGO => 'HEXStringSplit'}
+```
+
+（3）按照文件中设置的规则预分区
+
+首先在当前目录下创建对应的文件splits.txt，注意不能有空行
+
+```txt
+1000
+2000
+3000
+4000
+```
+
+然后在hbase shell中执行
+
+```shell
+create 'table', 'info', SPLITS_FILE => 'splits.txt'
+```
+
+（4）使用Java api创建预分区
+
+##### 4.7.2 系统拆分
+
+Region的拆分是由HRegionServer完成的，在操作之前需要通过zk汇报master，修改对应的meta表信息添加两列`info:splitA`和`info:splitB`信息。之后需要操作HDFS上面对应的文件，按照拆分后的Region范围进行标记区分，实际操作为创建文件引用，不会挪动数据。刚完成拆分的时候，两个Region都由原先的RegionServer管理。之后汇报给Master，由Master将修改后的信息写入到Meta表中。等待下一次触发负载均衡机制，才会修改Region的管理服务者，而数据要等到下一次压缩时，才会实际进行移动。
+
+不管是否使用预分区，系统都会默认启动一套Region拆分规则。不同版本的拆分规则有差别，系统拆分策略的父类为`RegionSplitPolicy`。
+
+（1）0.94版本之前，`ConstantSizeRegionSplitPolicy`
+
+当1个region中的某个store下所有StoreFile的总大小超过`hbase.hregion.max.filesize(10G)`，该Region就会进行拆分。
+
+（2）0.94版本之后，2.0版本之前，`IncreasingToUpperBoundRegionSplitPolicy`
+
+当1个region中的某个store下所有StoreFile的总大小超过`Min(initialSize * R^3, hbase.hregion.max.filesize)`，该Region就会进行拆分。其中initialSize的默认值为2 * hbase.hregion.memstore.flush.size，R为当前Region Server中属于该Table的Region个数。
+
+具体的切分策略为：
+
+第一次 split：1^3 * 256 = 256MB 
+
+第二次 split：2^3 * 256 = 2048MB 
+
+第三次 split：3^3 * 256 = 6912MB 
+
+第四次 split：4^3 * 256 = 16384MB > 10GB，因此取较小的值 10GB 
+
+后面每次 split 的 size 都是 10GB 了。
+
+（3）2.0版本之后，`SteppingSplitPolicy`
+
+Hbase2.0引入了新的split策略，如果当前RegionServer上该表只有一个Region，按照2 * hbase.hregion.memstore.flush.size分裂，否则按照hbase.hregion.max.filesize分裂。
+
+### 五、HBase优化
+
+#### 5.1 RowKey设计
+
+一条数据的唯一标识就是rowkey，这条数据存储在哪个分区，取决于rowkey处于哪一个预分区的区间内。设计rowkey的主要目的，就是让数据均匀的分布于所有的region中，在一定程度上防止数据倾斜。
+
+rowkey常用的设计方案：（1）生成随机数、hash、散列值。（2）时间戳反转（用一个很大的时间戳减去当前的时间戳，这样越近的时间就排在越前面）。（3）字符串拼接。
+
+#### 5.2 参数优化
+
+（1）zookeeper会话超时时间：zookeeper.session.timeout
+
+hbase-site.xml。默认值为90000ms，当某个regionServer挂掉，90s后Master才能察觉到。可适当减小该值，尽可能快的检测到regionServer故障，可调整至20-30s。
+
+同时可以调整重试时间和重试次数：hbase.client.pause（默认值100ms）和base.client.retries.number（默认15次）。
+
+（2）RPC监听数量：hbase.regionserver.handler.count
+
+hbase-site.xml。默认值为30，用于指定RPC监听的数量，可以根据客户端的请求数进行调整，读写请求较多时，增加此值。
+
+（3）Major Compaction：hbase.hregion.majorcompaction
+
+hbase-site.xml。默认值604800000s（7天）。Major Compaction的周期，如果要关闭，可以把值设为0。
+
+（4）HStore文件大小：hbase.hregion.max.filesize
+
+hbase-site.xml。默认值为10737418240（10GB），如果需要运行HBase的MR任务，可以减小此值。因为一个region对应一个map任务，如果单个region过大，会导致map任务执行时间过长。该值的意思是，如果HFile的大小达到这个值，则这个region会被切分为两个hfile。
+
+（5）HBase客户端缓存：hbase.client.write.buffer
+
+hbase-site.xml。默认值2097152bytes（2M），用于指定HBase客户端缓存，增大该值可以减少RPC的调用次数，但是会消耗更多内存。
+
+（6）指定scan.next扫描所获取的行数：hbase.client.scanner.caching
+
+hbase-site.xml。用于指定scan.next方法获取的默认行数，值越大，消耗内存越大。
+
+（7）BlockCache占用RegionServer堆内存的比例：hfile.block.cache.size
+
+hbase-site.xml。默认0.4，读请求较多的情况下，可适当调大。
+
+（8）MemStore占用RegionServer堆内存的比例：hbase.regionserver.global.memstore.size
+
+hbase-site.xml。默认0.4，写请求较多的情况下，可适当调大。
+
+#### 5.3 JVM调优
+
+JVM调优的思路有两部分，一是内存设置，二是垃圾回收器设置。
+
+垃圾回收的修改是使用并发垃圾回收，默认PO+PS是并行垃圾回收，会有大量的暂停。理由是hbase大量使用内存用于存储数据，容易遭遇数据洪峰造成OOM，同时写缓存的数据是不能垃圾回收的，主要回收的就是读缓存，而读缓存垃圾回收不影响性能。
+
+（1）设置使用CMS垃圾收集器
+
+```
+-XX:+UseConcMarkSweepGC
+```
+
+（2）保持新生代尽量小，同时尽早开启GC，例如
+
+```
+// 在内存占用到70%的时候开启GC
+-XX:CMSInitiatingOccupancyFraction=70
+// 指定使用70%，不让JVM动态调整
+-XX:+UseCMSInitiatingOccupancyOnly
+// 新生代内存设置为512M
+-Xmn512m
+// 并行执行新生代垃圾回收
+-XX:+UseParNewGC
+// 设置scanner扫描结果占用内存大小，在hbase-site.xml中，设置hbase.client.scanner.max.result.size（默认值为2M）为eden空间的1/8（大概在64M）
+```
+
+#### 5.4 HBase官方使用法则
+
+（1）Region大小控制在10-50G。
+
+（2）cell大小不超过10M（性能对应小于100k的值有优化），如果使用mob（Medium-sized Objects一种特殊用法）则不超过50M。
+
+（3）1张表有1到3个列族，不要设计太多，最好就1个，如果使用多个尽量保证不会同时读取多个列族。
+
+（4）1到2个列族的表格，设计50-100个Region。
+
+（5）列族名称要尽量短，不需要像RDBMS（关系型数据库）具有准确的名称和描述。
+
+（6）如果RowKey设计时间在最前面，会导致有大量的旧数据存储在不活跃的Region中，使用的时候，仅仅会操作少数的活动Region，此时建议增加更多的Region个数。
+
+（7）如果只有一个列族用于写入数据，分配内存资源的时候可以做出调整，即写缓存不会占用太多的内存。
