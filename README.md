@@ -287,6 +287,7 @@
 - [917.仅仅反转字母](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%8F%8C%E6%8C%87%E9%92%88/917.%E4%BB%85%E4%BB%85%E5%8F%8D%E8%BD%AC%E5%AD%97%E6%AF%8D.md)
 - [905.按奇偶排序数组](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%8F%8C%E6%8C%87%E9%92%88/905.%E6%8C%89%E5%A5%87%E5%81%B6%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84.md)
 - [658.找到K个最接近的元素](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%8F%8C%E6%8C%87%E9%92%88/658.%E6%89%BE%E5%88%B0K%E4%B8%AA%E6%9C%80%E6%8E%A5%E8%BF%91%E7%9A%84%E5%85%83%E7%B4%A0.md)
+- [1768.交替合并字符串](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%8F%8C%E6%8C%87%E9%92%88/1768.%E4%BA%A4%E6%9B%BF%E5%90%88%E5%B9%B6%E5%AD%97%E7%AC%A6%E4%B8%B2.md)
 
 ##### 7、哈希表
 
