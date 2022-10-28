@@ -881,3 +881,226 @@ JVM调优的思路有两部分，一是内存设置，二是垃圾回收器设�
 （6）如果RowKey设计时间在最前面，会导致有大量的旧数据存储在不活跃的Region中，使用的时候，仅仅会操作少数的活动Region，此时建议增加更多的Region个数。
 
 （7）如果只有一个列族用于写入数据，分配内存资源的时候可以做出调整，即写缓存不会占用太多的内存。
+
+### 六、整合Phoenix
+
+#### 6.1 Phoenix简介
+
+Phoenix是HBase的开源SQL皮肤，可以使用标准JDBC API代替HBase客户端API来创建表，插入数据和查询HBase数据。
+
+在client和HBase之间放一个Phoenix中间层不会减慢速度，因为用户编写的数据处理代码和Phoenix编写的没有区别，不仅如此Phoenix对于用户输入的SQL同样会有大量的优化手段（就像Hive自带sql优化器一样）。
+
+Phoenix在5.0版本默认提供两种客户端（瘦客户端和胖客户端），在5.1.2版本安装包中删除了瘦客户端，本文也不再使用瘦客户端。而胖客户端和用户自己写HBase的API代码读取数据之后进行数据处理是完全一样的。
+
+#### 6.2 Phoenix快速入门
+
+##### 6.2.1 安装
+
+官网地址：http://phoenix.apache.org/
+
+下载上传解压。拷贝server包到各个节点的hbase/lib
+
+```shell
+cp phoenix-server-hbase-2.4-5.1.2.jar /opt/module/hbase/lib/
+```
+
+配置环境变量
+
+```shell
+export PHOENIX_HOME=/opt/module/phoenix
+export PHOENIX_CLASSPATH=$PHOENIX_HOME
+export PATH=$PATH:$PHOENIX_HOME/bin
+```
+
+重启HBase。连接Phoenix
+
+```shell
+/opt/module/phoenix/bin/sqlline.py hadoop102,hadoop103,hadoop104:2181
+```
+
+##### 6.2.2 Phoenix Shell操作
+
+Phoenix语法：https://phoenix.apache.org/language/index.html
+
+**在phoenix 中，表名等会自动转换为大写，若要小写，使用双引号修饰表名。**
+
+注：Phoenix 中建表，会在 HBase 中创建一张对应的表。为了减少数据对磁盘空间的占用，Phoenix 默认会对 HBase 中的列名做编码处理。具体规则可参考官网链接：https://phoenix.apache.org/columnencoding.html，若不想对列名编码，可在建表语句末尾加上 COLUMN_ENCODED_BYTES = 0; 
+
+（1）**表的映射**
+
+默认情况下，HBase中已存在的表，通过Phoenix是不可见的。如果要在Phoenix中操作HBase中已存在的表，可以在Phoenix中进行表的映射。映射方式有两种：**视图映射和表映射**。
+
+假设HBase中test表的结构如下，两个列族info1和info2
+
+![image-20221028212933693](HBase视频学习笔记.assets/image-20221028212933693-6963775.png)
+
+则在Phoenix中创建视图映射
+
+```shell
+create view "test"(id varchar primary key,"info1"."name" varchar,"info2"."address" varchar);
+```
+
+Phoenix创建的视图是只读的，所以只能用来做查询，无法通过视图对数据进行修改等操作。删除视图如下
+
+```shell
+drop view "test";
+```
+
+在Phoenix中创建表去映射HBase中已存在的表，是可以修改删除HBase中已经存在的数据的。而且，删除Phoenix中的表，那么HBase中被映射的表也会被删除。
+
+注意：进行表映射时，不能使用列名编码，需将`column_encoded_bytes`设为0。
+
+```shell
+create table "test"(id varchar primary key,"info1"."name" varchar,"info2"."address" varchar) column_encoded_bytes=0;
+```
+
+（2）**数字类型说明**
+
+HBase中的数字，底层存储为补码，而Phoenix中的数字，底层存储为在补码的基础上将符号位反转。所以在Phoenix中建表去映射HBase中已存在的表，当HBase中有数字类型的字段时，会出现解析错误的现象。
+
+解决上述问题的方案有两种：
+
+- Phoenix中提供了unsigned_int，unsigned_long等无符号类型，其对数字的编码解码方式和HBase是相同的，如果无需考虑负数，那么在Phoenix中建表时采用无符号类型是最合适的选择。
+- 如果需要考虑负数的情况，则可通过Phoenix自定义函数，将数字类型的最高位，即符号位反转即可，自定义函数可参考如下链接：https://phoenix.apache.org/udf.html。
+
+##### 6.2.3 Phoenix JDBC操作
+
+此处演示一个标准的 JDBC 连接操作，实际开发中会直接使用别的框架内嵌的 Phoenix 连接。
+
+maven依赖
+
+```xml
+<dependencies>
+  <dependency>
+    <groupId>org.apache.phoenix</groupId>
+    <artifactId>phoenix-client-hbase-2.4</artifactId>
+    <version>5.1.2</version>
+  </dependency>
+</dependencies>
+```
+
+代码
+
+```java
+import java.sql.*;
+import java.util.Properties;
+public class PhoenixClient {
+    public static void main(String[] args) throws SQLException {
+        // 标准的 JDBC 代码
+        // 1.添加链接
+          String url = "jdbc:phoenix:hadoop102,hadoop103,hadoop104:2181";
+        // 2. 创建配置
+        // 没有需要添加的必要配置 因为 Phoenix 没有账号密码
+        Properties properties = new Properties();
+        // 3. 获取连接
+        Connection connection = DriverManager.getConnection(url, properties);
+        // 5.编译 SQL 语句
+        PreparedStatement preparedStatement = connection.prepareStatement("select * from student");
+        // 6.执行语句
+        ResultSet resultSet = preparedStatement.executeQuery();
+        // 7.输出结果
+        while (resultSet.next()){
+            System.out.println(resultSet.getString(1) + ":" + resultSet.getString(2) + ":" + resultSet.getString(3));
+        }
+        // 8.关闭资源
+        connection.close();
+        // 由于 Phoenix 框架内部需要获取一个 HBase 连接,所以会延迟关闭
+        // 不影响后续的代码执行
+        System.out.println("hello");
+    } 
+}
+```
+
+#### 6.3 Phoenix二级索引
+
+##### 6.3.1 二级索引配置文件
+
+添加如下配置到HBase的HRegionServer节点的hbase-site.xml
+
+```xml
+<!-- phoenix regionserver 配置参数-->
+<property>
+    <name>hbase.regionserver.wal.codec</name>
+    <value>org.apache.hadoop.hbase.regionserver.wal.IndexedWALEditCodec</value>
+</property>
+```
+
+##### 6.3.2 全局索引（global index）
+
+Global Index是默认的索引格式，创建全局索引时，会在HBase中建立一张新表。也就是说索引数据和数据表是存放在不同的表中的。因此全局索引适用于多读少写的业务场景。
+
+写数据的时候会消耗大量开销，因为索引表也要更新，而索引表是分布在不同的数据节点上的，跨节点的数据传输带来了较大的性能消耗。
+
+在读数据的时候Phoenix会选择索引表来降低查询消耗的时间。
+
+创建单个字段的全局索引
+
+```sql
+CREATE INDEX my_index ON my_table (my_col);
+#例如
+0: jdbc:phoenix:hadoop102,hadoop103,hadoop104> create index my_index on student1(age);
+#删除索引
+DROP INDEX my_index ON my_table
+```
+
+查看二级索引是否有效，可以使用explainPlan执行计划，有二级索引之后会变成范围扫描
+
+```sql
+explain select id,name from student1 where age = 10;
+```
+
+如果想查询的字段不是索引字段的话索引表不会被使用，也就是说不会带来查询速度的提升。
+
+```sql
+0: jdbc:phoenix:hadoop102,hadoop103,hadoop104> explain select id,name,addr from student1 where age = 10;
+```
+
+要解决上面的问题，可采用以下方案：
+
+（1）使用包含索引。
+
+（2）使用本地索引。
+
+##### 6.3.3 包含索引
+
+创建携带其他字段的全局索引（本质还是全局索引）。
+
+```sql
+CREATE INDEX my_index ON my_table (v1) INCLUDE (v2);
+```
+
+先删除之前的索引：
+
+```sql
+0: jdbc:phoenix:hadoop102,hadoop103,hadoop104> drop index my_index on student1;
+#创建包含索引
+0: jdbc:phoenix:hadoop102,hadoop103,hadoop104> create index my_index on student1(age) include (addr);
+```
+
+之后使用执行计划查看效果
+
+```sql
+0: jdbc:phoenix:hadoop102,hadoop103,hadoop104> explain select id,name,addr from student1 where age = 10;
+```
+
+##### 6.3.4 本地索引（local index）
+
+local index适用于写操作频繁的场景。
+
+索引数据和数据表的数据是存放在同一张表中（且是同一个Region），避免了在写操作的时候往不同服务器的索引表中写索引带来的额外开销。
+
+```sql
+CREATE LOCAL INDEX my_index ON my_table (my_column); # my_column可以是多个
+```
+
+本地索引会将所有的信息存放在一个影子列族中，虽然读取的时候也是范围扫描，但是没有全局索引快，优点在于不用写多个表了。
+
+```sql
+#删除之前的索引
+0: jdbc:phoenix:hadoop102,hadoop103,hadoop104> drop index my_index on student1;
+#创建本地索引
+0: jdbc:phoenix:hadoop102,hadoop103,hadoop104> CREATE LOCAL INDEX my_index ON student1 (age,addr);
+#使用执行计划
+0: jdbc:phoenix:hadoop102,hadoop103,hadoop104> explain select id,name,addr from student1 where age = 10;
+```
+
