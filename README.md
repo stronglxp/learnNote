@@ -524,6 +524,7 @@
 - [55.跳跃游戏](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E8%B4%AA%E5%BF%83/55.%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F.md)
 - [646.最长数对链](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E8%B4%AA%E5%BF%83/646.%E6%9C%80%E9%95%BF%E6%95%B0%E5%AF%B9%E9%93%BE.md)
 - [670.最大交换](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E8%B4%AA%E5%BF%83/670.%E6%9C%80%E5%A4%A7%E4%BA%A4%E6%8D%A2.md)
+- [2335.装满杯子需要的最短总时长](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E8%B4%AA%E5%BF%83/2335.%E8%A3%85%E6%BB%A1%E6%9D%AF%E5%AD%90%E9%9C%80%E8%A6%81%E7%9A%84%E6%9C%80%E7%9F%AD%E6%80%BB%E6%97%B6%E9%95%BF.md)
 
 ##### 19、图
 
