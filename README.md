@@ -31,10 +31,16 @@
 - [TCP-IP详解卷3：TCP事务协议](https://github.com/stronglxp/learnNote/blob/2e30f46d7b/%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%9A%84%E4%B9%A6%E7%B1%8D/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%E7%9A%84/TCP-IP%E8%AF%A6%E8%A7%A3%E5%8D%B73%EF%BC%9ATCP%E4%BA%8B%E5%8A%A1%E5%8D%8F%E8%AE%AE.pdf)
 - [图解HTTP](https://github.com/stronglxp/learnNote/blob/2e30f46d7b/%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%9A%84%E4%B9%A6%E7%B1%8D/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%E7%9A%84/%E3%80%8A%E5%9B%BE%E8%A7%A3HTTP%E3%80%8B%E5%AE%8C%E6%95%B4%E5%BD%A9%E8%89%B2%E7%89%88.pdf)
 - [图解TCP-IP(第5版)](https://github.com/stronglxp/learnNote/blob/main/%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%9A%84%E4%B9%A6%E7%B1%8D/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%E7%9A%84/%E5%9B%BE%E8%A7%A3TCP-IP(%E7%AC%AC5%E7%89%88).pdf)
+- [计算机网络-自顶向下方法第七版](https://github.com/stronglxp/learnNote/blob/main/%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%9A%84%E4%B9%A6%E7%B1%8D/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%E7%9A%84/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E6%96%B9%E6%B3%95%E7%AC%AC%E4%B8%83%E7%89%88.pdf)
 
 ##### 4、Kafka
 
 - [Kafka权威指南](https://github.com/stronglxp/learnNote/blob/main/%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%9A%84%E4%B9%A6%E7%B1%8D/kafka/Kafka%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97.pdf)
+
+##### 5、项目管理
+
+- [人月神话-中文版](https://github.com/stronglxp/learnNote/blob/main/%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%9A%84%E4%B9%A6%E7%B1%8D/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D-%E4%B8%AD%E6%96%87%E7%89%88.pdf)
+- [构建之法现代软件工程第3版](https://github.com/stronglxp/learnNote/blob/main/%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%9A%84%E4%B9%A6%E7%B1%8D/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E6%9E%84%E5%BB%BA%E4%B9%8B%E6%B3%95%E7%8E%B0%E4%BB%A3%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%AC%AC3%E7%89%88.pdf)
 
 #### 一、Docker
 
