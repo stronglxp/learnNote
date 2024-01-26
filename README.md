@@ -267,6 +267,7 @@
 - [1342.将数字变成0的操作次数](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BD%8D%E8%BF%90%E7%AE%97/1342.%E5%B0%86%E6%95%B0%E5%AD%97%E5%8F%98%E6%88%900%E7%9A%84%E6%93%8D%E4%BD%9C%E6%AC%A1%E6%95%B0.md)
 - [693.交替位二进制数](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BD%8D%E8%BF%90%E7%AE%97/693.%E4%BA%A4%E6%9B%BF%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%95%B0.md)
 - [762.二进制表示中质数个计算置位](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E4%BD%8D%E8%BF%90%E7%AE%97/762.%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%A1%A8%E7%A4%BA%E4%B8%AD%E8%B4%A8%E6%95%B0%E4%B8%AA%E8%AE%A1%E7%AE%97%E7%BD%AE%E4%BD%8D.md)
+- [2859.计算K置位下标对应元素的和](https://github.com/stronglxp/learnNote/blob/866ff6e7fca4d40f1883e28b55f82b14a7958c77/leetcode/%E4%BD%8D%E8%BF%90%E7%AE%97/2859.%E8%AE%A1%E7%AE%97K%E7%BD%AE%E4%BD%8D%E4%B8%8B%E6%A0%87%E5%AF%B9%E5%BA%94%E5%85%83%E7%B4%A0%E7%9A%84%E5%92%8C.md)
 
 ##### 6、双指针
 
