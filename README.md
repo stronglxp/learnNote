@@ -552,6 +552,10 @@
 - [面试题 10.02. 变位词组](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E7%A8%8B%E5%BA%8F%E5%91%98%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%85%B8/%E9%9D%A2%E8%AF%95%E9%A2%9810.02.%E5%8F%98%E4%BD%8D%E8%AF%8D%E7%BB%84.md)
 - [面试题17.14.最小K个数](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E7%A8%8B%E5%BA%8F%E5%91%98%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%85%B8/%E9%9D%A2%E8%AF%95%E9%A2%9817.14.%E6%9C%80%E5%B0%8FK%E4%B8%AA%E6%95%B0.md)
 
+##### 21、单调栈
+
+- [962.最大宽度坡](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E5%8D%95%E8%B0%83%E6%A0%88/962.%E6%9C%80%E5%A4%A7%E5%AE%BD%E5%BA%A6%E5%9D%A1.md)
+
 ...... 陆续更新中
 
 #### 个人微信公众号【秃头哥编程】，关注我不秃头！
