@@ -470,6 +470,7 @@
 - [915.分割数组](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/915.%E5%88%86%E5%89%B2%E6%95%B0%E7%BB%84.md)
 - [2341.数组能形成多少数对](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/2341.%E6%95%B0%E7%BB%84%E8%83%BD%E5%BD%A2%E6%88%90%E5%A4%9A%E5%B0%91%E6%95%B0%E5%AF%B9.md)
 - [2395.和相等的子数组](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/2395.%E5%92%8C%E7%9B%B8%E7%AD%89%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84.md)
+- [2670.找出不同元素数目差数组](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E6%95%B0%E7%BB%84/2670.%E6%89%BE%E5%87%BA%E4%B8%8D%E5%90%8C%E5%85%83%E7%B4%A0%E6%95%B0%E7%9B%AE%E5%B7%AE%E6%95%B0%E7%BB%84.md)
 
 ##### 12、滑动窗口
 
