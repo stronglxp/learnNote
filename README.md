@@ -495,6 +495,7 @@
 - [641.设计循环双端队列](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E9%93%BE%E8%A1%A8/641.%E8%AE%BE%E8%AE%A1%E5%BE%AA%E7%8E%AF%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97.md)
 - [2807.在链表中插入最大公约数](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E9%93%BE%E8%A1%A8/2807.%E5%9C%A8%E9%93%BE%E8%A1%A8%E4%B8%AD%E6%8F%92%E5%85%A5%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0.md)
 - [83.删除排序链表中的重复元素](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E9%93%BE%E8%A1%A8/83.%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0.md)
+- [2487.从链表中移除节点](https://github.com/stronglxp/learnNote/blob/main/leetcode/%E9%93%BE%E8%A1%A8/2487.%E4%BB%8E%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%A7%BB%E9%99%A4%E8%8A%82%E7%82%B9.md)
 
 ##### 14、字典树
 
