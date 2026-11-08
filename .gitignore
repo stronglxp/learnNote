@@ -1,1 +1,92 @@
+HELP.md
+# Compiled class file
+*.class
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# Intellij
+*.ipr
+*.iml
+*.iws
+.idea/
+
+# Maven
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Gradle
+build
+.gradle
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+
+# Log file
+*.log
+log/
+
+# out
+**/out/
+
+# Mac
 .DS_Store
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+.vscode
+
+# mvn
+.mvn
+mvnw
+mvnw.cmd
+
+# Playwright MCP
+.playwright-mcp/
+
+# AI tools
+.claude/
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+.cursorrules
+.aider*
+.copilot/
+.codeium/
+.tabnine/
+.continue/
+.cody/
+.codeblack/
+.windsurf/
+.amplify/
+# Local generated directories occasionally created by Finder or IDE copy operations
+**/target */
+**/build */
+.env
