@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>RAG:将检索与生成方式相结合来做生成任务</title>
+</head>
+<body>
+    <div class="header">
+        首发于自然语言处理算法与实践
+        <button>切换模式</button>
+        <h1>RAG:将检索与生成方式相结合来做生成任务</h1>
+        <div class="author">
+            <span>烛之文</span>
+        </div>
+    </div>
+
+    <div class="content">
+        <h2>1、前言</h2>
+        <p>在上一篇&lt;kNN-NER：利用knn近邻算法来做命名实体识别&gt;提及到文中提出kNN-NER框架是一种检索式增强的方法（retrieval augmented methods），就去查看有关retrieval augmented的paper，了解其核心思想，觉得检索式增强的方法很适合许多业务场景使用，因其以一种简捷的方式将外部知识融于模型中去。今天就分享一篇来自Facebook AI Research的paper&lt;Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks&gt;，论文提出一种检索式增强生成方法，应用于知识密集型的NLP任务（如问答生成），该篇论文被2020年NeurIPS 会议接收。</p>
+        
+        <p>文中说到，以BERT之类的大规模预训练模型将很多事实知识信息存入模型中，可以看着是pre-trained parametric类型，尽管以fine-tuned方式在下游任务取得显著的成效，但这类方法仍存在无法精准地获取和操作知识的缺陷。而在上述提及的问题上，传统知识检索的方法能很好的应对，这类方法可以看着是non-parametric memory类型。于是，论文提出检索式增强生成方法（retrieval-augmented generation，RAG），主要思想就是将pre-trained parametric与non-parametric memory结合起来做语言生成任务，将两类模型集成起来提高任务处理效果。</p>
+
+        <h2>2、RAG方法</h2>
+        <p>上图为论文提出RAG模型的整体示意图。主要包括两大模块：一个检索器（Retriever， p_\\eta(z|x) ） + 一个生成器（Generator， p_\\theta(y_i|x,z,y_{1:i-1}) ）。前者包括query encoder和document index，分别负责query的编码和文档的索引；后者是一个seq2seq的生成模型。在检索中，使用的是最大内积搜索的方法（MIPS）来检索top-K相关文档。</p>
+    
+        <h2>3、实验</h2>
+        <p>论文在四类Knowledge-Intensive 任务上进行实验，具体包括开放问答（Open-domain Question Answering ）、摘要式问答（Abstractive Question Answering） 、开放问题生成（Jeopardy Question Generation）、事实判断（Fact Verification ），并使用维基百科（包含2100万个文档）作为检索库。</p>
+
+        <h2>4、结语</h2>
+        <p>本次分享基于检索增强方式将外部知识融于生成任务中一个新的框架――RAG。对比T5 和 BART这类擅长处理生成任务的模型来说，RAG更新外部知识是不需要重新预训练，成本低；而对比pipeline方法，RAG利用外部知识并不需要构造负责的特征工程。总的来说，RAG方法可作为外部知识融合框架的一种有效实例。</p>
+    </div>
+
+    <div class="footer">
+        <p>编辑于 2022-04-06 10:47</p>
+        <div class="tags">
+            <span>深度学习（Deep Learning）</span>
+        </div>
+        <div class="column">
+            <h3>自然语言处理算法与实践</h3>
+
+        </div>
+    </div>
+</body>
+</html>

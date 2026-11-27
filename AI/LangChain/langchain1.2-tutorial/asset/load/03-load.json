@@ -1,0 +1,26 @@
+{
+  "messages": [
+    {
+      "sender": "Alice",
+      "content": "Hello, how are you today?",
+      "timestamp": "2023-05-15T10:00:00"
+    },
+    {
+      "sender": "Bob",
+      "content": "I'm doing well, thanks for asking!",
+      "timestamp": "2023-05-15T10:02:00"
+    },
+    {
+      "sender": "Alice",
+      "content": "Would you like to meet for lunch?",
+      "timestamp": "2023-05-15T10:05:00"
+    },
+    {
+      "sender": "Bob",
+      "content": "Sure, that sounds great!",
+      "timestamp": "2023-05-15T10:07:00"
+    }
+  ],
+  "conversation_id": "conv_12345",
+  "participants": ["Alice", "Bob"]
+}
