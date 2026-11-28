@@ -1,0 +1,40 @@
+name: rag-milvus
+
+services:
+  standalone:
+    image: milvusdb/milvus:v2.6.26
+    command: ["milvus", "run", "standalone"]
+    security_opt:
+      - seccomp:unconfined
+    environment:
+      DEPLOY_MODE: STANDALONE
+      ETCD_USE_EMBED: "true"
+      ETCD_DATA_DIR: /var/lib/milvus/etcd
+      ETCD_CONFIG_PATH: /milvus/configs/embedEtcd.yaml
+      COMMON_STORAGETYPE: local
+    configs:
+      - source: embedded-etcd
+        target: /milvus/configs/embedEtcd.yaml
+    ports:
+      - "127.0.0.1:19530:19530"
+      - "127.0.0.1:9091:9091"
+    volumes:
+      - standalone-data:/var/lib/milvus
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:9091/healthz"]
+      start_period: 90s
+      interval: 10s
+      timeout: 5s
+      retries: 6
+
+configs:
+  embedded-etcd:
+    content: |
+      listen-client-urls: http://127.0.0.1:2379
+      advertise-client-urls: http://127.0.0.1:2379
+      quota-backend-bytes: 4294967296
+      auto-compaction-mode: revision
+      auto-compaction-retention: "1000"
+
+volumes:
+  standalone-data:
