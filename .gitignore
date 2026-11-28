@@ -90,3 +90,4 @@ GEMINI.md
 **/target */
 **/build */
 .env
+/AI/LangChain/langchain1.2-tutorial/6-RAG/data/
